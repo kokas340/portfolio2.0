@@ -1,0 +1,30 @@
+.text-outside-span {
+    margin-right: 9px;
+    font-size: 20px;
+    color: #333; /* Dark gray */
+    font-family: 'Open Sans', Arial, sans-serif; /* Use Open Sans or any desired font */
+  }
+  
+  @media (max-width: 384px) {
+    .paddingPhone {
+      margin-top: 100px;
+    }
+  }
+  
+  
+  .code-block {
+  
+    background-color: #f0f0f0; /* Light gray */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace; /* Use Fira Code or any desired monospace font */
+    font-size: 22px;
+    white-space: pre-wrap;
+  }
+
+  .container-fluid-pattern {
+    background-color: #cecece1e; /* White background */
+    background-image: linear-gradient(45deg, rgba(253, 253, 253, 0.5) 25%, transparent 25%, transparent 75%, rgba(247, 247, 247, 0.877) 75%, rgba(255, 255, 255, 0.8)), linear-gradient(-45deg, rgba(252, 252, 252, 0.795) 25%, transparent 25%, transparent 75%, rgba(245, 245, 245, 0.5) 75%, rgba(241, 241, 241, 0.726)); /* Diagonal lines with opacity */
+    background-size: 160px 60px; /* Adjust size of pattern */
+  }
+  

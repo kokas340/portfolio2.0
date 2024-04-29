@@ -1,0 +1,33 @@
+.sidebar {
+    position: fixed;
+    top: 35%;
+    
+    left: 0;
+    width: 70px; /* Adjust width as needed */
+   /* Border */
+    box-shadow: 0 0 5px rgb(255, 255, 255); /* Shadow */
+    background-color: #fff;
+    z-index: 100;
+  }
+  
+  .sidebar img {
+    display: block;
+    width: 90%; /* Make images fill the container */
+    padding: 5px;
+    margin: auto; /* Center images horizontally */
+    transition: transform 0.3s ease; /* Add transition effect */
+  }
+  
+  .sidebar img:hover {
+    animation: rotateImage 1s ; /* Apply animation on hover */
+  }
+  
+  @keyframes rotateImage {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

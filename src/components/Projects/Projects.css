@@ -1,0 +1,13 @@
+  .container-fluid-pattern2 {
+    background-color: #cecece1e; /* White background */
+    background-image: linear-gradient(45deg, rgba(253, 253, 253, 0.952) 25%, transparent 25%, transparent 75%, rgba(247, 247, 247, 0.877) 75%, rgba(255, 255, 255, 0.8)), linear-gradient(-45deg, rgba(252, 252, 252, 0.795) 25%, transparent 25%, transparent 75%, rgba(245, 245, 245, 0.5) 75%, rgba(241, 241, 241, 0.726)); /* Diagonal lines with opacity */
+    background-size: 160px 60px; /* Adjust size of pattern */
+  }
+  
+  .custom-hr {
+    border: none;
+    height: 2px; /* Adjust thickness as needed */
+    background-color: #333; /* Color of the line */
+    width: 50px; /* Width of the line */
+    margin:0px auto; /* Margin to center horizontally */
+  }
