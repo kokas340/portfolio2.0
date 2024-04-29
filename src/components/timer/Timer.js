@@ -17,7 +17,7 @@ function Timer() {
     let spamInterval;
     spamInterval = setInterval(() => {
       setTimeSince({
-        years: Math.floor(Math.random() * 5),
+        years: Math.floor(Math.random() * 3),
         months: Math.floor(Math.random() * 12),
         days: Math.floor(Math.random() * 30),
         hours: Math.floor(Math.random() * 24),
