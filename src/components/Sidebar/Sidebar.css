@@ -1,33 +1,29 @@
 .sidebar {
-    position: fixed;
-    top: 35%;
-    
-    left: 0;
-    width: 70px; /* Adjust width as needed */
-   /* Border */
-    box-shadow: 0 0 5px rgb(255, 255, 255); /* Shadow */
-    background-color: #fff;
-    z-index: 100;
-  }
-  
-  .sidebar img {
-    display: block;
-    width: 90%; /* Make images fill the container */
-    padding: 5px;
-    margin: auto; /* Center images horizontally */
-    transition: transform 0.3s ease; /* Add transition effect */
-  }
-  
-  .sidebar img:hover {
-    animation: rotateImage 1s ; /* Apply animation on hover */
-  }
-  
-  @keyframes rotateImage {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
+  position: fixed;
+  top: 35%;
+  left: -100%; /* Initially position the sidebar outside the viewport */
+  width: 70px; /* Adjust width as needed */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Better shadow */
+  background-color: #fff;
+  z-index: 100;
+  transition: left 2s ease; /* Add transition for smooth sliding effect */
+  border-radius: 0 10px 10px 0; /* Border radius on the right side */
+}
+
+
+
+.sidebar.show {
+  left: 0; /* Move sidebar to the left (visible position) */
+}
+
+.sidebar img {
+  display: block;
+  width: 90%; /* Make images fill the container */
+  padding: 5px;
+  margin: auto; /* Center images horizontally */
+  transition: transform 0.5s ease; /* Add transition effect */
+}
+
+.sidebar img:hover {
+  transform: rotate(360deg); /* Rotate images on hover */
+}

@@ -17,7 +17,23 @@
 	text-align: center;
 	width: 120px;
   }
-  
+  @keyframes wave {
+	0% {
+	  transform: translateX(0);
+	}
+	25% {
+	  transform: translateY(-5px);
+	}
+	50% {
+	  transform: translateY(10px);
+	}
+	75% {
+	  transform: translateY(-5px);
+	}
+	100% {
+	  transform: translateY(0);
+	}
+  }
   .timer-container p::before {
 	content: attr(data-label);
 	font-weight: bold;

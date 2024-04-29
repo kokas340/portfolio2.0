@@ -1,11 +1,16 @@
-import React from "react";
-import image1 from "../../images/image1.png"; // Import your images
+import React, { useEffect } from "react";
+import image1 from "../../images/image1.png";
 import image2 from "../../images/image2.png";
 import image3 from "../../images/image3.png";
 import image4 from "../../images/image4.png";
 import "./Sidebar.css";
 
 function Sidebar() {
+  useEffect(() => {
+    const sidebar = document.querySelector(".sidebar");
+    sidebar.classList.add("show");
+  }, []);
+
   return (
     <div className="sidebar">
       <img src={image1} alt="Image 1" />

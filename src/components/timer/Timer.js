@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Timer.css";
 
 function Timer() {
+  const [change, setChange] = useState(false);
   const [timeSince, setTimeSince] = useState({
     years: Math.floor(Math.random() * 10), // Initial random values
     months: Math.floor(Math.random() * 12),
@@ -12,10 +13,8 @@ function Timer() {
   });
 
   useEffect(() => {
-    const startTime = new Date(2018, 0, 24); // January 24, 2018
+    const startTime = new Date(2018, 0, 24);
     let spamInterval;
-
-    // Start spamming random numbers
     spamInterval = setInterval(() => {
       setTimeSince({
         years: Math.floor(Math.random() * 5),
@@ -27,9 +26,8 @@ function Timer() {
       });
     }, 50);
 
-    // Switch to real date after 2 seconds
     setTimeout(() => {
-      clearInterval(spamInterval); // Stop spamming
+      clearInterval(spamInterval);
       setInterval(() => {
         const currentTime = new Date();
         const difference = Math.abs(currentTime - startTime);
@@ -57,11 +55,32 @@ function Timer() {
           minutes,
           seconds,
         });
+        changeColor();
       }, 1000);
     }, 2000);
 
     return () => clearInterval(spamInterval);
   }, []);
+  const changeColor = () => {
+    if (!change) {
+      const timeElements = document.querySelectorAll(".timer-container p");
+      if (!timeElements[0].style.color) {
+        timeElements.forEach((element, index) => {
+          element.style.color = "green"; // Change color to green
+          element.style.animation = `wave 0.7s ease forwards ${
+            (index + 1) * 0.1
+          }s`; // Apply wave animation with delay based on index
+        });
+        setTimeout(() => {
+          timeElements.forEach((element) => {
+            element.style.color = "#333"; // Change color back to white
+            element.style.animation = "none"; // Remove animation
+          });
+          setChange(true); // Set change to true after color change
+        }, 1000);
+      }
+    }
+  };
 
   return (
     <div className="timer-container">

@@ -12,7 +12,7 @@ function Project({
 }) {
   return (
     <div className="container">
-      <div className="row justify-content-center pb-1 ">
+      <div className="row justify-content-center  ">
         {/* Left column for image */}
         <div className="col-xl-7 text-center">
           <img
@@ -35,7 +35,12 @@ function Project({
               ))}
             </div>
             <p className="project-text mt-3">{text}</p>
-            <a href={buttonLink} className="btn shadow-sm code-block">
+            <a
+              href={buttonLink}
+              className="btn shadow-sm code-block"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {buttonText}
             </a>
           </div>
