@@ -15,24 +15,6 @@ function CustomNavbar() {
           aria-controls="basic-navbar-nav"
           onClick={() => setExpanded(!expanded)}
         />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="custom-nav">
-            <Nav.Link
-              href="#about"
-              onClick={() => setExpanded(false)}
-              className="custom-link"
-            >
-              About
-            </Nav.Link>
-            <Nav.Link
-              href="#projects"
-              onClick={() => setExpanded(false)}
-              className="custom-link"
-            >
-              Projects
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
       </Container>
     </Navbar>
   );

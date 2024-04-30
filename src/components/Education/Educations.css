@@ -3,4 +3,17 @@
     background-image: linear-gradient(45deg, rgba(253, 253, 253, 0.5) 25%, transparent 25%, transparent 75%, rgba(247, 247, 247, 0.877) 75%, rgba(255, 255, 255, 0.8)), linear-gradient(-45deg, rgba(252, 252, 252, 0.795) 25%, transparent 25%, transparent 75%, rgba(245, 245, 245, 0.5) 75%, rgba(241, 241, 241, 0.726)); /* Diagonal lines with opacity */
     background-size: 160px 60px; /* Adjust size of pattern */
   }
-  
+
+  .subtitle2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    max-width: 62%;
+    color: #666;
+    margin: 0 auto; 
+    text-align: center; 
+    display: inline-block; 
+    white-space: normal; 
+  }
+  .subtitlebox2{
+    max-width: 62%;
+  }

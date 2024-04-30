@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar/Navbar";
 import Projects from "../components/Projects/Projects";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Educations from "../components/Education/Educations";
-
+import Footer from "../components/Footer/Footer";
 
 function Home() {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -32,7 +32,8 @@ function Home() {
       <Hero />
       {showSidebar && <Sidebar />}
       <Projects />
-      <Educations/>
+      <Educations />
+      <Footer />
     </>
   );
 }

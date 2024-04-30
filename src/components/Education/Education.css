@@ -5,11 +5,31 @@
     color: #666; /* Medium gray */
     margin-bottom: 5px;
   }
+  .flag-icon {
+    width: 20px; /* Adjust size as needed */
+    margin-left: 5px; /* Adjust spacing */
+    vertical-align: middle;
+    padding-bottom: 5px; /* Align with text */
+  }
+  .company-icon{
+    width: 20px; /* Adjust size as needed */
+    margin-left: 5px; /* Adjust spacing */
+    vertical-align: middle;
+    border-radius: 4px;
+ /* Align with text */
+ margin-bottom: 3px;
+  }
+  
   
   .location {
     font-size: 16px;
     color: #666; /* Medium gray */
     margin-bottom: 5px;
+  }
+  .comapny{
+    font-size: 17px;
+    color: #666; /* Medium gray */
+    margin-bottom: 15px;
   }
   
   .degree {
@@ -32,3 +52,28 @@
     margin-bottom: 20px;
   }
   
+  .internship-details {
+    margin-top: 20px;
+  }
+  
+  .flag-icon {
+    width: 20px;
+    margin-left: 5px;
+    vertical-align: middle;
+  }
+  
+  .experience-title {
+    font-size: 19px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0px;
+  }
+  
+  .experience-description {
+    font-size: 17px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  .wed{
+    max-width: 90%;
+  }
