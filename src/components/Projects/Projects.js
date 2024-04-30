@@ -25,6 +25,7 @@ function Projects() {
               "Websockets",
               "PostgreSQL",
               "Docker",
+              "Azure"
             ]}
           />
           <Project

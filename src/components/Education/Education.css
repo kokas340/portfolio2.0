@@ -1,0 +1,34 @@
+/* Education.css */
+
+.date {
+    font-size: 16px;
+    color: #666; /* Medium gray */
+    margin-bottom: 5px;
+  }
+  
+  .location {
+    font-size: 16px;
+    color: #666; /* Medium gray */
+    margin-bottom: 5px;
+  }
+  
+  .degree {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; /* Dark gray */
+    margin-bottom: 5px;
+  }
+  
+  .institute {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: #666; /* Medium gray */
+    margin-bottom: 20px;
+  }
+  
+  .custom-hr {
+    border-color: #ccc; /* Light gray */
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  

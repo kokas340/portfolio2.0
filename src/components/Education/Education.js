@@ -1,11 +1,17 @@
 import React from "react";
 import "./Education.css";
 
-function Education() {
+function Education({ degree, institute, location, date }) {
   return (
     <div className="col-md-6 text-center mb-5">
-      <p className="title">Education</p>
-      <hr className="custom-hr" />
+      <div className="row">
+        <p className="degree">{degree}</p>
+        <p className="institute">{institute}</p>
+      </div>
+      <div className="row">
+        <p className="date">{date}</p>
+        <p className="location">{location}</p>
+      </div>
     </div>
   );
 }
