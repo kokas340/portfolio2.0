@@ -17,7 +17,7 @@
 padding-left: 80px;
 }
 .pbBig{
-  padding-bottom:120px ;
+  padding-bottom:90px ;
 }
 
 .code-block {
@@ -31,6 +31,9 @@ padding-left: 80px;
 
 .shadow-sm {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Shadow */
+}
+.technologies{
+  max-width: 100%;
 }
 
 .btn-primary {
