@@ -11,10 +11,6 @@ function CustomNavbar() {
         <Navbar.Brand href="#home" className="custom-brand">
           Jack Spinola
         </Navbar.Brand>
-        <Navbar.Toggle
-          aria-controls="basic-navbar-nav"
-          onClick={() => setExpanded(!expanded)}
-        />
       </Container>
     </Navbar>
   );

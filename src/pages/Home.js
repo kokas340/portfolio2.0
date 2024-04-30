@@ -5,16 +5,18 @@ import Projects from "../components/Projects/Projects";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Educations from "../components/Education/Educations";
 import Footer from "../components/Footer/Footer";
-
+import FindMe from "../components/FindMe/FindMe";
 function Home() {
   const [showSidebar, setShowSidebar] = useState(true);
-
+  const [footInfo, setFootInfo] = useState(false);
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
         setShowSidebar(false);
+        setFootInfo(true);
       } else {
         setShowSidebar(true);
+        setFootInfo(false);
       }
     };
 
@@ -33,6 +35,12 @@ function Home() {
       {showSidebar && <Sidebar />}
       <Projects />
       <Educations />
+      {footInfo && (
+        <div className="container-fluid">
+          <FindMe />
+        </div>
+      )}
+
       <Footer />
     </>
   );
