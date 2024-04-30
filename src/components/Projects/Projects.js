@@ -31,7 +31,7 @@ function Projects() {
             imageSrc={pc1}
             title="Riga Cup"
             text="Responsible for crafting the backend infrastructure, I orchestrated the management of tournaments and teams within this system for Riga Cup"
-            buttonText="View Project"
+            buttonText="View Website"
             buttonLink="https://www.rigacup.lv/"
             technologies={["PHP", "SQL", "REACT"]}
           />

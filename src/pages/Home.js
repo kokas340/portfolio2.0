@@ -3,6 +3,8 @@ import Hero from "../components/hero/Hero";
 import Navbar from "../components/Navbar/Navbar";
 import Projects from "../components/Projects/Projects";
 import Sidebar from "../components/Sidebar/Sidebar";
+import Educations from "../components/Education/Educations";
+
 
 function Home() {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -30,6 +32,7 @@ function Home() {
       <Hero />
       {showSidebar && <Sidebar />}
       <Projects />
+      <Educations/>
     </>
   );
 }
