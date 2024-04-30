@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <Router basename="">
+    <Router basename="/portfolio2.0">
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
