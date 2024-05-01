@@ -6,11 +6,11 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 function ThreeScene({ model }) {
   const containerRef = useRef();
   const controlsRef = useRef();
-  let columnWidth = 600; 
+  let columnWidth = 638; 
   let canvasHeight = 300;
   useEffect(() => {
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(100, columnWidth / canvasHeight, 0.5, 1000);
+    const camera = new THREE.PerspectiveCamera(100, columnWidth / canvasHeight, 0.1, 500);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(columnWidth, canvasHeight);
     containerRef.current.appendChild(renderer.domElement);
@@ -34,7 +34,7 @@ function ThreeScene({ model }) {
 
       
         obj.position.y = -0.8;
-        obj.position.x = -0.2; 
+        obj.position.x = 0; 
         scene.add(obj);
 
         
@@ -42,7 +42,7 @@ function ThreeScene({ model }) {
         const objectHeight = boundingBox.max.y - boundingBox.min.y;
 
         
-        const distance = objectHeight / Math.tan((camera.fov / 1.6) * (Math.PI / 200));
+        const distance = objectHeight / Math.tan((camera.fov / 1.6) * (Math.PI / 190));
         camera.position.z = distance;
       },
       undefined,
@@ -62,8 +62,8 @@ function ThreeScene({ model }) {
     controls.enablePan = false;
     controls.minPolarAngle = Math.PI / 2; 
     controls.maxPolarAngle = Math.PI / 2; 
-    controls.minAzimuthAngle = -Math.PI / 20; 
-    controls.maxAzimuthAngle = Math.PI / 9; 
+    controls.minAzimuthAngle = -Math.PI / 23; 
+    controls.maxAzimuthAngle = Math.PI / 23; 
     const animate = () => {
       requestAnimationFrame(animate);
       camera.aspect = columnWidth / canvasHeight;
