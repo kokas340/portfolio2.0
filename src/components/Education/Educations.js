@@ -5,6 +5,8 @@ import pt from "../../images/pt.png";
 import dk from "../../images/dk.png";
 import gc from "../../images/gc.png";
 import wh from "../../images/wh.png";
+import monitor from "../../models/monitor.glb";
+import monitor2 from "../../models/monitor2.glb";
 
 function Educations() {
   return (
@@ -31,6 +33,7 @@ function Educations() {
             flag={dk}
             companyName={"WasteHero"}
             icon={wh}
+            model={monitor}
             experienceTitle={"STUDENT QA ENGINEER + 5 MONTH INTERN"}
             experienceDescription={
               "Designed and executed meticulous test cases, identifying, and reporting bugs. Collaborating closely with developers, I enhanced product reliability and facilitated the delivery of high-quality software. Additionally, I took on the responsibility of 'translating' support tickets for developers, ensuring seamless communication and quick issue resolution."
@@ -44,6 +47,7 @@ function Educations() {
             date={"2018-2021"}
             flag={pt}
             icon={gc}
+            model={monitor2}
             companyName={"GoClick"}
             experienceTitle={"SOFTWARE DEVELOPER INTERN"}
             experienceDescription={

@@ -10,7 +10,7 @@ function Projects() {
     <div className="container-fluid  container-fluid-pattern2">
       <div className="container  ">
         <div className=" justify-content-center pb-5">
-          <div className="col-md-12 text-center mb-5">
+          <div className="col-md-12 text-center mb-5 pbBig">
             <p className="titleMain">PROJECTS 💻</p>
             <hr className="custom-hr" />
             <p className="subtitle2">
