@@ -1,48 +1,55 @@
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 function ThreeScene({ model }) {
   const containerRef = useRef();
   const controlsRef = useRef();
-  let columnWidth = 638; 
+  let columnWidth = 638;
   let canvasHeight = 300;
   useEffect(() => {
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(100, columnWidth / canvasHeight, 0.1, 500);
+    const camera = new THREE.PerspectiveCamera(
+      100,
+      columnWidth / canvasHeight,
+      0.1,
+      300
+    );
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(columnWidth, canvasHeight);
     containerRef.current.appendChild(renderer.domElement);
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
     directionalLight.position.set(0, 0, 0.6);
     scene.add(directionalLight);
 
-    const loader = new OBJLoader();
+    const loader = new GLTFLoader();
     loader.load(
       model,
-      function (obj) {
-        const scaleFactor = 0.05;
+      function (gltf) {
+        const obj = gltf.scene;
+        const scaleFactor = 1;
         obj.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
-        
-        obj.rotateX(-Math.PI / 2); 
-
-      
-        obj.position.y = -0.8;
-        obj.position.x = 0; 
+        obj.position.y = -0.3;
+        obj.position.x = -0.07;
         scene.add(obj);
 
-        
+        // Rotate the object on the Z-axis
+        const angleInRadians = Math.PI / 2; // Adjust the angle as needed
+        obj.rotation.y += angleInRadians;
+        const angleInRadiansZ = Math.PI / 40; // Adjust the angle as needed
+        obj.rotation.z += angleInRadiansZ;
+
         const boundingBox = new THREE.Box3().setFromObject(obj);
         const objectHeight = boundingBox.max.y - boundingBox.min.y;
 
-        
-        const distance = objectHeight / Math.tan((camera.fov / 1.6) * (Math.PI / 190));
+        const distance =
+          objectHeight / Math.tan((camera.fov / 1.6) * (Math.PI / 210));
         camera.position.z = distance;
       },
       undefined,
@@ -54,16 +61,15 @@ function ThreeScene({ model }) {
     const controls = new OrbitControls(camera, renderer.domElement);
     controlsRef.current = controls;
 
-   
     controls.enableZoom = false;
 
-   
     controls.enableRotate = true;
     controls.enablePan = false;
-    controls.minPolarAngle = Math.PI / 2; 
-    controls.maxPolarAngle = Math.PI / 2; 
-    controls.minAzimuthAngle = -Math.PI / 23; 
-    controls.maxAzimuthAngle = Math.PI / 23; 
+    controls.minPolarAngle = Math.PI / 2;
+    controls.maxPolarAngle = Math.PI / 2;
+    controls.minAzimuthAngle = -Math.PI / 27;
+    controls.maxAzimuthAngle = Math.PI / 16;
+
     const animate = () => {
       requestAnimationFrame(animate);
       camera.aspect = columnWidth / canvasHeight;

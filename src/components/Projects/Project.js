@@ -13,18 +13,18 @@ function Project({
 }) {
   return (
     <div className="container">
-      <div className="row justify-content-center h-75  ">
+      <div className="row justify-content-center  pbBig">
         {/* Left column for image */}
-        <div className="col-xl-7 text-center">
+        <div className="col-xl-7 text-center mt-5">
           <img
             src={imageSrc}
             alt="Project Image"
-            className="project-image"
-            style={{ width: "110%" }}
+            className="project-image mb-4"
+            style={{ width: "100%" }}
           />
         </div>
         {/* Right column for title, subtitle, text, and button */}
-        <div className="col-xl-5 pdlf d-flex align-items-center pbBig">
+        <div className="col-xl-5 pdlf d-flex align-items-center ">
           <div className="text-md-left technologies">
             <h2 className="title mb-3">{title}</h2>
             {/* Mapping through technologies array to render squares */}
