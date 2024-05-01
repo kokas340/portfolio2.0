@@ -6,7 +6,7 @@ function CustomNavbar() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Navbar expanded={expanded} expand="lg" className="navbarcss">
+    <Navbar expanded={expanded}  className="navbarcss">
       <Container>
         <Navbar.Brand href="#home" className="custom-brand">
           Jack Spinola

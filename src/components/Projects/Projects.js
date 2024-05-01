@@ -36,7 +36,7 @@ function Projects() {
           />
           <Project
             imageSrc={pnta}
-            title="Pnta 🪩"
+            title="Pnta 🎉"
             text="
          
 This app connects people across Denmark who enjoy bars and clubs. I designed and implemented the backend architecture and managed integration with the management platform. I also handled the website's design and implementation. "
