@@ -1,5 +1,6 @@
 import React from "react";
 import "./Education.css";
+import ThreeScene from "../ThreeScene/ThreeScene";
 
 function Education({
   degree,
@@ -11,6 +12,7 @@ function Education({
   experienceTitle,
   experienceDescription,
   icon,
+  model,
 }) {
   return (
     <div className="col-xl-6 mb-5 ">
@@ -30,6 +32,7 @@ function Education({
           {companyName}{" "}
           <img src={icon} alt="Company Logo" className="company-icon" />
         </p>
+        <ThreeScene model={model} />
         <p className="experience-description wed">{experienceDescription}</p>
       </div>
     </div>
