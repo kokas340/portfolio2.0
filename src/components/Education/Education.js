@@ -55,7 +55,8 @@ function Education({
               style={{
                 position: "absolute",
                 width: "30px",
-                right: 0,
+                right: 90,
+                top:30,
                 pointerEvents: "none",
               }}
             />
