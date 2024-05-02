@@ -58,6 +58,7 @@ function Education({
                 right: 90,
                 top:30,
                 pointerEvents: "none",
+                opacity: 0.5,
               }}
             />
           )}

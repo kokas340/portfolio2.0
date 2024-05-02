@@ -10,7 +10,7 @@ function FindMe() {
     <div className="container-fluid-pattern2">
       <div className="row justify-content-center pb-5">
         <div className="col-md-12 text-center mb-5">
-          <p className="titleMain">Contact me</p>
+          <p className="titleMain">Contact Me</p>
           <hr className="custom-hr" />
         </div>
       </div>

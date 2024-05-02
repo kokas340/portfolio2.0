@@ -1,0 +1,73 @@
+.subtitleAbout {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+    color: #202020; /* Medium gray */
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333; /* Dark gray */
+  margin-bottom: 10px;
+}
+
+.project-text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  color: #666; /* Medium gray */
+  margin-bottom: 20px;
+}
+.pdlf{
+padding-left: 80px;
+}
+.pbBig{
+  padding-bottom:90px ;
+}
+
+.code-block {
+  background-color: #f0f0f0; /* Light gray */
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace; /* Use Fira Code or any desired monospace font */
+  font-size: 22px;
+  white-space: pre-wrap;
+}
+
+.shadow-sm {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Shadow */
+}
+.technologies{
+  max-width: 100%;
+}
+
+.btn-primary {
+  background-color: #f0f0f0; /* Light gray */
+  border-color: #f0f0f0; /* Light gray */
+  color: #333; /* Dark gray */
+}
+
+.tech-square {
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  font-size: 16px;
+  max-height: 40px;
+  margin-right: 5px;
+  transition: transform 0.2s, background-color 0.2s; /* Smooth transition for transform and background-color */
+}
+
+.tech-square:hover {
+  transform: scale(1.05); /* Scale up by 5% on hover */
+  background-color: #e0e0e0; /* Lighter gray on hover */
+}
+
+.btn {
+  background-color: #f0f0f0; /* Light gray */
+  border-color: #f0f0f0; /* Light gray */
+  color: #333; /* Dark gray */
+}
