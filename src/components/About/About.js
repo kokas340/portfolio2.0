@@ -50,15 +50,16 @@ function About() {
           </div>
         </div>
         <div className="row justify-content-center pb-5">
-          <div className="col-md-6  ">
+          <div className="col-md-6 ">
             <p className="subtitleAbout">Get to know me! 🧑🏻</p>
             <p className="w-100 experience-description mt-5">
-              I am a 21-year-old programmer currently living in Aarhus, Denmark.
-              I started programming in 2018 and am currently in my 5th semester
-              of Software Engineering. My objective is to obtain a challenging
-              role as a Software Engineer where I can apply my programming
-              skills and gain experience in the field. Let's grab a coffee
-              sometime and discuss technology!
+              I'm a <b>21-year-old programmer</b> currently living in{" "}
+              <b>Aarhus, Denmark</b>. I started programming in <b>2018</b> and
+              am currently in my <b></b>5th semester of{" "}
+              <b>Software Engineering</b>. My objective is to obtain a
+              challenging role as a Software Engineer where I can apply my{" "}
+              <b>programming skills </b>and <b>gain experience</b> in the field.
+              Let's grab a coffee sometime and discuss technology!
             </p>
           </div>
           <div className="col-xl-5 pdlf d-flex align-items-center ">
