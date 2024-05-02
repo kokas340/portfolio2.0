@@ -1,5 +1,7 @@
 /* Education.css */
-
+.move-icon{
+  width: 30px;
+}
 .date {
     font-size: 16px;
     color: #666; /* Medium gray */

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Education.css";
 import ThreeScene from "../ThreeScene/ThreeScene";
-
+import moveIcon from "../../images/move.png";
 function Education({
   degree,
   institute,
@@ -13,7 +13,21 @@ function Education({
   experienceDescription,
   icon,
   model,
+  
 }) {
+  const [showIcon, setShowIcon] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setShowIcon(window.innerWidth > 558);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <div className="col-xl-6 mb-5 ">
       <p className="degree">
@@ -32,7 +46,23 @@ function Education({
           {companyName}{" "}
           <img src={icon} alt="Company Logo" className="company-icon" />
         </p>
-        <ThreeScene model={model} />
+        <div style={{ position: "relative" }}>
+          {showIcon && (
+            <img
+              src={moveIcon}
+              alt="Move Icon"
+              className="move-icon"
+              style={{
+                position: "absolute",
+                width: "30px",
+                right: 0,
+                pointerEvents: "none",
+              }}
+            />
+          )}
+          <ThreeScene model={model} />
+        </div>
+
         <p className="experience-description wed">{experienceDescription}</p>
       </div>
     </div>
