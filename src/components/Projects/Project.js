@@ -10,18 +10,30 @@ function Project({
   buttonLink,
   technologies,
   button,
+  hasUrl,
 }) {
   return (
     <div className="container">
       <div className="row justify-content-center  pbBig">
         {/* Left column for image */}
         <div className="col-xl-7 text-center mt-5">
-          <img
-            src={imageSrc}
-            alt="Project Image"
-            className="project-image mb-4"
-            style={{ width: "100%" }}
-          />
+          {hasUrl ? (
+            <a href={buttonLink} target="_blank" rel="noopener noreferrer">
+              <img
+                src={imageSrc}
+                alt="Project Image"
+                className="project-image mb-4"
+                style={{ width: "100%" }}
+              />
+            </a>
+          ) : (
+            <img
+              src={imageSrc}
+              alt="Project Image"
+              className="project-image mb-4"
+              style={{ width: "100%" }}
+            />
+          )}
         </div>
         {/* Right column for title, subtitle, text, and button */}
         <div className="col-xl-5 pdlf d-flex align-items-center ">

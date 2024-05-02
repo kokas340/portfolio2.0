@@ -8,7 +8,7 @@ function Footer() {
           <p>
             <span className="text-outside-span">&#169;</span> 2024 Jack Spinola,
             no rights reserved.{" "}
-            <a target="_blank" href="https://github.com/kokas340/portfolio2.0">
+            <a target="_blank" rel="noopener noreferrer"href="https://github.com/kokas340/portfolio2.0">
               View source code.
             </a>
           </p>

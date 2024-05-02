@@ -15,7 +15,7 @@ function Educations() {
         <div className="row justify-content-center pb-5">
           <div className="col-md-12 text-center mb-5">
             <p className="titleMain">Education 🎓</p>
-            <hr className="custom-hr" />
+            <hr className="custom-hr mb-3" />
             <div className="">
               <p className="subtitle2">
                 Here, you'll discover more about my educational journey,

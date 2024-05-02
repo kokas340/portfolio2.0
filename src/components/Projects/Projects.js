@@ -12,13 +12,14 @@ function Projects() {
         <div className=" justify-content-center pb-5">
           <div className="col-md-12 text-center mb-5 pbBig">
             <p className="titleMain">PROJECTS 💻</p>
-            <hr className="custom-hr" />
+            <hr className="custom-hr mb-3" />
             <p className="subtitle2">
               Here, you'll discover some of the projects I've been involved in.
               Additional projects will be showcased on GitHub.
             </p>
           </div>
           <Project
+            hasUrl={true}
             imageSrc={pc2}
             title="Pet Feeder 🦴"
             text="As the team leader for the cloud team, I spearheaded the development of an API connecting the Arduino from the IoT team and facilitating bidirectional data exchange with the frontend team."
@@ -35,11 +36,10 @@ function Projects() {
             ]}
           />
           <Project
+            hasUrl={false}
             imageSrc={pnta}
             title="Pnta 🎉"
-            text="
-         
-This app connects people across Denmark who enjoy bars and clubs. I designed and implemented the backend architecture and managed integration with the management platform. I also handled the website's design and implementation. "
+            text="This app connects people across Denmark who enjoy bars and clubs. I designed and implemented the backend architecture and managed integration with the management platform. I also handled the website's design and implementation. "
             buttonText="Comming soon"
             button={false}
             buttonLink=""
@@ -55,6 +55,7 @@ This app connects people across Denmark who enjoy bars and clubs. I designed and
             ]}
           />
           <Project
+            hasUrl={true}
             imageSrc={pc1}
             title="Riga Cup ⚽"
             text="Responsible for crafting the backend infrastructure, I orchestrated the management of tournaments and teams within this system for Riga Cup"
