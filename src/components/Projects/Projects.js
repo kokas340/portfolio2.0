@@ -25,7 +25,7 @@ function Projects() {
             title="Blackjack AI ♠️"
             text="I developed a neural network model for playing the card game Blackjack as part of a semester project. The work involved preprocessing game data to train the model effectively, focusing on improving decision-making and performance during gameplay."
             buttonText="View Project"
-            buttonLink="https://github.com/BlackjackAI-Project/BlackjackModel"
+            buttonLink="https://github.com/FuLLeNN/MLA1-A7/blob/master/blackjackModel.ipynb"
             button={true}
             technologies={[
               "Python",
