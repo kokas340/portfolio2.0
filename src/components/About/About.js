@@ -53,7 +53,7 @@ function About() {
           <div className="col-md-6 ">
             <p className="subtitleAbout">Get to know me! 🧑🏻</p>
             <p className="w-100 experience-description mt-5">
-              I'm a <b>21-year-old programmer</b> currently living in{" "}
+              I'm a <b>{new Date().getFullYear() - 2002 - (new Date().getMonth() > 8 ? 0 : 1)}-year-old programmer</b> currently living in{" "}
               <b>Aarhus, Denmark</b>. I started programming in <b>2018</b> and
               am currently in my <b></b>5th semester of{" "}
               <b>Software Engineering</b>. My objective is to obtain a

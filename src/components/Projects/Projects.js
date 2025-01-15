@@ -3,6 +3,7 @@ import "./Projects.css";
 import Project from "./Project";
 import pc1 from "../../images/pc1.png";
 import pc2 from "../../images/pc2.png";
+import blackJack from "../../images/bjImage.png"
 import pnta from "../../images/pnta.png";
 
 function Projects() {
@@ -18,6 +19,23 @@ function Projects() {
               Additional projects will be showcased on GitHub.
             </p>
           </div>
+          <Project
+            hasUrl={true}
+            imageSrc={blackJack}
+            title="Blackjack AI ♠️"
+            text="I developed a neural network model for playing the card game Blackjack as part of a semester project. The work involved preprocessing game data to train the model effectively, focusing on improving decision-making and performance during gameplay."
+            buttonText="View Project"
+            buttonLink="https://github.com/BlackjackAI-Project/BlackjackModel"
+            button={true}
+            technologies={[
+              "Python",
+              "TensorFlow",
+              "NumPy",
+              "Jupyter",
+              "Scikit-Learn",
+              "Matplotlib",
+            ]}
+          />
           <Project
             hasUrl={true}
             imageSrc={pc2}
