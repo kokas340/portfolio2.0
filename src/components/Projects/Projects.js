@@ -3,7 +3,7 @@ import "./Projects.css";
 import Project from "./Project";
 import pc1 from "../../images/pc1.png";
 import pc2 from "../../images/pc2.png";
-import blackJack from "../../images/bjImage.png"
+import blackJack from "../../images/bjImage.png";
 import pnta from "../../images/pnta.png";
 
 function Projects() {
@@ -16,7 +16,17 @@ function Projects() {
             <hr className="custom-hr mb-3" />
             <p className="subtitle2">
               Here, you'll discover some of the projects I've been involved in.
-              Additional projects will be showcased on GitHub.
+              Additional projects will be showcased on{" "}
+              <a
+                href="https://github.com/kokas340"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="custom-link"
+              >
+                {" "}
+                GitHub{" "}
+              </a>{" "}
+              .
             </p>
           </div>
           <Project
