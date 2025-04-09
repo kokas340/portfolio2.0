@@ -1,0 +1,24 @@
+.custom-cursor {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  margin-top: 20px;
+  z-index: 9999;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+/* Optional hover style */
+.custom-cursor.hovered {
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+* {
+  cursor: none !important;
+}
+
+  
