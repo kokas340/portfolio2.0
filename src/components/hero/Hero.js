@@ -8,7 +8,7 @@ function Hero() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowArrow(true);
-    }, 6000);
+    }, 4500);
 
     const handleScroll = () => {
       const projectsSection = document.getElementById("projects");
@@ -44,7 +44,7 @@ function Hero() {
       <div className="row justify-content-center  paddingPhone">
         <div className="col-md-12">
           <Timer />
-          
+
           <div className="text-center">
             <p>
               <span className="text-outside-span">Since my first</span>
@@ -60,9 +60,11 @@ function Hero() {
         </div>
       </div>
 
-
       {showArrow && (
-        <div className="scroll-down-arrow text-center" onClick={handleArrowClick}>
+        <div
+          className="scroll-down-arrow text-center"
+          onClick={handleArrowClick}
+        >
           <span className="arrow">&#x2193;</span>
         </div>
       )}

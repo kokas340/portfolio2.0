@@ -72,7 +72,7 @@
       },
       {
         "date": "2023-11-07",
-        "milestone": "Scrum Sprint 1 - Feeder Hardware Integration",
+        "milestone": "Feeder Hardware Integration",
         "description": "Coordinated the first Scrum sprint for integrating Arduino with the cloud API. Ensured remote feeding functionality and addressed integration challenges between hardware and cloud services."
       },
       {
@@ -82,8 +82,8 @@
       },
       {
         "date": "2023-11-11",
-        "milestone": "Scrum Sprint 2 - Testing and Bug Fixes",
-        "description": "Led the second Scrum sprint, focusing on integration testing. Worked with the QA team to resolve issues, optimize API endpoints, and ensure smooth interaction between the feeder and cloud systems."
+        "milestone": "Testing and Bug Fixes",
+        "description": "Focus on testing. Worked with the both Frontend and IoT teams to resolve issues, optimize API endpoints, and ensure smooth interaction between the feeder and cloud systems."
       },
       {
         "date": "2023-11-13",
@@ -93,11 +93,11 @@
       {
         "date": "2023-12-10",
         "milestone": "Documentation",
-        "description": "Developed user guides and trained end-users on system setup, feeding schedule configuration, and troubleshooting. Created detailed documentation for pet owners and stakeholders."
+        "description": "Developed user guides and API documentation on system setup, feeding schedule configuration, and troubleshooting. Created detailed documentation for pet owners and stakeholders."
       }
     ],
-    "note": "Developed for the final semester project. 😀",
-    "link": "https://github.com/Pet-Feeder-SEP4/PetFeeder"
+    "link": "https://github.com/Pet-Feeder-SEP4/PetFeeder",
+    "video": "https://www.youtube.com/watch?v=KW97Hc_rt2E"
   },
   {
     "id": "pnta",
@@ -129,7 +129,8 @@
         "description": "Integrated the frontend UI with backend APIs, ensuring smooth user experience across platforms. Focused on real-time data updates and syncing data between the user app and manager platform."
       }
     ],
-    "note": "This project is still in development. Progress has been temporarily paused."
+    "note": "This project is still in development. Progress has been temporarily paused.",
+    "link": "https://github.com/orgs/PantaRheiOrg/repositories"
   },
   
   {
@@ -167,7 +168,7 @@
         "description": "Deployed the backend system to production. Monitored initial user activity and system performance to ensure stability."
       }
     ],
-    "note": "Source code not available. 😔",
+    "note": "Source code not available due to privacy concerns. 😔",
     "link": "https://www.rigacup.lv/"
   }
 ]

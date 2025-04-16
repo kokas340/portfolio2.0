@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React from "react";
-import "./Project.css";
-import { useNavigate } from 'react-router-dom';
+import React, { useRef, useEffect, useState } from "react";
 
+import "./Project.css";
+import { useNavigate } from "react-router-dom";
 
 function Project({
   id,
@@ -10,12 +10,37 @@ function Project({
   title,
   text,
   buttonText,
-  buttonLink,
   technologies,
+  buttonLink,
   button,
-  hasUrl, 
+  showGit,
+  hasUrl,
 }) {
   const navigate = useNavigate();
+  const buttonRef = useRef();
+  const [flash, setFlash] = useState(false);
+  const hasFlashed = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasFlashed.current) {
+          setFlash(true);
+          hasFlashed.current = true; // Prevent re-triggering
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.6,
+      }
+    );
+
+    if (buttonRef.current) {
+      observer.observe(buttonRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="container">
@@ -23,10 +48,10 @@ function Project({
         {/* Left column for image */}
         <div className="col-xl-7 text-center mt-5">
           {hasUrl ? (
-            <a href={buttonLink} target="_blank" rel="noopener noreferrer">
+            <a href={`/portfolio2.0/story/${id}`} rel="noopener noreferrer">
               <img
                 src={imageSrc}
-                alt="Project Image"
+                alt="Project"
                 className="project-image mb-4"
                 style={{ width: "100%" }}
               />
@@ -53,16 +78,29 @@ function Project({
               ))}
             </div>
             <p className="project-text mt-3">{text}</p>
-            {button ? (
-               <button
-               className="btn shadow-sm code-block"
-               onClick={() => navigate(`/story/${id}`)}
-             >
-               {buttonText}
-             </button>
-            ) : (
-              <></>
-            )}
+            <div className="d-flex gap-3 mt-4 flex-wrap">
+              {button && (
+                <button
+                  ref={buttonRef}
+                  className={`btn shadow-sm code-block ${
+                    flash ? "flash-once" : ""
+                  }`}
+                  onClick={() => navigate(`/story/${id}`)}
+                >
+                  {buttonText}
+                </button>
+              )}
+              {showGit && (
+                <a
+                  className="btn shadow-sm code-block"
+                  href={buttonLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View GitHub
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>

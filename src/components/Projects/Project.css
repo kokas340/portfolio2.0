@@ -1,16 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
+@keyframes flash-color {
+  0% {
+    background-color: #fff;
+    color: #222;
+  }
+  25% {
+    background-color: #88dcfa;
+    color: #eee;
+  }
+  50% {
+    background-color: #1cb9f7;
+    color: #fff;
+  }
+  75% {
+    background-color: #88dcfa;
+    color: #eee;
+  }
+  100% {
+    background-color: #fff;
+    color: #222;
+  }
+}
+
+.flash-once {
+  animation: flash-color 1s linear 3;
+  will-change: background-color, color;
+}
+
+
 .title {
   font-size: 32px;
   font-weight: bold;
-  color: #333; /* Dark gray */
+  color: #333; 
   margin-bottom: 10px;
 }
 
 .project-text {
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
-  color: #383838; /* Medium gray */
+  color: #383838; 
   margin-bottom: 20px;
 }
 .pdlf{
@@ -21,25 +50,25 @@ padding-left: 80px;
 }
 
 .code-block {
-  background-color: #f0f0f0; /* Light gray */
+  background-color: #f0f0f0; 
   padding: 5px 10px;
   border-radius: 5px;
-  font-family: 'Fira Code', 'Courier New', Courier, monospace; /* Use Fira Code or any desired monospace font */
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
   font-size: 22px;
   white-space: pre-wrap;
 }
 
 .shadow-sm {
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Shadow */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
 }
 .technologies{
   max-width: 100%;
 }
 
 .btn-primary {
-  background-color: #f0f0f0; /* Light gray */
-  border-color: #f0f0f0; /* Light gray */
-  color: #333; /* Dark gray */
+  background-color: #f0f0f0; 
+  border-color: #f0f0f0; 
+  color: #333; 
 }
 
 .tech-square {
@@ -49,26 +78,26 @@ padding-left: 80px;
   font-family: 'Fira Code', 'Courier New', Courier, monospace;
   font-size: 16px;
   margin-right: 5px;
-  transition: transform 0.2s, background-color 0.2s; /* Smooth transition for transform and background-color */
+  transition: transform 0.2s, background-color 0.2s;
 }
 
 .tech-square:hover {
-  transform: scale(1.05); /* Scale up by 5% on hover */
-  background-color: #e0e0e0; /* Lighter gray on hover */
+  transform: scale(1.05); 
+  background-color: #e0e0e0; 
 }
 
 .btn {
-  background-color: #f0f0f0; /* Light gray */
-  border: 1px solid #f0f0f0; /* Light gray */
-  color: #333; /* Dark gray */
+  background-color: #f0f0f0; 
+  border: 1px solid #f0f0f0;
+  color: #333;
   padding: 10px 20px;
   cursor: pointer;
-  transition: background-color 0.6s, border-color 0.6s, color 0.5s; /* Smooth transition */
+  transition: background-color 0.6s, border-color 0.6s, color 0.5s; 
 }
 
 .btn:hover {
-  background-color: #1cb9f7; /* Blue */
-  border-color: #24ade4; /* Blue */
-  color: #fff; /* White text */
+  background-color: #1cb9f7; 
+  border-color: #24ade4; 
+  color: #fff; 
 }
 
