@@ -26,9 +26,10 @@ function Story() {
   return (
     <>
       <div className="container-fluid  container-fluid-pattern3">
-        <div className="container  py-5 ">
+        <div className="container position-relative pt-5">
           <button
-            className="btn btn-secondary mb-3"
+            className="btn btn-secondary position-absolute mt-4"
+            style={{ top: "20px", left: "15px" }}
             onClick={() => navigate(-1)}
           >
             ← Back
@@ -51,7 +52,7 @@ function Story() {
               </div>
 
               {project.alert && (
-                <div className="text-center mb-5">
+                <div className="text-center mb-2">
                   <p className="alert alert-warning">{project.alert}</p>
                 </div>
               )}

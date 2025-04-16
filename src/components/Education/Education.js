@@ -13,7 +13,6 @@ function Education({
   experienceDescription,
   icon,
   model,
-  
 }) {
   const [showIcon, setShowIcon] = useState(false);
 
@@ -56,7 +55,7 @@ function Education({
                 position: "absolute",
                 width: "30px",
                 right: 90,
-                top:30,
+                top: 30,
                 pointerEvents: "none",
                 opacity: 0.5,
               }}
