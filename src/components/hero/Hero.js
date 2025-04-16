@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import Timer from "../timer/Timer";
 import Intro from "../Intro/Intro";
 import "./Hero.css";
-import jack from "../../images/jack.png";
 function Hero() {
   const [showArrow, setShowArrow] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowArrow(true);
-    }, 6000);
+    }, 4500);
 
     const handleScroll = () => {
       const projectsSection = document.getElementById("projects");
@@ -45,7 +44,7 @@ function Hero() {
       <div className="row justify-content-center  paddingPhone">
         <div className="col-md-12">
           <Timer />
-          
+
           <div className="text-center">
             <p>
               <span className="text-outside-span">Since my first</span>
@@ -55,30 +54,17 @@ function Hero() {
           </div>
         </div>
       </div>
-      <div style={{ textAlign: "center" }}>
-        <img
-          src={jack}
-          alt="Project Image"
-          className="project-image mb-4"
-          style={{
-            width: "295px", 
-            height: "340px",
-            borderBottomLeftRadius: "20%",
-            borderBottomRightRadius: "50%",
-            objectFit: "cover",
-            objectPosition: "center top"
-          }}
-        />
-      </div>
       <div className="row justify-content-center">
         <div className="col-md-12">
           <Intro />
         </div>
       </div>
 
-
       {showArrow && (
-        <div className="scroll-down-arrow text-center" onClick={handleArrowClick}>
+        <div
+          className="scroll-down-arrow text-center"
+          onClick={handleArrowClick}
+        >
           <span className="arrow">&#x2193;</span>
         </div>
       )}

@@ -1,0 +1,174 @@
+[
+  {
+    "id": "blackjack",
+    "title": "Blackjack AI ♠️",
+    "events": [
+      {
+        "date": "2024-12-10",
+        "milestone": "Problem Framing and Data Collection",
+        "description": "Framed the Blackjack AI problem as a supervised learning task. Collected and analyzed data using a Blackjack simulator. Defined the objective of building an AI model that maximizes cumulative rewards over games."
+      },
+      {
+        "date": "2024-12-12",
+        "milestone": "Data Analysis and Feature Selection",
+        "description": "Performed data analysis to identify correlations, outliers, and missing values. Decided on the relevant features for training the model: dealer's visible card, initial hand, final hand, and actions taken."
+      },
+      {
+        "date": "2024-12-14",
+        "milestone": "Data Cleaning and Preparation",
+        "description": "Removed unnecessary columns and rows with irrelevant actions. Enhanced the data by breaking down games into individual actions and encoding categorical variables using one-hot and ordinal encoding."
+      },
+      {
+        "date": "2024-12-16",
+        "milestone": "Model Architecture Design",
+        "description": "Designed multiple model architectures for training: XGBoost, Feedforward Neural Networks, and Recurrent Neural Networks. Split the dataset into training, validation, and test sets."
+      },
+      {
+        "date": "2024-12-18",
+        "milestone": "Model Training",
+        "description": "Started training multiple models (XGBoost, Feedforward Neural Networks, and Recurrent Neural Networks). Applied data preprocessing, including feature scaling, encoding, and splitting into training and test sets. Focused on training the models to predict optimal Blackjack actions based on game states."
+      },
+      {
+        "date": "2024-12-20",
+        "milestone": "Model Evaluation",
+        "description": "Evaluated the performance of XGBoost, Feedforward Neural Networks, and Recurrent Neural Networks. Assessed accuracy, confusion matrices, and feature importance to compare model strengths and weaknesses."
+      },
+      {
+        "date": "2024-12-22",
+        "milestone": "Model Refinement",
+        "description": "Refined the models based on evaluation results. Adjusted hyperparameters and fine-tuned the neural network architectures to improve prediction accuracy and action classification."
+      },
+      {
+        "date": "2024-12-24",
+        "milestone": "Final Model Selection",
+        "description": "Selected the best-performing model based on evaluation metrics. Finalized the model for deployment and further testing."
+      }
+    ],
+    "link": "https://github.com/FuLLeNN/MLA1-A7/blob/master/blackjackModel.ipynb"
+  },
+  {
+    "id": "petfeeder",
+    "title": "Pet Feeder 🦴",
+    "events": [
+      {
+        "date": "2023-10-30",
+        "milestone": "Project Kickoff and Team Organization",
+        "description": "Led the cloud team during the initial planning phase, introducing the vision for the Smart Pet Feeder. Coordinated the project following Scrum methodology, organizing tasks and ensuring alignment with business goals."
+      },
+      {
+        "date": "2023-11-01",
+        "milestone": "Requirement Gathering and Cloud Architecture Design",
+        "description": "Collected requirements from stakeholders and designed the cloud infrastructure. Defined the architecture for scalability, data processing, and real-time pet feeding data synchronization."
+      },
+      {
+        "date": "2023-11-03",
+        "milestone": "Cloud Infrastructure Setup",
+        "description": "Set up the cloud infrastructure, focusing on high availability and security. Implemented cloud solutions for user data, activity logs, and feeding schedule synchronization."
+      },
+      {
+        "date": "2023-11-05",
+        "milestone": "Backend API Development",
+        "description": "Led backend API development, focusing on connecting the smart pet feeders with the cloud. Integrated user authentication and developed endpoints for feeding schedules and health insights."
+      },
+      {
+        "date": "2023-11-07",
+        "milestone": "Feeder Hardware Integration",
+        "description": "Coordinated the first Scrum sprint for integrating Arduino with the cloud API. Ensured remote feeding functionality and addressed integration challenges between hardware and cloud services."
+      },
+      {
+        "date": "2023-11-09",
+        "milestone": "Cloud API Integration with Hardware",
+        "description": "Focused on cloud API integration for real-time communication with the pet feeder devices. Implemented seamless data exchange and synchronization for accurate feeding schedules."
+      },
+      {
+        "date": "2023-11-11",
+        "milestone": "Testing and Bug Fixes",
+        "description": "Focus on testing. Worked with the both Frontend and IoT teams to resolve issues, optimize API endpoints, and ensure smooth interaction between the feeder and cloud systems."
+      },
+      {
+        "date": "2023-11-13",
+        "milestone": "Deployment and Scalability Testing",
+        "description": "Deployed the system to production and tested its scalability. Optimized the cloud infrastructure to handle a growing number of users and devices in real-time."
+      },
+      {
+        "date": "2023-12-10",
+        "milestone": "Documentation",
+        "description": "Developed user guides and API documentation on system setup, feeding schedule configuration, and troubleshooting. Created detailed documentation for pet owners and stakeholders."
+      }
+    ],
+    "link": "https://github.com/Pet-Feeder-SEP4/PetFeeder",
+    "video": "https://www.youtube.com/watch?v=KW97Hc_rt2E"
+  },
+  {
+    "id": "pnta",
+    "title": "Pnta 🎉",
+    "events": [
+      {
+        "date": "2024-02",
+        "milestone": "Design Phase",
+        "description": "Started with the design phase, focusing on user experience for both the app and manager platform. Developed wireframes, user flows, and UI mockups to ensure intuitive interfaces. The design phase also included architecture planning for scalable microservices."
+      },
+      {
+        "date": "2024-02",
+        "milestone": "Backend Architecture Development",
+        "description": "Developed the backend architecture, creating the base for both the app and manager platforms. Set up databases, APIs, and microservices to enable flexible communication between the two systems. The backend supports user data management and administrative functionality."
+      },
+      {
+        "date": "2024-03",
+        "milestone": "Manager Platform Development",
+        "description": "Built the manager platform, an admin interface for overseeing user activity, generating reports, and managing system data. The platform provides tools for admins to monitor and interact with user activity, with integrated alerting and notifications."
+      },
+      {
+        "date": "2024-04",
+        "milestone": "App Development",
+        "description": "Started coding the app platform, focusing on user interaction features such as registration, login, and venues display. Integrated APIs for seamless data synchronization between the app and backend."
+      },
+      {
+        "date": "2024-06",
+        "milestone": "Frontend Integration",
+        "description": "Integrated the frontend UI with backend APIs, ensuring smooth user experience across platforms. Focused on real-time data updates and syncing data between the user app and manager platform."
+      }
+    ],
+    "note": "This project is still in development. Progress has been temporarily paused.",
+    "link": "https://github.com/orgs/PantaRheiOrg/repositories"
+  },
+  
+  {
+    "id": "rigacup",
+    "title": "Riga Cup ⚽",
+    "events": [
+      {
+        "date": "2024-06-01",
+        "milestone": "Project Offer and Architecture Design",
+        "description": "Received a freelance offer to develop the Riga Cup system. Designed the overall system architecture, focusing on scalability and performance. The goal was to build a robust platform for tournament and team management."
+      },
+      {
+        "date": "2024-06-05",
+        "milestone": "Backend Development",
+        "description": "Started developing the backend for the Riga Cup system, including the database schema, API endpoints, and authentication logic. Managed the backend infrastructure and led a team to implement the system."
+      },
+      {
+        "date": "2024-06-10",
+        "milestone": "Frontend Integration",
+        "description": "Collaborated with the frontend team to integrate the backend API with the user interface. Ensured smooth data exchange between the frontend and backend systems."
+      },
+      {
+        "date": "2024-06-15",
+        "milestone": "System Testing and Debugging",
+        "description": "Conducted extensive testing of the system, identifying and fixing bugs in the tournament and team management features. Focused on user experience and system performance."
+      },
+      {
+        "date": "2024-06-20",
+        "milestone": "Final Adjustments and Optimization",
+        "description": "Optimized system performance by refining code, improving database queries, and reducing server load. Enhanced scalability and efficiency for large tournaments."
+      },
+      {
+        "date": "2024-06-25",
+        "milestone": "System Deployment",
+        "description": "Deployed the backend system to production. Monitored initial user activity and system performance to ensure stability."
+      }
+    ],
+    "note": "Source code not available due to privacy concerns. 😔",
+    "link": "https://www.rigacup.lv/"
+  }
+]

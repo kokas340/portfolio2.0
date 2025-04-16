@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Timer.css";
-
 function Timer() {
   const [change, setChange] = useState(false);
   const [timeSince, setTimeSince] = useState({
@@ -35,7 +34,7 @@ function Timer() {
         const years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
         const months = Math.floor(
           (difference % (1000 * 60 * 60 * 24 * 365)) /
-            (1000 * 60 * 60 * 24 * 30.4375)
+          (1000 * 60 * 60 * 24 * 30.4375)
         );
         const days = Math.floor(
           (difference % (1000 * 60 * 60 * 24 * 30.4375)) / (1000 * 60 * 60 * 24)
@@ -60,24 +59,28 @@ function Timer() {
     }, 2000);
 
     return () => clearInterval(spamInterval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const changeColor = () => {
     if (!change) {
+
       const timeElements = document.querySelectorAll(".timer-container p");
-      if (!timeElements[0].style.color) {
-        timeElements.forEach((element, index) => {
-          element.style.color = "green"; // Change color to green
-          element.style.animation = `wave 0.7s ease forwards ${
-            (index + 1) * 0.1
-          }s`; // Apply wave animation with delay based on index
-        });
-        setTimeout(() => {
-          timeElements.forEach((element) => {
-            element.style.color = "#333"; // Change color back to white
-            element.style.animation = "none"; // Remove animation
+      if (timeElements.length > 0 && !timeElements[0].style.color) {
+
+        if (!timeElements[0].style.color) {
+          timeElements.forEach((element, index) => {
+            element.style.color = "green"; // Change color to green
+            element.style.animation = `wave 0.7s ease forwards ${(index + 1) * 0.1
+              }s`; // Apply wave animation with delay based on index
           });
-          setChange(true); // Set change to true after color change
-        }, 1000);
+          setTimeout(() => {
+            timeElements.forEach((element) => {
+              element.style.color = "#333"; // Change color back to white
+              element.style.animation = "none"; // Remove animation
+            });
+            setChange(true); // Set change to true after color change
+          }, 1000);
+        }
       }
     }
   };

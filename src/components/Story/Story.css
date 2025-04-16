@@ -1,0 +1,105 @@
+/* Story.css */
+.timeline {
+  position: relative;
+  margin: 0 auto;
+  max-width: 800px;
+  padding-left: 20px;
+  border-left: 3px solid #0d6efd;
+}
+
+.timeline-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding-left: 40px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -12px;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: #0d6efd;
+  border: 4px solid white;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(57, 95, 249, 0.2); /* Adjusted shadow */
+  animation: blobAnimation 2s infinite alternate;
+}
+
+@keyframes blobAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+.timeline-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 5px solid #0d6efd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s ease;
+}
+
+.timeline-date {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 5px;
+}
+
+.timeline-milestone {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #0d6efd;
+  margin-bottom: 10px;
+}
+
+.timeline-content p {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+}
+
+.timeline-item:hover .timeline-content {
+  background-color: #f8f9fa;
+}
+
+.alert {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 0.95rem;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border-left: 4px solid #ffc107;
+}
+
+.alert-info {
+  background-color: #e7f3fe;
+  color: #0c5460;
+  border-left: 4px solid #17a2b8;
+}
+
+ .container-fluid-pattern3 {
+    background-color: #cecece1e; 
+    background-image: linear-gradient(45deg, rgba(253, 253, 253, 0.5) 25%, transparent 25%, transparent 75%, rgba(247, 247, 247, 0.877) 75%, rgba(255, 255, 255, 0.8)), linear-gradient(-45deg, rgba(252, 252, 252, 0.795) 25%, transparent 25%, transparent 75%, rgba(245, 245, 245, 0.5) 75%, rgba(241, 241, 241, 0.726)); 
+    background-size: 160px 60px; 
+  } 
+ 
