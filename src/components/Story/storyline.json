@@ -73,7 +73,7 @@
       {
         "date": "2023-11-07",
         "milestone": "Feeder Hardware Integration",
-        "description": "Coordinated the first Scrum sprint for integrating Arduino with the cloud API. Ensured remote feeding functionality and addressed integration challenges between hardware and cloud services."
+        "description": "Integrating Arduino with the cloud API. Ensured remote feeding functionality and addressed integration challenges between hardware and cloud services."
       },
       {
         "date": "2023-11-09",
