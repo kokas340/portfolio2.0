@@ -1,8 +1,11 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import "./Project.css";
+import { useNavigate } from 'react-router-dom';
+
 
 function Project({
+  id,
   imageSrc,
   title,
   text,
@@ -10,8 +13,10 @@ function Project({
   buttonLink,
   technologies,
   button,
-  hasUrl,
+  hasUrl, 
 }) {
+  const navigate = useNavigate();
+
   return (
     <div className="container">
       <div className="row justify-content-center  pbBig">
@@ -49,14 +54,12 @@ function Project({
             </div>
             <p className="project-text mt-3">{text}</p>
             {button ? (
-              <a
-                href={buttonLink}
-                className="btn shadow-sm code-block"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {buttonText}
-              </a>
+               <button
+               className="btn shadow-sm code-block"
+               onClick={() => navigate(`/story/${id}`)}
+             >
+               {buttonText}
+             </button>
             ) : (
               <></>
             )}

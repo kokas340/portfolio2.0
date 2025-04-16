@@ -6,19 +6,21 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 function ThreeScene({ model }) {
   const containerRef = useRef();
   const controlsRef = useRef();
-  let columnWidth = 700;
-  let canvasHeight = 520;
+  const columnWidthRef = useRef(700);  // Use useRef for columnWidth
+  const canvasHeight = 520;
+
   useEffect(() => {
+    const container = containerRef.current;  // Local ref variable
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       100,
-      columnWidth / canvasHeight,
+      columnWidthRef.current / canvasHeight,
       0.1,
       300
     );
     const renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setSize(columnWidth, canvasHeight);
-    containerRef.current.appendChild(renderer.domElement);
+    renderer.setSize(columnWidthRef.current, canvasHeight);
+    container.appendChild(renderer.domElement);
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 0);
     scene.add(ambientLight);
@@ -40,7 +42,7 @@ function ThreeScene({ model }) {
         scene.add(obj);
 
         // Rotate the object on the Z-axis
-        const angleInRadians = Math.PI / 2; 
+        const angleInRadians = Math.PI / 2;
         obj.rotation.y += angleInRadians;
         const angleInRadiansZ = Math.PI / 130;
         obj.rotation.z += angleInRadiansZ;
@@ -62,19 +64,18 @@ function ThreeScene({ model }) {
     controlsRef.current = controls;
 
     controls.enableZoom = false;
-
     controls.enableRotate = true;
     controls.enablePan = false;
-    controls.minPolarAngle = Math.PI / 2;;
+    controls.minPolarAngle = Math.PI / 2;
     controls.maxPolarAngle = Math.PI / 2;
     controls.minAzimuthAngle = -Math.PI / 27;
     controls.maxAzimuthAngle = Math.PI / 16;
-    
+
     const animate = () => {
       requestAnimationFrame(animate);
-      camera.aspect = columnWidth / canvasHeight;
+      camera.aspect = columnWidthRef.current / canvasHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(columnWidth, canvasHeight);
+      renderer.setSize(columnWidthRef.current, canvasHeight);
       renderer.render(scene, camera);
       controls.update();
     };
@@ -82,20 +83,25 @@ function ThreeScene({ model }) {
     animate();
 
     const handleResize = () => {
-      columnWidth = containerRef.current.offsetWidth;
-      camera.aspect = columnWidth / canvasHeight;
+      columnWidthRef.current = container.offsetWidth;
+      camera.aspect = columnWidthRef.current / canvasHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(columnWidth, canvasHeight);
+      renderer.setSize(columnWidthRef.current, canvasHeight);
     };
 
     window.addEventListener("resize", handleResize);
 
     return () => {
-      controlsRef.current.dispose();
+      controlsRef.current?.dispose();
       renderer.dispose();
-      containerRef.current.removeChild(renderer.domElement);
+
+      if (container && renderer.domElement.parentNode === container) {
+        container.removeChild(renderer.domElement);
+      }
+
       window.removeEventListener("resize", handleResize);
     };
+
   }, [model]);
 
   return <div ref={containerRef} />;

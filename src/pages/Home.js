@@ -7,7 +7,7 @@ import Educations from "../components/Education/Educations";
 import Footer from "../components/Footer/Footer";
 import FindMe from "../components/FindMe/FindMe";
 import About from "../components/About/About";
-import Cursor from "../components/Cursor/Cursor";
+
 
 function Home() {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -34,7 +34,8 @@ function Home() {
   return (
     <>
       <Navbar />
-      <Cursor />
+     {//<Cursor />
+     } 
       <section id="hero">
         <Hero />
       </section>
