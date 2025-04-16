@@ -5,7 +5,7 @@ import pc1 from "../../images/pc1.png";
 import pc2 from "../../images/pc2.png";
 import blackJack from "../../images/bjImage.png";
 import pnta from "../../images/pnta.png";
-
+import dpd from "../../images/dpd.png";
 function Projects() {
   return (
     <div className="container-fluid  container-fluid-pattern2" id="projects">
@@ -46,6 +46,29 @@ function Projects() {
               "PostgreSQL",
               "Docker",
               "Azure",
+            ]}
+          />
+          <Project
+            hasUrl={true}
+            id="smartvision"
+            imageSrc={dpd}
+            title="Smart Vision 📦"
+            text="This was my Bachelor's project in collaboration with Beumer Group and DPD. It focused on advanced computer vision using YOLOv9 and PyTorch for real-time package recognition and tracking."
+            buttonText="View Process"
+            showGit={false}
+            buttonLink=""
+            button={true}
+            technologies={[
+              "Python",
+              "YOLOv9",
+              "PyTorch",
+              "OpenCV",
+              "SuperGradients",
+              "NumPy",
+              "Matplotlib",
+              "Pandas",
+              "Seaborn",
+              "TQDM",
             ]}
           />
 

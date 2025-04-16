@@ -2,76 +2,116 @@ import React from "react";
 import "./About.css";
 
 function About() {
-  const technologies = [
-    "Java",
-    "C#",
-    ".NET",
-    "SpringBoot",
-    "React",
-    "ReactNative",
-    "JavaScript",
-    "TypeScript",
-    "HTML",
-    "CSS",
-    "Bootstrap",
-    "Tailwind",
-    "Azure",
-    "Docker",
-    "Kubernetes",
-    "PHP",
-    "CodeIgniter",
-    "Git",
-    "Github",
-  ];
+  const techStacks = {
+    Frontend: [
+      "React",
+      "ReactNative",
+      "JavaScript",
+      "TypeScript",
+      "HTML",
+      "CSS",
+      "Bootstrap",
+      "Tailwind",
+      "Redux",
+      "Framer Motion",
+      "Material UI",
+    ],
+    Backend: [
+      "Java",
+      "C#",
+      ".NET",
+      "SpringBoot",
+      "PHP",
+      "CodeIgniter",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "GraphQL",
+      "Firebase",
+      "Redis",
+    ],
+    DevOps: [
+      "Docker",
+      "Kubernetes",
+      "Azure",
+      "GitHub Actions",
+      "Nginx",
+      "Jenkins",
+    ],
+    Tools: [
+      "Git",
+      "Github",
+      "YOLOv9",
+      "PyTorch",
+      "OpenCV",
+      "SuperGradients",
+      "NumPy",
+      "Pandas",
+      "Matplotlib",
+      "Seaborn",
+      "TQDM",
+      "LabelImg",
+      "PyQt5",
+      "PostgreSQL",
+    ],
+  };
 
   return (
-    <div className=" container-fluid-pattern2">
-      <div className="container">
-        <div className="row justify-content-center pb-5">
-          <div className="col-md-12 text-center mb-5">
-            <p className="titleMain">About Me 👨🏻‍💻</p>
-            <hr className="custom-hr mb-3" />
-            <p className="subtitle2">
-              Here you will find more information about me, what I do, and my
-              current skills mostly in terms of programming and technologies.
-            </p>
-          </div>
-        </div>
-        <div className="row justify-content-center pb-5">
-          <div className="col-md-6 ">
-            <p className="subtitleAbout">Get to know me! 🧑🏻</p>
-            <p className="w-100 experience-description mt-5">
+    <section id="about" className="about-section">
+      <div className="container py-5">
+        <div className="row align-items-center g-5">
+          {/* Text Section */}
+          <div className="col-lg-6">
+            <h2 className="about-title">About Me 👨🏻‍💻</h2>
+            <p className="about-text mt-3">
               I'm a{" "}
-              <b>
+              <strong>
                 {new Date().getFullYear() -
                   2002 -
                   (new Date().getMonth() > 8 ? 0 : 1)}
-                -year-old programmer
-              </b>{" "}
-              currently living in <b>Aarhus, Denmark</b>. I started programming
-              in <b>2018</b> and am currently in my <b></b>5th semester of{" "}
-              <b>Software Engineering</b>. My objective is to obtain a
-              challenging role as a Software Engineer where I can apply my{" "}
-              <b>programming skills </b>and <b>gain experience</b> in the field.
-              Let's grab a coffee sometime and discuss technology!
+                -year-old software engineer
+              </strong>{" "}
+              currently based in <strong>Aarhus, Denmark</strong>. My journey
+              into tech began in high school with a focus on Informatics &
+              Programming, and I'm now pursuing my Bachelor's degree in{" "}
+              <strong>Software Engineering</strong> at VIA University College.
+            </p>
+            <p className="about-text mt-3">
+              I’ve taken on a variety of roles in team projects including{" "}
+              <strong>Team Leader</strong> and <strong>Scrum Master</strong>,
+              contributing to full-stack apps and systems ranging from smart pet
+              feeders to collaborative task management tools. These experiences
+              have helped me grow not just technically, but also as a
+              communicator and team player.
+            </p>
+            <p className="about-text mt-3">
+              I value <strong>collaboration</strong> and believe that sharing
+              knowledge and working toward a common goal is one of the most
+              rewarding parts of software development. Outside of coding, I’m
+              passionate about <strong>music, sports, and traveling</strong> —
+              anything that sparks creativity or gets me moving.
             </p>
           </div>
-          <div className="col-xl-5 pdlf d-flex align-items-center ">
-            <div className="text-md-left technologies">
-              <p className="subtitleAbout">My Skills 📐</p>
-              {/* Mapping through technologies array to render squares */}
-              <div className="technologies row">
-                {technologies.map((tech, index) => (
-                  <span key={index} className="tech-square col text-center m-1">
-                    {tech}
-                  </span>
-                ))}
+
+          {/* Skills Section */}
+          <div className="col-lg-6">
+            <h4 className="skills-title">Tech Stack 💻</h4>
+            {Object.entries(techStacks).map(([category, skills], idx) => (
+              <div className="skill-group mb-3" key={idx}>
+                <h6 className="skill-category">{category}</h6>
+                <div className="skill-badges">
+                  {skills.map((tech, i) => (
+                    <span className="badge tech-badge" key={i}>
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
