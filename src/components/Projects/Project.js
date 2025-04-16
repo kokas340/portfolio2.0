@@ -19,23 +19,22 @@ function Project({
   const navigate = useNavigate();
   const buttonRef = useRef();
   const [flash, setFlash] = useState(false);
-  const hasFlashed = useRef(false);
 
   useEffect(() => {
+    const hasFlashed = sessionStorage.getItem("buttonsFlashed");
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasFlashed.current) {
+        if (entry.isIntersecting && !hasFlashed) {
           setFlash(true);
-          hasFlashed.current = true; // Prevent re-triggering
+          sessionStorage.setItem("buttonsFlashed", "true"); // Mark all as flashed
           observer.disconnect();
         }
       },
-      {
-        threshold: 0.6,
-      }
+      { threshold: 0.6 }
     );
 
-    if (buttonRef.current) {
+    if (buttonRef.current && !hasFlashed) {
       observer.observe(buttonRef.current);
     }
 

@@ -129,7 +129,7 @@
         "description": "Integrated the frontend UI with backend APIs, ensuring smooth user experience across platforms. Focused on real-time data updates and syncing data between the user app and manager platform."
       }
     ],
-    "note": "This project is still in development. Progress has been temporarily paused.",
+    "alert": "This project is still in development. Progress has been temporarily paused.",
     "link": "https://github.com/orgs/PantaRheiOrg/repositories"
   },
   
@@ -168,7 +168,7 @@
         "description": "Deployed the backend system to production. Monitored initial user activity and system performance to ensure stability."
       }
     ],
-    "note": "Source code not available due to privacy concerns. 😔",
+    "alert": "Source code not available due to privacy concerns. 😔",
     "link": "https://www.rigacup.lv/"
   }
 ]
