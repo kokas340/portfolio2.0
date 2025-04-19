@@ -15,6 +15,7 @@ function Project({
   button,
   showGit,
   hasUrl,
+  video,
 }) {
   const navigate = useNavigate();
   const buttonRef = useRef();
@@ -81,11 +82,14 @@ function Project({
               {button && (
                 <button
                   ref={buttonRef}
-                  className={`btn shadow-sm code-block ${
-                    flash ? "flash-once" : ""
-                  }`}
+                  className={`btn shadow-sm code-block ${flash ? "flash-once" : ""}`}
                   onClick={() => navigate(`/story/${id}`)}
                 >
+                  {video && (
+                    <span role="img" aria-label="video" style={{ marginRight: "8px" }}>
+                      🎥
+                    </span>
+                  )}
                   {buttonText}
                 </button>
               )}

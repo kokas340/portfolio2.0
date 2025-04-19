@@ -24,7 +24,7 @@
 }
 
 .flash-once {
-  animation: flash-color 1s linear 3;
+  animation: flash-color 1s linear 2;
   will-change: background-color, color;
 }
 

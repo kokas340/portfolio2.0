@@ -39,6 +39,7 @@ function Projects() {
             showGit={true}
             buttonLink="https://github.com/Pet-Feeder-SEP4/PetFeeder"
             button={true}
+            video={true}
             technologies={[
               "Java",
               "Spring",
@@ -82,6 +83,7 @@ function Projects() {
             showGit={true}
             buttonLink="https://github.com/FuLLeNN/MLA1-A7/blob/master/blackjackModel.ipynb"
             button={true}
+            video={true}
             technologies={[
               "Python",
               "TensorFlow",
