@@ -44,7 +44,8 @@
         "description": "Selected the best-performing model based on evaluation metrics. Finalized the model for deployment and further testing."
       }
     ],
-    "link": "https://github.com/FuLLeNN/MLA1-A7/blob/master/blackjackModel.ipynb"
+    "link": "https://github.com/FuLLeNN/MLA1-A7/blob/master/blackjackModel.ipynb",
+    "video": "https://www.youtube.com/watch?v=QU1j-nnkwQc"
   },
   {
     "id": "petfeeder",
