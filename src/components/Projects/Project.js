@@ -48,7 +48,7 @@ function Project({
         {/* Left column for image */}
         <div className="col-xl-7 text-center mt-5">
           {hasUrl ? (
-            <a href={`/portfolio2.0/story/${id}`} rel="noopener noreferrer">
+            <a rel="noopener noreferrer">
               <img
                 src={imageSrc}
                 alt="Project"
