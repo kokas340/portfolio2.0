@@ -43,7 +43,7 @@ function Project({
   }, []);
 
   return (
-    <div className="container">
+    <div className="container ">
       <div className="row justify-content-center  pbBig">
         {/* Left column for image */}
         <div className="col-xl-7 text-center mt-5">

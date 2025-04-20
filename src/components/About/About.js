@@ -57,7 +57,7 @@ function About() {
   };
 
   return (
-    <section id="about" className="about-section">
+    <section id="about" className="about-section container-fluid-pattern2">
       <div className="container py-5">
         <div className="row align-items-center g-5">
           {/* Text Section */}
