@@ -138,38 +138,39 @@
     "title": "Smart Vision 📦",
     "events": [
       {
-        "date": "2024-01",
+        "date": "2025-01",
         "milestone": "Initial Research & Understanding",
         "description": "Kicked off the project by gathering domain-specific knowledge and exploring available datasets. This phase was crucial for understanding both the problem space and the constraints defined by our partners."
       },
       {
-        "date": "2024-01",
+        "date": "2025-01",
         "milestone": "Model Selection",
         "description": "Evaluated multiple computer vision models and frameworks. Chose a YOLOv9-based architecture due to its balance between speed and accuracy, and its compatibility with real-time inference."
       },
       {
-        "date": "2024-02",
+        "date": "2025-02",
         "milestone": "Data Preparation & Augmentation",
         "description": "Conducted extensive preprocessing of raw image data including normalization, labeling, and data augmentation techniques. Emphasis was placed on improving class balance and increasing model generalization."
       },
       {
-        "date": "2024-03",
+        "date": "2025-03",
         "milestone": "Active Learning Integration",
         "description": "To support model performance in edge-case scenarios, an active learning loop was implemented. This allowed the model to request human input on uncertain predictions, resulting in more efficient training cycles."
       },
       {
-        "date": "2024-04",
+        "date": "2025-04",
         "milestone": "Hyperparameter Tuning & Testing",
         "description": "Currently in the testing phase, focused on evaluating model performance using standard CV metrics (mAP, IoU, precision/recall). Hyperparameter tuning is ongoing to optimize inference speed and accuracy under real-world constraints."
       },
       {
-        "date": "Today",
+        "date": "2025-05",
         "milestone": "Deployment & Documentation",
         "description": "The project is currently in its final stages, focusing on deployment and preparing technical documentation. Efforts include model integration into the target environment, API wrapping, and writing developer and user-facing documentation for future maintenance."
       }
     ],
     "alert": "This project is under NDA. Limited details are shared out of respect for confidentiality agreements.",
-    "note": "This project is currently in progress. Updates will be shared as development advances."
+    "note": "This project is now complete on my side and will be continued by Beumer.",
+    "report":"ProjectReport"
   },
   
   {
