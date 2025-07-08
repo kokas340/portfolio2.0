@@ -71,9 +71,7 @@ function About() {
                   (new Date().getMonth() > 8 ? 0 : 1)}
                 -year-old software engineer
               </strong>{" "}
-              currently based in <strong>Aarhus, Denmark</strong>. My journey
-              into tech began in high school with a focus on Informatics &
-              Programming, and I'm now pursuing my Bachelor's degree in{" "}
+              currently based in <strong>Aarhus, Denmark</strong>. My journey into tech began in high school with a focus on Informatics & Programming, and I’ve recently completed my Bachelor's degree in{" "}
               <strong>Software Engineering</strong> at VIA University College.
             </p>
             <p className="about-text mt-3">
@@ -92,6 +90,7 @@ function About() {
               anything that sparks creativity or gets me moving.
             </p>
           </div>
+
 
           {/* Skills Section */}
           <div className="col-lg-6">

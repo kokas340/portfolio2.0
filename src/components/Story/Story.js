@@ -62,6 +62,18 @@ function Story() {
                   <p className="alert alert-info">{project.note}</p>
                 </div>
               )}
+              {project.report && (
+                <div className="text-center mb-5">
+                  <a
+                    href={`/reports/${project.report}.pdf`}
+                    download
+                    className="btn btn-primary mt-2"
+                  >
+                    Download Report
+                  </a>
+                </div>
+              )}
+
               {project.video && getYouTubeEmbedUrl(project.video) && (
                 <div className="mb-5">
                   <h4 className="mb-3 text-center">🎬 Project Walkthrough</h4>

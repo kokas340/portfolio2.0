@@ -4,15 +4,15 @@
 	justify-content: center;
 	align-items: center;
 	font-family: 'Arial', sans-serif;
-	margin-bottom: 15px;
+	margin-bottom: 4px;
   }
   
   .timer-container p {
 	margin: 10px;
-	padding: 20px;
-	background-color: #fff; /* White background */
+	padding: 18px;
+	background-color: #f6f6f6; /* White background */
 	color: #333; /* Dark gray text */
-	border-radius: 10px;
+	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	text-align: center;
 	width: 120px;
@@ -44,14 +44,14 @@
   }
   
   .timer-container p span {
-	font-size: 32px;
+	font-size: 20px;
 	font-weight: bold;
 	display: block;
 	margin-top: 10px;
   }
   
   .timer-container p:hover {
-	background-color: #f0f0f0; /* Light gray background on hover */
+	background-color: #f6f4f4; /* Light gray background on hover */
 	cursor: pointer;
 	transform: translateY(-2px);
 	transition: background-color 0.3s, transform 0.3s;
