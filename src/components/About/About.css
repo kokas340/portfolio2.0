@@ -1,11 +1,17 @@
 .about-section {
   background-color: #f7f7f7;
 }
-.container-fluid-pattern2 { 
-  background-color: #cecece1e; /* White background */
-  background-image: linear-gradient(45deg, rgba(253, 253, 253, 0.952) 25%, transparent 25%, transparent 75%, rgba(247, 247, 247, 0.877) 75%, rgba(255, 255, 255, 0.8)), linear-gradient(-45deg, rgba(252, 252, 252, 0.795) 25%, transparent 25%, transparent 75%, rgba(245, 245, 245, 0.5) 75%, rgba(241, 241, 241, 0.726)); /* Diagonal lines with opacity */
-  background-size: 160px 60px; /* Adjust size of pattern */
+
+.container-fluid-pattern2 {
+  background-color: #cecece1e;
+  /* White background */
+  background-image:
+    linear-gradient(45deg, rgba(253, 253, 253, 0.6) 25%, transparent 25%, transparent 75%, rgba(231, 231, 231, 0.4) 75%, rgba(255, 255, 255, 0.85)),
+    linear-gradient(-45deg, rgba(252, 252, 252, 0.85) 25%, transparent 25%, transparent 75%, rgba(245, 245, 245, 0.6) 75%, rgba(241, 241, 241, 0.8));
+  background-size: 160px 60px;
+  /* Adjust size of pattern */
 }
+
 .about-title {
   font-size: 2.5rem;
   font-weight: 700;
