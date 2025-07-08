@@ -65,12 +65,14 @@ function Story() {
               {project.report && (
                 <div className="text-center mb-5">
                   <a
-                    href={`/reports/${project.report}.pdf`}
-                    download
+                    href={`/portfolio2.0/reports/${project.report}.pdf`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="btn btn-primary mt-2"
                   >
-                    Download Report
+                    View Report
                   </a>
+
                 </div>
               )}
 
