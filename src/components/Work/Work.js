@@ -7,13 +7,13 @@ function Work({ companyName, experienceTitle, experienceDescription, icon, date 
     <div className="col-xl-6 mb-5 d-flex">
       <div className="work-card">
         <div className="work-date">
-          <CalendarDays size={14} className="work-icon" />
+          <CalendarDays size={16} className="work-icon" />
           {date}
         </div>
 
-        <div className="experience-title">
-          <Briefcase size={16} className="work-icon" />
+        <div className="experience-title"> 
           {experienceTitle}
+          <Briefcase size={20} className="work-icon" style={{marginLeft:'8px'}}/>
         </div>
 
         <div className="company-container">

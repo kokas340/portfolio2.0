@@ -24,9 +24,19 @@ function WorkList() {
 
         <div className="row justify-content-center pb-5">
           <Work
+            companyName={"GoClick"}
+            icon={gc}
+            date="01/2021 – 06/2021"
+            model={monitor2}
+            experienceTitle={"FULLSTACK SOFTWARE DEVELOPER INTERN"}
+            experienceDescription={
+              "At GoClick, I took ownership of a full-stack delivery app built for a supermarket chain. I developed secure backend services using Spring Boot and implemented JWT-based authentication to manage access control. On the frontend, I used React Native to deliver a smooth, mobile-first experience with real-time delivery tracking and intuitive ordering flows. I also handled deployment through Azure, ensuring stability and scalability. This project strengthened my ability to design, build, and maintain cloud-based applications from end to end while collaborating closely with the team to meet real user needs."
+            }
+          />
+          <Work
             companyName={"WasteHero"}
             icon={wh}
-            date="2023 - Today"
+            date="07/2023 – PRESENT"
             model={monitor}
             experienceTitle={"Lead QA ENGINEER"}
             experienceDescription={
@@ -34,16 +44,6 @@ function WorkList() {
             }
           />
 
-          <Work
-            companyName={"GoClick"}
-            icon={gc}
-            date="2023 - Today"
-            model={monitor2}
-            experienceTitle={"FULLSTACK SOFTWARE DEVELOPER INTERN"}
-            experienceDescription={
-              "At GoClick, I took ownership of a full-stack delivery app built for a supermarket chain. I developed secure backend services using Spring Boot and implemented JWT-based authentication to manage access control. On the frontend, I used React Native to deliver a smooth, mobile-first experience with real-time delivery tracking and intuitive ordering flows. I also handled deployment through Azure, ensuring stability and scalability. This project strengthened my ability to design, build, and maintain cloud-based applications from end to end while collaborating closely with the team to meet real user needs."
-            }
-          />
         </div>
       </div>
     </div>
