@@ -7,6 +7,7 @@ import Educations from "../components/Education/Educations";
 import Footer from "../components/Footer/Footer";
 import FindMe from "../components/FindMe/FindMe";
 import About from "../components/About/About";
+import WorkList from "../components/Work/WorkList"
 
 
 function Home() {
@@ -45,6 +46,9 @@ function Home() {
       </section>
       <section id="educations">
         <Educations />
+      </section>
+      <section id="work">
+        <WorkList />
       </section>
       <section id="about">
         <About />

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Timer from "../timer/Timer";
-import Intro from "../Intro/Intro";
 import jack from "../../images/jack.svg";
 import jackIrl from "../../images/jack.jpg";
 
@@ -95,6 +94,13 @@ function Hero() {
 
           <button
             className="btn btn-outline-secondary"
+            onClick={() => document.getElementById("work").scrollIntoView({ behavior: "smooth" })}
+          >
+            💼 Work
+          </button>
+
+          <button
+            className="btn btn-outline-secondary"
             onClick={() => document.getElementById("about").scrollIntoView({ behavior: "smooth" })}
           >
             📖 About Me
@@ -104,7 +110,7 @@ function Hero() {
 
         <Timer />
         <div className="hero-timer-note ">
-           since my first line of code...
+          since my first line of code...
         </div>
 
 
