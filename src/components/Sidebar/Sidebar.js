@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect } from "react";
 import image1 from "../../images/image1.png";
 import image2 from "../../images/image2.png";
@@ -15,19 +16,19 @@ function Sidebar() {
     <div className="sidebar">
       <a
         href="https://www.linkedin.com/in/jack-spinola-0a835927b/"
-        target="_blank"
+        target="_blank" rel="noreferrer"
       >
         <img src={image1} alt="Image 1" />
       </a>
-      <a href="https://github.com/kokas340" target="_blank">
+      <a href="https://github.com/kokas340" target="_blank" rel="noreferrer">
         <img src={image2} alt="Image 2" />
       </a>
-      <a href="mailto:jackspinola198@hotmail.com" target="_blank">
+      <a href="mailto:jackspinola198@hotmail.com" target="_blank" rel="noreferrer">
         <img src={image3} alt="Image 3" />
       </a>
       <a
         href="https://api.whatsapp.com/send/?phone=4591450703&text&type=phone_number&app_absent=0"
-        target="_blank"
+        target="_blank" rel="noreferrer"
       >
         <img src={image4} alt="Image 4" />
       </a>

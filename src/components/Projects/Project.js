@@ -48,6 +48,7 @@ function Project({
         {/* Left column for image */}
         <div className="col-xl-7 text-center mt-5">
           {hasUrl ? (
+            // eslint-disable-next-line jsx-a11y/anchor-is-valid
             <a rel="noopener noreferrer">
               <img
                 src={imageSrc}

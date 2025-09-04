@@ -53,7 +53,7 @@ function Projects() {
             hasUrl={true}
             id="smartvision"
             imageSrc={dpd}
-            title="Smart Vision 📦"
+            title="BEUMER Group - Smart Vision 📦"
             text="This was my Bachelor's project in collaboration with Beumer Group and DPD. It focused on advanced computer vision using YOLOv9 and PyTorch for real-time package recognition and tracking."
             buttonText="View Process"
             showGit={false}
