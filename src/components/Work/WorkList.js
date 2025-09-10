@@ -38,9 +38,9 @@ function WorkList() {
             icon={wh}
             date="07/2023 – PRESENT"
             model={monitor}
-            experienceTitle={"Lead QA ENGINEER"}
+            experienceTitle={"FRONTEND SOFTWARE DEVELOPER"}
             experienceDescription={
-              "I started at WasteHero as a student worker, where I completed my internship and gained hands-on experience with QA processes. After transitioning to a full-time role, I was promoted to Lead QA Engineer. In this role, I manage and mentor other student QAs, helping them integrate into the team while ensuring high-quality delivery. I take ownership of end-to-end quality workflows—from defining test strategies and structured test cases to building automated test flows using Cypress. I work closely with developers and support teams to surface critical issues early, reduce bugs in production, and streamline release readiness."
+              "Started at WasteHero as a QA intern, performing manual tests and creating automated checks to support the development team. Transitioned to a part-time QA role, mentoring new student QAs and helping improve test coverage and workflows. Later moved into full-time frontend development, working with React and TypeScript to build reusable components, fix bugs, and integrate APIs. Collaborated closely with backend developers to deliver new customer-facing features, improve code maintainability, and enhance overall user experience while ensuring high-quality releases."
             }
           />
 
