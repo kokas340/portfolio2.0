@@ -35,8 +35,8 @@ function Home() {
   return (
     <>
       <Navbar />
-     {//<Cursor />
-     } 
+      {//<Cursor />
+      }
       <section id="hero">
         <Hero />
       </section>
