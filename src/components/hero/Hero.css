@@ -1,6 +1,6 @@
-/* ---------- Nudge amount (positive => right, negative => left) ---------- */
 :root{
-  --lanyard-shift: 30vw;   /* try 3vw–8vw */
+  --lanyard-shift: 30vw;  
+  --lanyard-height: 200vh; 
 }
 
 /* ---------- Background pattern ---------- */
@@ -22,21 +22,26 @@
   z-index: 12;
   pointer-events: none;
   overflow: visible;
+  height: var(--lanyard-height);      /* <-- 2 screens tall */
+
 }
 .lanyard-stage{
   position: absolute;
   inset: 0;
   overflow: visible;
+  height: var(--lanyard-height);      /* match the layer */
+
 }
 .lanyard-box{
   position: absolute;
   top: 0;
-  right: 0;                         /* stick to the right edge */
-  width: max(100vw, 1400px);        /* wide canvas so it never clips */
+  right: 0;                         
+  width: max(100vw, 1400px);        
   height: 100vh;
   overflow: visible;
+  height: var(--lanyard-height);      /* <-- 2 screens tall */
 
-  /* 👉 Option B: shift to the RIGHT via transform */
+  
 
 }
 .lanyard-box canvas{
@@ -107,3 +112,7 @@
    .hero-3d{...} .lanyard-wrapper{... display:none !important;}
    transform on an inner lanyard wrapper creating a new stacking context, etc.
 */
+.hero-timer-note { margin-left: 0; }
+@media (min-width: 1199.98px) {
+  .hero-timer-note { margin-left: -240px; }
+}

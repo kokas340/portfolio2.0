@@ -16,27 +16,27 @@ extend({ MeshLineGeometry, MeshLineMaterial });
 
 /**
  * Lanyard
- * - offsetX: shifts the entire rig horizontally *inside the canvas* (no clipping)
- *   positive => right, negative => left
+ * - offsetX: shifts the entire rig horizontally inside the canvas (no clipping).
+ * - offsetY: shifts the entire rig vertically inside the canvas (positive = up).
  */
 export default function Lanyard({
     position = [0, 0, 30],
     gravity = [0, -40, 0],
     fov = 20,
     transparent = true,
-    offsetX = 0,        // 👈 new prop: move the whole lanyard left/right
+    offsetX = 0,
+    offsetY = 0,
 }) {
     return (
         <div className="lanyard-wrapper">
             <Canvas
                 camera={{ position, fov }}
                 gl={{ alpha: transparent }}
-                // keep the canvas fully transparent so it overlays the page
                 onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
             >
                 <ambientLight intensity={Math.PI} />
                 <Physics gravity={gravity} timeStep={1 / 60}>
-                    <Band offsetX={offsetX} />
+                    <Band offsetX={offsetX} offsetY={offsetY} />
                 </Physics>
 
                 {/* subtle environment light bars */}
@@ -51,7 +51,7 @@ export default function Lanyard({
     );
 }
 
-function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0 }) {
+function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0 }) {
     const band = useRef(),
         fixed = useRef(),
         j1 = useRef(),
@@ -75,7 +75,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0 }) {
     const [hovered, hover] = useState(false);
     const [isSmall, setIsSmall] = useState(() => typeof window !== 'undefined' && window.innerWidth < 1024);
 
-    // Rope chain
+    // Rope chain joints
     useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
     useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
     useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1]);
@@ -129,25 +129,26 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0 }) {
     curve.curveType = 'chordal';
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
-    // Base X to shift the entire chain/card horizontally in world space
+    // Base offsets to shift the entire chain/card in world space
     const x = offsetX;
+    const yBase = 4 + offsetY; // default anchor height was 4; add vertical offset
 
     return (
         <>
-            {/* Anchor chain — positions include offsetX so the whole rig slides horizontally */}
-            <RigidBody ref={fixed} {...segmentProps} type="fixed" position={[x + 0, 4, 0]} />
-            <RigidBody position={[x + 0.5, 4, 0]} ref={j1} {...segmentProps}>
+            {/* Anchor chain — positions include offsets so the whole rig slides */}
+            <RigidBody ref={fixed} {...segmentProps} type="fixed" position={[x + 0, yBase + 0, 0]} />
+            <RigidBody position={[x + 0.5, yBase + 0, 0]} ref={j1} {...segmentProps}>
                 <BallCollider args={[0.1]} />
             </RigidBody>
-            <RigidBody position={[x + 1, 4, 0]} ref={j2} {...segmentProps}>
+            <RigidBody position={[x + 1, yBase + 0, 0]} ref={j2} {...segmentProps}>
                 <BallCollider args={[0.1]} />
             </RigidBody>
-            <RigidBody position={[x + 1.5, 4, 0]} ref={j3} {...segmentProps}>
+            <RigidBody position={[x + 1.5, yBase + 0, 0]} ref={j3} {...segmentProps}>
                 <BallCollider args={[0.1]} />
             </RigidBody>
 
             <RigidBody
-                position={[x + 2, 4, 0]}
+                position={[x + 2, yBase + 0, 0]}
                 ref={card}
                 {...segmentProps}
                 type={dragged ? 'kinematicPosition' : 'dynamic'}
