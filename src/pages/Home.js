@@ -8,7 +8,6 @@ import Footer from "../components/Footer/Footer";
 import FindMe from "../components/FindMe/FindMe";
 import About from "../components/About/About";
 import WorkList from "../components/Work/WorkList"
-import { Import } from "lucide-react";
 
 
 function Home() {
