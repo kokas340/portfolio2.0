@@ -75,8 +75,18 @@ function Hero() {
                 radius={100}
                 falloff="linear"
               />
+              <br />
+              <VariableProximity
+                style={{ fontSize: "1.2rem", fontWeight: 400, lineHeight: 1.1 }}
+                label={"Let’s build something people will love to use."}
+                className={"variable-proximity-demo hero-description"}
+                fromFontVariationSettings="'wght' 400, 'opsz' 9"
+                toFontVariationSettings="'wght' 1000, 'opsz' 40"
+                containerRef={containerRef}
+                radius={100}
+                falloff="linear"
+              />
 
-              <p className="hero-description">Let’s build something people will love to use.</p>
 
               {/* Buttons: center <xl; left >=xl */}
               <div className="hero-buttons mb-4 d-flex flex-wrap gap-3 justify-content-center justify-content-xl-start">
