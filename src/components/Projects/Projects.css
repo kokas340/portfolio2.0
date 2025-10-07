@@ -22,4 +22,15 @@
   .custom-link:hover {
     color: #00b7ff;
   }
-  
+.project-stack {
+  margin-bottom: -50px; 
+  transform-origin: center center;
+  perspective: 1000px; 
+  position: relative;
+}
+
+.project-stack:hover {
+  transform: translateY(-10px) scale(1.02);
+  transition: transform 0.3s ease;
+}
+

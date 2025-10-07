@@ -51,7 +51,7 @@ function Project({
             // eslint-disable-next-line jsx-a11y/anchor-is-valid
             <a rel="noopener noreferrer">
               <img
-                src={imageSrc}
+                src={require(`../../images/${imageSrc}`)}
                 alt="Project"
                 className="project-image mb-4"
                 style={{ width: "100%" }}
@@ -59,7 +59,7 @@ function Project({
             </a>
           ) : (
             <img
-              src={imageSrc}
+              src={require(`../../images/${imageSrc}`)}
               alt="Project Image"
               className="project-image mb-4"
               style={{ width: "100%" }}
