@@ -6,7 +6,7 @@ import dk from "../../images/dk.png";
 
 function Educations() {
   return (
-    <div className="container-fluid container-fluid-pattern3" id="education">
+    <div className="container-fluid container-fluid-pattern33" id="education">
       <div className="container" >
         <div className="row justify-content-center pb-5">
           <div className="col-md-12 text-center mb-5">

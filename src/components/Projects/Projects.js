@@ -7,7 +7,7 @@ import projects from "./Projects.json";
 function Projects() {
 
   return (
-    <div className="container-fluid container-fluid-pattern2" id="projects">
+    <div className="container-fluid container-fluid-pattern22" id="projects">
       <div className="container">
         <div className="justify-content-center pb-5">
           <div className="col-md-12 text-center mb-5 pbBig" style={{ position: 'relative', zIndex: 50 }}>
