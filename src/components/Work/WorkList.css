@@ -24,6 +24,27 @@
   );
   pointer-events: none;
 }
+/* Only fade out at the very bottom */
+.container-fluid-pattern44::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px; /* fade height */
+  background: linear-gradient(
+    to top,
+    rgba(250, 250, 250, 0) 0%,
+    #fafafa 100%
+  );
+  pointer-events: none;
+  z-index: 0; /* make sure it’s behind the content */
+}
+/* Make sure your content is above the pseudo-element */
+.container-fluid-pattern44 > * {
+  position: relative;
+  z-index: 1;
+}
 
 
   .subtitle2 {

@@ -15,7 +15,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 80px; /* fade height */
+  height: 120px; /* fade height */
   background: linear-gradient(
     to top,
     rgba(250, 250, 250, 0) 0%,
@@ -23,6 +23,20 @@
   );
   pointer-events: none;
   z-index: 0; /* make sure it’s behind the content */
+}
+.container-fluid-pattern33::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px; /* adjust to make fade stronger or softer */
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 250, 250, 0) 0%,
+    #fafafa 100%
+  );
+  pointer-events: none;
 }
 
 /* Make sure your content is above the pseudo-element */
