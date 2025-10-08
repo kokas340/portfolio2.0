@@ -4,7 +4,7 @@ import "./Education.css";
 
 function Education({ degree, institute, location, date, flag, description }) {
   return (
-    <div className="col-xl-6 mb-4">
+   <div className="col-xl-4 col-l-6 mb-5 d-flex">
       <div className="education-card premium-card">
         <div className="education-header">
           <p className="degree">{degree}</p>

@@ -3,114 +3,65 @@
   font-weight: 700;
   color: #1a1a1a;
 }
-.work-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.education-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 1.5rem 1.5rem 1rem 1.5rem; /* soft, organic corners */
+  padding: 2rem;
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.04),
+    0 12px 32px rgba(0, 0, 0, 0.06);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  overflow: hidden;
   width: 100%;
-  min-height: 350px;
 }
 
-.work-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-.company-container {
-  display: flex;
-  align-items: center;  /* Center vertically */
-  margin-bottom: 10px;
-}
-
-.company-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
-  border-radius: 4px;
-  object-fit: contain;
-}
-
-.company-name {
-  font-size: 17px;
-  color: #666;
-  margin: 0; /* Remove default p margins */
-  line-height: 1; /* Align text better with icon */
-}
-
-.work-date {
-  font-size: 14px;
-  color: #999;
-  margin-bottom: 8px;
-}
-
-.experience-title {
-  font-size: 19px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.experience-description {
-  font-size: 16px;
-  color: #666;
-  flex-grow: 1;
-}
-.work-icon {
-  margin-right: 6px;
-  color: #999;
-  vertical-align: middle;
-}
-
-.premium-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(12px);
-  padding: 30px;
-  transition: all 0.3s ease;
-}
-
-.premium-card:hover {
+.education-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.08),
+    0 24px 48px rgba(0,0,0,0.1);
+}
+
+/* Header */
+.education-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .degree {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #222;
-  margin-bottom: 5px;
+  color: #4f9eea; /* accent color */
 }
 
 .institute {
-  font-size: 18px;
+  font-size: 1.1rem;
+  font-weight: 500;
   color: #555;
-  margin-bottom: 15px;
 }
 
+/* Meta information */
 .education-meta {
   display: flex;
   align-items: center;
-  gap: 15px;
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 20px;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: #888;
 }
 
 .meta-item {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 0.3rem;
 }
 
 .meta-icon {
-  color: #888;
+  color: #4f9eea;
 }
 
 .flag-icon {
@@ -121,8 +72,45 @@
   margin-left: auto;
 }
 
+/* Body / Description */
+.education-body {
+  margin-top: 0.5rem;
+}
+
 .education-description {
-  font-size: 16px;
+  font-size: 1rem;
   color: #444;
-  line-height: 1.7;
+  line-height: 1.6;
+}
+
+/* Optional top accent bar (like Work card) */
+.education-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #4f9eea;
+  opacity: 0.15;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.education-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .education-card {
+    padding: 1.5rem;
+  }
+  .education-header {
+    align-items: flex-start;
+  }
+  .education-meta {
+    flex-wrap: wrap;
+  }
 }

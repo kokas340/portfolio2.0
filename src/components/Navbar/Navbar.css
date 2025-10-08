@@ -5,7 +5,9 @@
     font-weight: bold;
 }
 
-
+.container-fluid-pattern66 {
+background-color: #f1f1f1; /* White background */
+}
 .custom-nav {
     margin-left: auto;
 }  
