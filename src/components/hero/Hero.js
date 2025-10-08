@@ -3,10 +3,10 @@ import Timer from "../timer/Timer";
 import VariableProximity from "./VariableProximity";
 import Lanyard from "./Lanyard";
 import "./Hero.css";
-
+import { motion } from "framer-motion";
 function Hero() {
   const [showArrow, setShowArrow] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false); // 👈 track ≥992px
+  const [isDesktop, setIsDesktop] = useState(false);
   const containerRef = useRef(null);
 
   // show/hide scroll arrow
@@ -44,11 +44,17 @@ function Hero() {
 
   return (
     <div className="hero-wrapper container-fluid-pattern d-flex align-items-center" style={{ minHeight: "100vh" }}>
-      {/* CONTENT (left) */}
-      <div className="container">
+      <motion.div
+        className="container"
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.8,
+          ease: [0.25, 0.1, 0.25, 1],
+        }}
+      >
         <div className="row align-items-center gy-5">
           <div className="col-12 col-xl-9 hero-content-col mx-auto mx-xl-0" style={{ position: "relative", zIndex: 50 }}>
-            {/* Center <1200; left >=1200 */}
             <div className="hero-content text-center text-xl-start">
               <div className="hero-heading">
                 <div ref={containerRef} style={{ position: "relative" }}>
@@ -104,7 +110,7 @@ function Hero() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
 
       {/* LANYARD OVERLAY (only render on desktop; unmount on mobile) */}

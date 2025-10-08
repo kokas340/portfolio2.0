@@ -41,7 +41,7 @@
 .lanyard-layer{
   position: absolute;
   inset: 0;
-  z-index: 400;
+
   pointer-events: none;
   overflow: visible;
   height: var(--lanyard-height);      /* <-- 2 screens tall */
