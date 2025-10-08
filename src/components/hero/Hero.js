@@ -91,7 +91,7 @@ function Hero() {
               {/* Buttons: center <xl; left >=xl */}
               <div className="hero-buttons mb-4 d-flex flex-wrap gap-3 justify-content-center justify-content-xl-start">
                 <button className="btn btn-outline-secondary" onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}>🚀 View My Projects</button>
-                {/* <button className="btn btn-outline-secondary" onClick={() => document.getElementById("educations")?.scrollIntoView({ behavior: "smooth" })}>🎓 Education</button> */ }
+                {/* <button className="btn btn-outline-secondary" onClick={() => document.getElementById("educations")?.scrollIntoView({ behavior: "smooth" })}>🎓 Education</button> */}
                 <button className="btn btn-outline-secondary" onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}>💼 Work</button>
                 <button className="btn btn-outline-secondary" onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}>📖 About Me</button>
               </div>

@@ -6,7 +6,7 @@
 .container-fluid-pattern {
   position: relative;
   background: 
-    linear-gradient(to right, rgba(245,245,245,0.8), rgba(245,245,245,0.8)),
+    linear-gradient(to right, rgba(245,245,245,0.9), rgba(245,245,245,0.2)),
     url(../../assets/common-bg.svg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -21,11 +21,11 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 280px; /* adjust to make fade stronger or softer */
+  height: 150px; /* adjust to make fade stronger or softer */
   background: linear-gradient(
     to bottom,
     rgba(250, 250, 250, 0) 0%,
-    #fafafa 100%
+    #fafafaec 100%
   );
   pointer-events: none;
 }
@@ -41,7 +41,7 @@
 .lanyard-layer{
   position: absolute;
   inset: 0;
-  z-index: 12;
+  z-index: 400;
   pointer-events: none;
   overflow: visible;
   height: var(--lanyard-height);      /* <-- 2 screens tall */
