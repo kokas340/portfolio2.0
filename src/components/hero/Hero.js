@@ -67,7 +67,7 @@ function Hero() {
 
               <VariableProximity
                 style={{ fontSize: "1.5rem", fontWeight: 400, lineHeight: 1.1 }}
-                label={"A Full-Stack Developer who enjoys turning ideas into real software."}
+                label={"A Software Engineer who enjoys turning ideas into real software."}
                 className={"variable-proximity-demo"}
                 fromFontVariationSettings="'wght' 400, 'opsz' 9"
                 toFontVariationSettings="'wght' 1000, 'opsz' 40"
@@ -91,7 +91,7 @@ function Hero() {
               {/* Buttons: center <xl; left >=xl */}
               <div className="hero-buttons mb-4 d-flex flex-wrap gap-3 justify-content-center justify-content-xl-start">
                 <button className="btn btn-outline-secondary" onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}>🚀 View My Projects</button>
-                <button className="btn btn-outline-secondary" onClick={() => document.getElementById("educations")?.scrollIntoView({ behavior: "smooth" })}>🎓 Education</button>
+                {/* <button className="btn btn-outline-secondary" onClick={() => document.getElementById("educations")?.scrollIntoView({ behavior: "smooth" })}>🎓 Education</button> */ }
                 <button className="btn btn-outline-secondary" onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}>💼 Work</button>
                 <button className="btn btn-outline-secondary" onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}>📖 About Me</button>
               </div>
@@ -115,9 +115,9 @@ function Hero() {
               <Lanyard
                 key="lanyard-desktop"       // remount cleanly when toggling
                 position={[0, 0, 30]}
-                gravity={[0, -60, 0]}
+                gravity={[0, -80, 0]}
                 offsetX={2.6}
-                offsetY={2.5}
+                offsetY={3}
               />
             </div>
           </div>

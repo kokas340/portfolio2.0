@@ -44,9 +44,14 @@ function Home() {
       <section id="projects">
         <Projects />
       </section>
+      {
+        /**
       <section id="educations">
         <Educations />
       </section>
+         */
+      }
+
       <section id="work">
         <WorkList />
       </section>

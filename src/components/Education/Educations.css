@@ -1,8 +1,50 @@
-.container-fluid-pattern3{
-    background-color: #cecece1e; /* White background */
-    background-image: linear-gradient(45deg, rgba(253, 253, 253, 0.5) 25%, transparent 25%, transparent 75%, rgba(247, 247, 247, 0.877) 75%, rgba(255, 255, 255, 0.8)), linear-gradient(-45deg, rgba(252, 252, 252, 0.795) 25%, transparent 25%, transparent 75%, rgba(245, 245, 245, 0.5) 75%, rgba(241, 241, 241, 0.726)); /* Diagonal lines with opacity */
-    background-size: 160px 60px; /* Adjust size of pattern */
-  }
+.container-fluid-pattern33 {
+  position: relative;
+  background: 
+    linear-gradient(to right, rgba(245,245,245,0.8), rgba(245,245,245,0.8)),
+    url(../../assets/common-bg.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+}
+
+.container-fluid-pattern33::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px; /* fade height */
+  background: linear-gradient(
+    to top,
+    rgba(250, 250, 250, 0) 0%,
+    #fafafa 100%
+  );
+  pointer-events: none;
+  z-index: 0; /* make sure it’s behind the content */
+}
+.container-fluid-pattern33::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px; /* adjust to make fade stronger or softer */
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 250, 250, 0) 0%,
+    #fafafa 100%
+  );
+  pointer-events: none;
+}
+
+/* Make sure your content is above the pseudo-element */
+.container-fluid-pattern33 > * {
+  position: relative;
+  z-index: 1;
+}
+
 
   .subtitle2 {
     font-family: 'Open Sans', sans-serif;

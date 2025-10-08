@@ -25,7 +25,7 @@ function Story() {
 
   return (
     <>
-      <div className="container-fluid  container-fluid-pattern3">
+      <div className="container-fluid  container-fluid-pattern77">
         <div className="container position-relative pt-5">
           <button
             className="btn btn-secondary position-absolute mt-4"

@@ -20,7 +20,7 @@
     "showGit": false,
     "buttonLink": "",
     "button": true,
-    "technologies": ["Python","YOLOv9","PyTorch","OpenCV","SuperGradients","NumPy","Matplotlib","Pandas","Seaborn","TQDM"]
+    "technologies": ["Python","YOLOv9","PyTorch","OpenCV","SuperGradients","NumPy","Matplotlib","Pandas","Seaborn","Kubernetes"]
   },
   {
     "id": "blackjack",
