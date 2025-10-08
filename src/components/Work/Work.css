@@ -1,68 +1,126 @@
-.titleMain {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1a1a1a;
-}
 .work-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  background: #ffffff;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow:
+    0 8px 16px rgba(0,0,0,0.04),
+    0 16px 32px rgba(0,0,0,0.06);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+  
+  width: 100%;          /* card stretches to fill parent */
+  max-width: 700px;     /* never wider than this */
+  margin: 0 auto;       /* centers the card horizontally */
+}
+
+
+/* Subtle top accent bar */
+.work-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  min-height: 350px;
+  height: 4px;
+  background: #4f9eea;
+  opacity: 0.15;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.work-card:hover::before {
+  transform: scaleX(1);
 }
 
 .work-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transform: translateY(-4px) scale(1.01); /* gentle float */
+  box-shadow:
+    0 12px 24px rgba(0,0,0,0.08),
+    0 24px 48px rgba(0,0,0,0.1); /* slightly deeper shadow on hover */
 }
 
-.company-container {
+/* Header */
+.work-header {
   display: flex;
-  align-items: center;  /* Center vertically */
-  margin-bottom: 10px;
+  align-items: center;
+  gap: 1rem;
 }
 
 .company-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
-  border-radius: 4px;
+  width: 52px;
+  height: 52px;
   object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid #eee;
 }
 
-.company-name {
-  font-size: 17px;
-  color: #666;
-  margin: 0; /* Remove default p margins */
-  line-height: 1; /* Align text better with icon */
-}
-
-.work-date {
-  font-size: 14px;
-  color: #999;
-  margin-bottom: 8px;
+.header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
 .experience-title {
-  font-size: 19px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4f9eea;
+}
+
+.company-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.work-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: #888;
+}
+
+.work-meta .work-icon {
+  color: #4f9eea;
 }
 
 .experience-description {
-  font-size: 16px;
+  font-size: 1rem;
   color: #666;
-  flex-grow: 1;
+  line-height: 1.7;
+  border-left: 3px solid #4f9eea; /* subtle accent */
+  padding-left: 0.8rem;
+  margin-top: 0.5rem;
 }
-.work-icon {
-  margin-right: 6px;
-  margin-bottom: 5px;
-  color: #999;
-  vertical-align: middle;
+
+
+/* Optional internal subtle layer for depth */
+.work-card::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border-radius: 1.5rem 1.5rem 0.8rem 1.5rem;
+  background: rgba(0,0,0,0.005); /* very subtle inner panel */
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .work-card {
+    width: 100%;
+  }
+  .work-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

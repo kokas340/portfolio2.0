@@ -14,14 +14,15 @@ function Educations() {
             <hr className="custom-hr mb-3" />
             <div className="">
               <p className="subtitle2">
-                My academic journey has equipped me with strong technical foundations 
-                and practical project experience. From software development to machine learning, 
+                My academic journey has equipped me with strong technical foundations
+                and practical project experience. From software development to machine learning,
                 I’ve applied my skills to real-world challenges through hands-on academic projects.
               </p>
             </div>
           </div>
         </div>
-
+      </div>
+      <div className="container-fluid" >
         <div className="row justify-content-center pb-5">
           <Education
             institute={"VIA University College"}
@@ -46,6 +47,8 @@ function Educations() {
           />
         </div>
       </div>
+
+
     </div>
   );
 }

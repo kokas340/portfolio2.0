@@ -67,7 +67,7 @@ function Hero() {
 
               <VariableProximity
                 style={{ fontSize: "1.5rem", fontWeight: 400, lineHeight: 1.1 }}
-                label={"A Full-Stack Developer who enjoys turning ideas into real software."}
+                label={"A Software Engineer who enjoys turning ideas into real software."}
                 className={"variable-proximity-demo"}
                 fromFontVariationSettings="'wght' 400, 'opsz' 9"
                 toFontVariationSettings="'wght' 1000, 'opsz' 40"

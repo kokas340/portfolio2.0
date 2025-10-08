@@ -9,7 +9,7 @@ import monitor2 from "../../models/monitor2.glb";
 function WorkList() {
   return (
     <div className="container-fluid container-fluid-pattern44" id="work">
-      <div className="container" >
+      <div className="container " >
         <div className="row justify-content-center pb-5">
           <div className="col-md-12 text-center mb-5">
             <p className="titleMain">Work Experience 💼</p>
@@ -21,7 +21,8 @@ function WorkList() {
             </div>
           </div>
         </div>
-
+      </div>
+      <div className="container-fluid " >
         <div className="row justify-content-center pb-5">
           <Work
             companyName={"GoClick"}
@@ -46,6 +47,8 @@ function WorkList() {
 
         </div>
       </div>
+
+
     </div>
   );
 }
