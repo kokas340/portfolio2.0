@@ -10,17 +10,16 @@
     <link rel="manifest" href="/portfolio2.0/manifest.json" />
     <title>Jack Spinola</title>
     <script>
-      // Apply saved/system theme before paint to avoid a flash of light mode.
+      // Light is the default; only apply terminal mode if explicitly chosen.
       (function () {
         try {
-          var t = localStorage.getItem("theme");
-          if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          if (localStorage.getItem("theme") === "dark") {
             document.documentElement.classList.add("dark");
           }
         } catch (e) {}
       })();
     </script>
-    <script type="module" crossorigin src="/portfolio2.0/assets/index-BzoAGQ8q.js"></script>
+    <script type="module" crossorigin src="/portfolio2.0/assets/index-P7F_L0Tw.js"></script>
     <link rel="modulepreload" crossorigin href="/portfolio2.0/assets/vendor-C_2p4SEE.js">
     <link rel="stylesheet" crossorigin href="/portfolio2.0/assets/index-CeIEXn0h.css">
   </head>
