@@ -8,12 +8,12 @@ import monitor2 from "../../models/monitor2.glb";
 
 function WorkList() {
   return (
-    <div className="container-fluid container-fluid-pattern44" id="work">
-      <div className="container " >
-        <div className="row justify-content-center pb-5">
-          <div className="col-md-12 text-center mb-5">
+    <div className="container-fluid-pattern44 w-full px-3" id="work">
+      <div className="mx-auto w-full max-w-[1140px] px-3" >
+        <div className="flex flex-wrap justify-center pb-12">
+          <div className="w-full text-center mb-12">
             <p className="titleMain">Work Experience 💼</p>
-            <hr className="custom-hr mb-3" />
+            <hr className="custom-hr mb-4" />
             <div className="">
               <p className="subtitle2">
                 My professional journey involves working with real-world software systems, collaborating with cross-functional teams, and delivering impactful solutions. These roles have helped me grow technically, professionally, and personally.
@@ -22,8 +22,8 @@ function WorkList() {
           </div>
         </div>
       </div>
-      <div className="container-fluid " >
-        <div className="row justify-content-center pb-5">
+      <div className="w-full px-3" >
+        <div className="flex flex-wrap justify-center pb-12">
           <Work
             companyName={"WasteHero"}
             icon={wh}

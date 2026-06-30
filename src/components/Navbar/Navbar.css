@@ -4,6 +4,13 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
 }
+.custom-link {
+    color: #4f9eea;
+    text-decoration: underline;
+}
+.custom-link:hover {
+    color: #2f7fd0;
+}
 
 .container-fluid-pattern66 {
 background-color: #f1f1f1; /* White background */

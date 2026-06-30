@@ -4,6 +4,15 @@ import React, { useRef, useEffect, useState } from "react";
 import "./Project.css";
 import { useNavigate } from "react-router-dom";
 
+// Vite replacement for webpack's require(): eagerly resolve every image in
+// the folder to its built URL, then look one up by filename at render time.
+const projectImages = import.meta.glob("../../images/*", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+const imageUrl = (name) => projectImages[`../../images/${name}`];
+
 function Project({
   id,
   imageSrc,
@@ -43,43 +52,43 @@ function Project({
   }, []);
 
   return (
-    <div className="container ">
-      <div className="row justify-content-center  pbBig">
+    <div className="mx-auto w-full max-w-[1140px] px-3">
+      <div className="flex flex-wrap justify-center pbBig">
         {/* Left column for image */}
-        <div className="col-xl-7 text-center mt-5">
+        <div className="w-full px-3 text-center mt-12 xl:w-7/12">
           {hasUrl ? (
             // eslint-disable-next-line jsx-a11y/anchor-is-valid
             <a rel="noopener noreferrer">
               <img
-                src={require(`../../images/${imageSrc}`)}
+                src={imageUrl(imageSrc)}
                 alt="Project"
-                className="project-image mb-4"
+                className="project-image mb-6"
                 style={{ width: "100%" }}
               />
             </a>
           ) : (
             <img
-              src={require(`../../images/${imageSrc}`)}
+              src={imageUrl(imageSrc)}
               alt="Project Image"
-              className="project-image mb-4"
+              className="project-image mb-6"
               style={{ width: "100%" }}
             />
           )}
         </div>
         {/* Right column for title, subtitle, text, and button */}
-        <div className="col-xl-5 pdlf d-flex align-items-center ">
-          <div className="text-md-left technologies">
-            <h2 className="title mb-3">{title}</h2>
+        <div className="pdlf flex w-full items-center px-3 xl:w-5/12">
+          <div className="technologies md:text-left">
+            <h2 className="title mb-4">{title}</h2>
             {/* Mapping through technologies array to render squares */}
-            <div className="technologies row">
+            <div className="technologies flex flex-wrap">
               {technologies.map((tech, index) => (
-                <span key={index} className="tech-square col text-center m-1">
+                <span key={index} className="tech-square flex-1 text-center m-1">
                   {tech}
                 </span>
               ))}
             </div>
-            <p className="project-text mt-3">{text}</p>
-            <div className="d-flex gap-3 mt-4 flex-wrap">
+            <p className="project-text mt-4">{text}</p>
+            <div className="flex flex-wrap gap-4 mt-6">
               {button && (
                 <button
                   ref={buttonRef}

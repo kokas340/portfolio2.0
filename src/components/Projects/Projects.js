@@ -7,12 +7,12 @@ import projects from "./Projects.json";
 function Projects() {
 
   return (
-    <div className="container-fluid container-fluid-pattern22" id="projects">
-      <div className="container">
-        <div className="justify-content-center pb-5">
-          <div className="col-md-12 text-center mb-5 pbBig" style={{ position: 'relative', zIndex: 50 }}>
+    <div className="container-fluid-pattern22 w-full px-3" id="projects">
+      <div className="mx-auto w-full max-w-[1140px] px-3">
+        <div className="pb-12">
+          <div className="w-full text-center mb-12 pbBig" style={{ position: 'relative', zIndex: 50 }}>
             <p className="titleMain">PROJECTS 💻</p>
-            <hr className="custom-hr mb-3" />
+            <hr className="custom-hr mb-4" />
             <p className="subtitle2">
               Here, you'll discover some of the projects I've been involved in.
               Additional projects will be showcased on{" "}

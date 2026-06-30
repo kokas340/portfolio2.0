@@ -25,26 +25,26 @@ function Story() {
 
   return (
     <>
-      <div className="container-fluid  container-fluid-pattern77">
-        <div className="container position-relative pt-5">
+      <div className="container-fluid-pattern77 w-full px-3">
+        <div className="relative mx-auto w-full max-w-[1140px] px-3 pt-12">
           <button
-            className="btn btn-secondary position-absolute mt-4"
+            className="absolute mt-6 inline-flex items-center rounded-md bg-gray-600 px-4 py-2 text-white transition hover:bg-gray-700"
             style={{ top: "20px", left: "15px" }}
             onClick={() => navigate(-1)}
           >
             ← Back
           </button>
 
-          <div className="row justify-content-center">
-            <div className="col-md-8">
-              <div className="d-flex justify-content-center align-items-center mb-5 flex-wrap gap-5">
-                <h2 className="display-5 mb-0">{project.title}</h2>
+          <div className="flex flex-wrap justify-center">
+            <div className="w-full px-3 md:w-2/3">
+              <div className="mb-12 flex flex-wrap items-center justify-center gap-12">
+                <h2 className="mb-0 text-4xl font-light">{project.title}</h2>
                 {project.link && (
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-outline-primary"
+                    className="inline-flex items-center rounded-md border border-blue-500 px-4 py-2 text-blue-500 transition hover:bg-blue-500 hover:text-white"
                   >
                     View Project
                   </a>
@@ -52,23 +52,23 @@ function Story() {
               </div>
 
               {project.alert && (
-                <div className="text-center mb-2">
-                  <p className="alert alert-warning">{project.alert}</p>
+                <div className="mb-2 text-center">
+                  <p className="rounded-md border border-amber-300 bg-amber-100 px-4 py-3 text-amber-800">{project.alert}</p>
                 </div>
               )}
 
               {project.note && (
-                <div className="text-center mb-5">
-                  <p className="alert alert-info">{project.note}</p>
+                <div className="mb-12 text-center">
+                  <p className="rounded-md border border-sky-300 bg-sky-100 px-4 py-3 text-sky-800">{project.note}</p>
                 </div>
               )}
               {project.report && (
-                <div className="text-center mb-5">
+                <div className="mb-12 text-center">
                   <a
                     href={`/portfolio2.0/reports/${project.report}.pdf`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-primary mt-2"
+                    className="mt-2 inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
                   >
                     View Report
                   </a>
@@ -77,10 +77,11 @@ function Story() {
               )}
 
               {project.video && getYouTubeEmbedUrl(project.video) && (
-                <div className="mb-5">
-                  <h4 className="mb-3 text-center">🎬 Project Walkthrough</h4>
-                  <div className="ratio ratio-16x9">
+                <div className="mb-12">
+                  <h4 className="mb-4 text-center text-xl font-medium">🎬 Project Walkthrough</h4>
+                  <div className="relative aspect-video w-full">
                     <iframe
+                      className="absolute inset-0 h-full w-full"
                       src={getYouTubeEmbedUrl(project.video)}
                       title="YouTube video player"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

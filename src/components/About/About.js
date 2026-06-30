@@ -58,12 +58,12 @@ function About() {
 
   return (
     <section id="about" className="about-section container-fluid-pattern55">
-      <div className="container py-5">
-        <div className="row align-items-center g-5">
+      <div className="mx-auto w-full max-w-[1140px] px-3 py-12">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           {/* Text Section */}
-          <div className="col-lg-6">
+          <div>
             <h2 className="about-title">About Me 👨🏻‍💻</h2>
-            <p className="about-text mt-3">
+            <p className="about-text mt-4">
               I'm a{" "}
               <strong>
                 {new Date().getFullYear() -
@@ -74,7 +74,7 @@ function About() {
               currently based in <strong>Aarhus, Denmark</strong>. My journey into tech began in high school with a focus on Informatics & Programming, and I’ve recently completed my Bachelor's degree in{" "}
               <strong>Software Engineering</strong> at VIA University College.
             </p>
-            <p className="about-text mt-3">
+            <p className="about-text mt-4">
               I’ve taken on a variety of roles in team projects including{" "}
               <strong>Team Leader</strong> and <strong>Scrum Master</strong>,
               contributing to full-stack apps and systems ranging from smart pet
@@ -82,7 +82,7 @@ function About() {
               have helped me grow not just technically, but also as a
               communicator and team player.
             </p>
-            <p className="about-text mt-3">
+            <p className="about-text mt-4">
               I value <strong>collaboration</strong> and believe that sharing
               knowledge and working toward a common goal is one of the most
               rewarding parts of software development. Outside of coding, I’m
@@ -93,14 +93,14 @@ function About() {
 
 
           {/* Skills Section */}
-          <div className="col-lg-6">
+          <div>
             <h4 className="skills-title">Tech Stack 💻</h4>
             {Object.entries(techStacks).map(([category, skills], idx) => (
-              <div className="skill-group mb-3" key={idx}>
+              <div className="skill-group mb-4" key={idx}>
                 <h6 className="skill-category">{category}</h6>
                 <div className="skill-badges">
                   {skills.map((tech, i) => (
-                    <span className="badge tech-badge" key={i}>
+                    <span className="tech-badge" key={i}>
                       {tech}
                     </span>
                   ))}

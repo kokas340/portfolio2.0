@@ -6,12 +6,12 @@ import dk from "../../images/dk.png";
 
 function Educations() {
   return (
-    <div className="container-fluid container-fluid-pattern33" id="education">
-      <div className="container" >
-        <div className="row justify-content-center pb-5">
-          <div className="col-md-12 text-center mb-5">
+    <div className="container-fluid-pattern33 w-full px-3" id="education">
+      <div className="mx-auto w-full max-w-[1140px] px-3" >
+        <div className="flex flex-wrap justify-center pb-12">
+          <div className="w-full text-center mb-12">
             <p className="titleMain">Education 🎓</p>
-            <hr className="custom-hr mb-3" />
+            <hr className="custom-hr mb-4" />
             <div className="">
               <p className="subtitle2">
                 My academic journey has equipped me with strong technical foundations
@@ -22,8 +22,8 @@ function Educations() {
           </div>
         </div>
       </div>
-      <div className="container-fluid" >
-        <div className="row justify-content-center pb-5">
+      <div className="w-full px-3" >
+        <div className="flex flex-wrap justify-center pb-12">
           <Education
             institute={"VIA University College"}
             location={"Horsens, Denmark"}

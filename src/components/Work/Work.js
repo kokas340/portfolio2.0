@@ -4,7 +4,7 @@ import "./Work.css";
 
 function Work({ companyName, experienceTitle, experienceDescription, icon, date }) {
   return (
-    <div className="col-xl-4 col-l-6 mb-5 d-flex">
+    <div className="mb-12 flex w-full px-3 xl:w-1/3">
       <div className="work-card">
         <div className="work-header">
           <img src={icon} alt={`${companyName} Logo`} className="company-icon" />

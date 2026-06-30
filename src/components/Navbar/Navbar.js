@@ -1,24 +1,20 @@
 import React from "react";
-import { Navbar, Container } from "react-bootstrap";
 import "./Navbar.css";
 
 function CustomNavbar() {
   return (
-    <Navbar className="navbarcss" expand="lg">
-      <Container>
+    <nav className="navbarcss">
+      <div className="mx-auto w-full max-w-[1140px] px-3">
         {/*
-        <Navbar.Brand className="custom-brand">Jack Spinola</Navbar.Brand>
-       
-        <Nav className="ms-auto">
-          <Nav.Link href="#projects">Projects</Nav.Link>
-          <Nav.Link href="#education">Education</Nav.Link>
-          <Nav.Link href="#about">About Me</Nav.Link>
-        </Nav>
-      */}
-
-
-      </Container>
-    </Navbar>
+        <span className="custom-brand">Jack Spinola</span>
+        <div className="ms-auto">
+          <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
+          <a href="#about">About Me</a>
+        </div>
+        */}
+      </div>
+    </nav>
   );
 }
 

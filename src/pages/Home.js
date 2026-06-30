@@ -59,7 +59,7 @@ function Home() {
         <About />
       </section>
       {footInfo && (
-        <div className="container-fluid">
+        <div className="w-full px-3">
           <FindMe />
         </div>
       )}

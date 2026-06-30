@@ -43,9 +43,9 @@ function Hero() {
   };
 
   return (
-    <div className="hero-wrapper container-fluid-pattern d-flex align-items-center" style={{ minHeight: "100vh" }}>
+    <div className="hero-wrapper container-fluid-pattern flex items-center" style={{ minHeight: "100vh" }}>
       <motion.div
-        className="container"
+        className="mx-auto w-full max-w-[1140px] px-3"
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -53,9 +53,9 @@ function Hero() {
           ease: [0.25, 0.1, 0.25, 1],
         }}
       >
-        <div className="row align-items-center gy-5">
-          <div className="col-12 col-xl-9 hero-content-col mx-auto mx-xl-0" style={{ position: "relative", zIndex: 50 }}>
-            <div className="hero-content text-center text-xl-start">
+        <div className="flex flex-wrap items-center gap-y-12">
+          <div className="hero-content-col mx-auto w-full xl:mx-0 xl:w-3/4" style={{ position: "relative", zIndex: 50 }}>
+            <div className="hero-content text-center xl:text-left">
               <div className="hero-heading">
                 <div ref={containerRef} style={{ position: "relative" }}>
                   <VariableProximity
@@ -95,7 +95,7 @@ function Hero() {
 
 
               {/* Buttons: center <xl; left >=xl */}
-              <div className="hero-buttons mb-4 d-flex flex-wrap gap-3 justify-content-center justify-content-xl-start">
+              <div className="hero-buttons mb-6 flex flex-wrap gap-4 justify-center xl:justify-start">
                 <button className="btn btn-outline-secondary" onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}>🚀 View My Projects</button>
                 {/* <button className="btn btn-outline-secondary" onClick={() => document.getElementById("educations")?.scrollIntoView({ behavior: "smooth" })}>🎓 Education</button> */}
                 <button className="btn btn-outline-secondary" onClick={() => document.getElementById("work")?.scrollIntoView({ behavior: "smooth" })}>💼 Work</button>
@@ -103,7 +103,7 @@ function Hero() {
               </div>
 
               {/* Timer: center <xl; left >=xl */}
-              <div className="d-flex justify-content-center justify-content-xl-start">
+              <div className="flex justify-center xl:justify-start">
                 <Timer />
               </div>
               <div className="hero-timer-note text-center">since my first line of code...</div>
