@@ -1,12 +1,11 @@
 .work-card {
   position: relative;
   background: var(--surface);
+  border: 1px solid var(--hairline);
   border-radius: 1.02rem;
   padding: 2rem;
-  box-shadow:
-    0 8px 16px rgba(0,0,0,0.04),
-    0 16px 32px rgba(0,0,0,0.06);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -40,9 +39,8 @@
 
 .work-card:hover {
   transform: translateY(-4px) scale(1.01); /* gentle float */
-  box-shadow:
-    0 12px 24px rgba(0,0,0,0.08),
-    0 24px 48px rgba(0,0,0,0.1); /* slightly deeper shadow on hover */
+  box-shadow: var(--card-shadow-hover);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--hairline));
 }
 
 /* Header */

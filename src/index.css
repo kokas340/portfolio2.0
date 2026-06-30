@@ -15,6 +15,10 @@
   --breakpoint-2xl: 1400px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -25,6 +29,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Give in-page anchor targets breathing room below the top of the viewport. */
+section[id],
+[id="education"],
+[id="work"],
+[id="projects"] {
+  scroll-margin-top: 80px;
+}
+
+/* Subtle premium tracking on the large display headings. */
+.titleMain {
+  letter-spacing: -0.02em;
+}
+.title {
+  letter-spacing: -0.01em;
 }
 
 code {
@@ -160,7 +180,8 @@ code {
   --hairline: #e4e4e7;
   /* RGB triplet for the gradient overlay that sits over the triangle bg */
   --pattern-rgb: 245, 245, 245;
-  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --card-shadow: 0 6px 16px rgba(0, 0, 0, 0.04), 0 12px 32px rgba(0, 0, 0, 0.06);
+  --card-shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.1), 0 24px 48px rgba(0, 0, 0, 0.12);
 }
 
 .dark {
@@ -177,7 +198,8 @@ code {
   --accent-cyan: #38c6ff;
   --hairline: #2a2a31;
   --pattern-rgb: 11, 11, 14;
-  --card-shadow: 0 12px 34px rgba(0, 0, 0, 0.55);
+  --card-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.5);
+  --card-shadow-hover: 0 14px 30px rgba(0, 0, 0, 0.55), 0 28px 56px rgba(0, 0, 0, 0.6);
 }
 
 @layer base {
