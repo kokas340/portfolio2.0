@@ -335,6 +335,13 @@ code {
   color: var(--text);
 }
 
+/* Subtly tint the 3D lanyard badge to sit in the terminal palette without
+   glaring — darker, muted, no glow (the glossy highlights looked broken). */
+.dark .lanyard-box canvas {
+  filter: grayscale(0.7) sepia(0.85) hue-rotate(62deg) saturate(1.7)
+    brightness(0.6) contrast(1);
+}
+
 /* The theme toggle itself gets the phosphor treatment in terminal mode. */
 .dark .theme-toggle {
   border-color: var(--accent);
