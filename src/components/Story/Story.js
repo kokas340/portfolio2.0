@@ -53,13 +53,13 @@ function Story() {
 
               {project.alert && (
                 <div className="mb-2 text-center">
-                  <p className="rounded-md border border-amber-300 bg-amber-100 px-4 py-3 text-amber-800">{project.alert}</p>
+                  <p className="rounded-md border border-amber-300 bg-amber-100 px-4 py-3 text-amber-800 dark:border-amber-700/50 dark:bg-amber-950/40 dark:text-amber-200">{project.alert}</p>
                 </div>
               )}
 
               {project.note && (
                 <div className="mb-12 text-center">
-                  <p className="rounded-md border border-sky-300 bg-sky-100 px-4 py-3 text-sky-800">{project.note}</p>
+                  <p className="rounded-md border border-sky-300 bg-sky-100 px-4 py-3 text-sky-800 dark:border-sky-700/50 dark:bg-sky-950/40 dark:text-sky-200">{project.note}</p>
                 </div>
               )}
               {project.report && (

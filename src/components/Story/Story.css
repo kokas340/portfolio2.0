@@ -4,7 +4,7 @@
   margin: 0 auto;
   max-width: 800px;
   padding-left: 20px;
-  border-left: 3px solid #0d6efd;
+  border-left: 3px solid var(--accent-strong);
 }
 
 .timeline-list {
@@ -25,8 +25,8 @@
   top: 5px;
   width: 20px;
   height: 20px;
-  background-color: #0d6efd;
-  border: 4px solid white;
+  background-color: var(--accent-strong);
+  border: 4px solid var(--surface);
   border-radius: 50%;
   box-shadow: 0 4px 10px rgba(57, 95, 249, 0.2); /* Adjusted shadow */
   animation: blobAnimation 2s infinite alternate;
@@ -46,10 +46,10 @@
 
 
 .timeline-content {
-  background-color: #ffffff;
+  background-color: var(--surface);
   padding: 20px;
   border-radius: 8px;
-  border-left: 5px solid #0d6efd;
+  border-left: 5px solid var(--accent-strong);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: background-color 0.2s ease;
 }
@@ -57,25 +57,25 @@
 .timeline-date {
   font-weight: 500;
   font-size: 1rem;
-  color: #6c757d;
+  color: var(--text-muted);
   margin-bottom: 5px;
 }
 
 .timeline-milestone {
   font-weight: 600;
   font-size: 1.25rem;
-  color: #0d6efd;
+  color: var(--accent-strong);
   margin-bottom: 10px;
 }
 
 .timeline-content p {
   font-size: 1rem;
-  color: #333;
+  color: var(--text);
   margin: 0;
 }
 
 .timeline-item:hover .timeline-content {
-  background-color: #f8f9fa;
+  background-color: var(--surface-muted);
 }
 
 .alert {
@@ -99,8 +99,8 @@
 
 .container-fluid-pattern77 { 
   position: relative;
-  background: 
-    linear-gradient(to right, rgba(245,245,245,0.8), rgba(245,245,245,0.8)),
+  background:
+    linear-gradient(to right, rgba(var(--pattern-rgb),0.8), rgba(var(--pattern-rgb),0.8)),
     url(../../assets/common-bg.svg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -118,8 +118,8 @@
   height: 280px; /* fade height */
   background: linear-gradient(
     to top,
-    rgba(250, 250, 250, 0) 0%,
-    #fafafa 100%
+    rgba(var(--pattern-rgb), 0) 0%,
+    rgba(var(--pattern-rgb),1) 100%
   );
   pointer-events: none;
   z-index: 0;
@@ -135,8 +135,8 @@
   height: 780px; /* fade height */
   background: linear-gradient(
     to bottom,
-    rgba(250, 250, 250, 0) 0%,
-    #fafafa 100%
+    rgba(var(--pattern-rgb), 0) 0%,
+    rgba(var(--pattern-rgb),1) 100%
   );
   pointer-events: none;
   z-index: 0;

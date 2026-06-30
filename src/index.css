@@ -20,8 +20,11 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  background-color: var(--page-bg);
+  color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 code {
@@ -139,6 +142,42 @@ code {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* ---- Site palette tokens (drive both shadcn and the bespoke component CSS) ---- */
+:root {
+  --page-bg: #ffffff;
+  --surface: #ffffff;
+  --surface-muted: #f4f4f5;
+  --surface-hover: #e9e9ec;
+  --text-strong: #1a1a1a;
+  --text: #333333;
+  --text-muted: #666666;
+  --text-soft: #888888;
+  --accent: #4f9eea;
+  --accent-strong: #2f7fd0;
+  --accent-cyan: #1cb9f7;
+  --hairline: #e4e4e7;
+  /* RGB triplet for the gradient overlay that sits over the triangle bg */
+  --pattern-rgb: 245, 245, 245;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  --page-bg: #0d0d10;
+  --surface: #18181b;
+  --surface-muted: #202024;
+  --surface-hover: #2a2a31;
+  --text-strong: #f4f4f5;
+  --text: #d4d4d8;
+  --text-muted: #a1a1aa;
+  --text-soft: #8a8a93;
+  --accent: #5aa6ef;
+  --accent-strong: #84bef5;
+  --accent-cyan: #38c6ff;
+  --hairline: #2a2a31;
+  --pattern-rgb: 11, 11, 14;
+  --card-shadow: 0 12px 34px rgba(0, 0, 0, 0.55);
 }
 
 @layer base {

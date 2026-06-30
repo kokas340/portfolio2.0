@@ -10,8 +10,8 @@
   .timer-container p {
 	margin: 10px;
 	padding: 18px;
-	background-color: #f6f6f6; /* White background */
-	color: #333; /* Dark gray text */
+	background-color: var(--surface-muted); /* White background */
+	color: var(--text); /* Dark gray text */
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	text-align: center;
@@ -40,7 +40,7 @@
 	display: block;
 	margin-bottom: 10px;
 	font-size: 14px;
-	color: #333; /* Dark gray text */
+	color: var(--text); /* Dark gray text */
   }
   
   .timer-container p span {
@@ -51,7 +51,7 @@
   }
   
   .timer-container p:hover {
-	background-color: #f6f4f4; /* Light gray background on hover */
+	background-color: var(--surface-hover); /* Light gray background on hover */
 	cursor: pointer;
 	transform: translateY(-2px);
 	transition: background-color 0.3s, transform 0.3s;

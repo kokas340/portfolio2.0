@@ -1,6 +1,6 @@
 .work-card {
   position: relative;
-  background: #ffffff;
+  background: var(--surface);
   border-radius: 1.02rem;
   padding: 2rem;
   box-shadow:
@@ -27,7 +27,7 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background: #4f9eea;
+  background: var(--accent);
   opacity: 0.15;
   transform: scaleX(0);
   transform-origin: left;
@@ -57,7 +57,7 @@
   height: 52px;
   object-fit: contain;
   border-radius: 12px;
-  border: 1px solid #eee;
+  border: 1px solid var(--hairline);
 }
 
 .header-text {
@@ -69,13 +69,13 @@
 .experience-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #2c2c2c;
+  color: var(--text-strong);
 }
 
 .company-name {
   font-size: 1rem;
   font-weight: 600;
-  color: #555;
+  color: var(--text);
 }
 
 .work-meta {
@@ -83,18 +83,18 @@
   align-items: center;
   gap: 1rem;
   font-size: 0.875rem;
-  color: #888;
+  color: var(--text-soft);
 }
 
 .work-meta .work-icon {
-  color: #4f9eea;
+  color: var(--accent);
 }
 
 .experience-description {
   font-size: 1rem;
-  color: #666;
+  color: var(--text-muted);
   line-height: 1.7;
-  border-left: 3px solid #4f9eea; /* subtle accent */
+  border-left: 3px solid var(--accent); /* subtle accent */
   padding-left: 0.8rem;
   margin-top: 0.5rem;
 }

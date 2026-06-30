@@ -4,7 +4,7 @@
   left: -100%; /* Initially position the sidebar outside the viewport */
   width: 70px; /* Adjust width as needed */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Better shadow */
-  background-color: #fff;
+  background-color: var(--surface);
   z-index: 100;
   transition: left 2s ease; /* Add transition for smooth sliding effect */
   border-radius: 0 10px 10px 0; /* Border radius on the right side */
