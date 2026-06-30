@@ -5,8 +5,9 @@ import "./ThemeToggle.css";
 function getInitialTheme() {
   if (typeof window === "undefined") return "light";
   const saved = localStorage.getItem("theme");
-  if (saved === "light" || saved === "dark") return saved;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  if (saved === "dark") return "dark";
+  // Light is the default; terminal mode is opt-in via the toggle.
+  return "light";
 }
 
 export default function ThemeToggle() {

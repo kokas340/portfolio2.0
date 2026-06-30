@@ -10,11 +10,10 @@
     <link rel="manifest" href="/manifest.json" />
     <title>Jack Spinola</title>
     <script>
-      // Apply saved/system theme before paint to avoid a flash of light mode.
+      // Light is the default; only apply terminal mode if explicitly chosen.
       (function () {
         try {
-          var t = localStorage.getItem("theme");
-          if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          if (localStorage.getItem("theme") === "dark") {
             document.documentElement.classList.add("dark");
           }
         } catch (e) {}
