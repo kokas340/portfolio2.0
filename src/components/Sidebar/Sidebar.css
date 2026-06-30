@@ -1,29 +1,53 @@
 .sidebar {
   position: fixed;
-  top: 35%;
-  left: -100%; /* Initially position the sidebar outside the viewport */
-  width: 70px; /* Adjust width as needed */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Better shadow */
+  top: 50%;
+  transform: translateY(-50%);
+  left: -100%; /* start off-screen, slides in via .show */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.6rem 0.55rem;
   background-color: var(--surface);
+  border: 1px solid var(--hairline);
+  border-left: none;
+  box-shadow: var(--card-shadow);
   z-index: 100;
-  transition: left 2s ease; /* Add transition for smooth sliding effect */
-  border-radius: 0 10px 10px 0; /* Border radius on the right side */
+  transition: left 1s ease;
+  border-radius: 0 12px 12px 0;
 }
-
-
 
 .sidebar.show {
-  left: 0; /* Move sidebar to the left (visible position) */
+  left: 0;
 }
 
-.sidebar img {
-  display: block;
-  width: 90%; /* Make images fill the container */
-  padding: 5px;
-  margin: auto; /* Center images horizontally */
-  transition: transform 0.5s ease; /* Add transition effect */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease,
+    background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.sidebar img:hover {
-  transform: rotate(360deg); /* Rotate images on hover */
+.sidebar-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background-color: var(--surface-muted);
+  transform: translateX(3px);
+}
+
+/* Terminal mode: green glow */
+.dark .sidebar {
+  background-color: rgba(8, 20, 16, 0.65);
+  box-shadow: 0 0 18px rgba(41, 255, 140, 0.12);
+  backdrop-filter: blur(2px);
+}
+
+.dark .sidebar-link:hover {
+  background-color: var(--surface-hover);
+  box-shadow: 0 0 12px rgba(41, 255, 140, 0.45);
 }

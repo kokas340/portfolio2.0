@@ -1,37 +1,41 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect } from "react";
-import image1 from "../../images/image1.png";
-import image2 from "../../images/image2.png";
-import image3 from "../../images/image3.png";
-import image4 from "../../images/image4.png";
+import { Linkedin, Github, Mail, Phone } from "lucide-react";
 import "./Sidebar.css";
+
+const links = [
+  {
+    href: "https://www.linkedin.com/in/jack-spinola-0a835927b/",
+    label: "LinkedIn",
+    Icon: Linkedin,
+  },
+  { href: "https://github.com/kokas340", label: "GitHub", Icon: Github },
+  { href: "mailto:jackspinola198@hotmail.com", label: "Email", Icon: Mail },
+  {
+    href: "https://api.whatsapp.com/send/?phone=4591450703&text&type=phone_number&app_absent=0",
+    label: "WhatsApp",
+    Icon: Phone,
+  },
+];
 
 function Sidebar() {
   useEffect(() => {
-    const sidebar = document.querySelector(".sidebar");
-    sidebar.classList.add("show");
+    document.querySelector(".sidebar")?.classList.add("show");
   }, []);
 
   return (
     <div className="sidebar">
-      <a
-        href="https://www.linkedin.com/in/jack-spinola-0a835927b/"
-        target="_blank" rel="noreferrer"
-      >
-        <img src={image1} alt="Image 1" />
-      </a>
-      <a href="https://github.com/kokas340" target="_blank" rel="noreferrer">
-        <img src={image2} alt="Image 2" />
-      </a>
-      <a href="mailto:jackspinola198@hotmail.com" target="_blank" rel="noreferrer">
-        <img src={image3} alt="Image 3" />
-      </a>
-      <a
-        href="https://api.whatsapp.com/send/?phone=4591450703&text&type=phone_number&app_absent=0"
-        target="_blank" rel="noreferrer"
-      >
-        <img src={image4} alt="Image 4" />
-      </a>
+      {links.map(({ href, label, Icon }) => (
+        <a
+          key={label}
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={label}
+          className="sidebar-link"
+        >
+          <Icon size={20} strokeWidth={2} />
+        </a>
+      ))}
     </div>
   );
 }
