@@ -30,4 +30,17 @@ export default defineConfig({
   },
   // 3D model files are imported as URLs (Lanyard card, monitor models).
   assetsInclude: ["**/*.glb", "**/*.gltf"],
+  build: {
+    chunkSizeWarningLimit: 3500,
+    rollupOptions: {
+      output: {
+        // Split all third-party code into one long-cached vendor chunk so app
+        // edits don't bust the (large, 3D-heavy) dependency cache. A single
+        // chunk avoids the circular-chunk hazard of splitting vendor further.
+        manualChunks(id) {
+          if (id.includes("node_modules")) return "vendor";
+        },
+      },
+    },
+  },
 });

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import storylineData from "./storyline.json";
 import "./Story.css"; // Add custom styles here
 import Footer from "../Footer/Footer";
+import { Button } from "@/components/ui/button";
 function Story() {
   const { id } = useParams();
   const [project, setProject] = useState(null);
@@ -27,27 +28,26 @@ function Story() {
     <>
       <div className="container-fluid-pattern77 w-full px-3">
         <div className="relative mx-auto w-full max-w-[1140px] px-3 pt-12">
-          <button
-            className="absolute mt-6 inline-flex items-center rounded-md bg-gray-600 px-4 py-2 text-white transition hover:bg-gray-700"
+          <Button
+            variant="secondary"
+            size="lg"
+            className="absolute mt-6"
             style={{ top: "20px", left: "15px" }}
             onClick={() => navigate(-1)}
           >
             ← Back
-          </button>
+          </Button>
 
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-3 md:w-2/3">
               <div className="mb-12 flex flex-wrap items-center justify-center gap-12">
                 <h2 className="mb-0 text-4xl font-light">{project.title}</h2>
                 {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center rounded-md border border-blue-500 px-4 py-2 text-blue-500 transition hover:bg-blue-500 hover:text-white"
-                  >
-                    View Project
-                  </a>
+                  <Button asChild variant="outline" size="lg">
+                    <a href={project.link} target="_blank" rel="noopener noreferrer">
+                      View Project
+                    </a>
+                  </Button>
                 )}
               </div>
 
@@ -64,14 +64,15 @@ function Story() {
               )}
               {project.report && (
                 <div className="mb-12 text-center">
-                  <a
-                    href={`/portfolio2.0/reports/${project.report}.pdf`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
-                  >
-                    View Report
-                  </a>
+                  <Button asChild size="lg" className="mt-2">
+                    <a
+                      href={`/portfolio2.0/reports/${project.report}.pdf`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Report
+                    </a>
+                  </Button>
 
                 </div>
               )}
