@@ -184,22 +184,46 @@ code {
   --card-shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.1), 0 24px 48px rgba(0, 0, 0, 0.12);
 }
 
+/* ============================================================
+   TERMINAL MODE  (toggled via the `.dark` class)
+   Phosphor-green-on-black, monospace, CRT grid + scanlines.
+   ============================================================ */
 .dark {
-  --page-bg: #0d0d10;
-  --surface: #18181b;
-  --surface-muted: #202024;
-  --surface-hover: #2a2a31;
-  --text-strong: #f4f4f5;
-  --text: #d4d4d8;
-  --text-muted: #a1a1aa;
-  --text-soft: #8a8a93;
-  --accent: #5aa6ef;
-  --accent-strong: #84bef5;
-  --accent-cyan: #38c6ff;
-  --hairline: #2a2a31;
-  --pattern-rgb: 11, 11, 14;
-  --card-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.5);
-  --card-shadow-hover: 0 14px 30px rgba(0, 0, 0, 0.55), 0 28px 56px rgba(0, 0, 0, 0.6);
+  /* Site palette */
+  --page-bg: #04070a;
+  --surface: #081410;
+  --surface-muted: #0c1c15;
+  --surface-hover: #12281d;
+  --text-strong: #d6ffe3;
+  --text: #7bf2a3;
+  --text-muted: #4fae74;
+  --text-soft: #3a7a55;
+  --accent: #29ff8c;
+  --accent-strong: #74ffb4;
+  --accent-cyan: #2be4ff;
+  --hairline: #16432c;
+  --pattern-rgb: 4, 7, 10;
+  --card-shadow: 0 0 0 1px rgba(41, 255, 140, 0.08), 0 0 22px rgba(41, 255, 140, 0.08);
+  --card-shadow-hover: 0 0 0 1px rgba(41, 255, 140, 0.28), 0 0 30px rgba(41, 255, 140, 0.22);
+  --font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+
+  /* shadcn component tokens remapped onto the terminal palette */
+  --background: #04070a;
+  --foreground: #7bf2a3;
+  --card: #081410;
+  --card-foreground: #d6ffe3;
+  --popover: #081410;
+  --popover-foreground: #d6ffe3;
+  --primary: #29ff8c;
+  --primary-foreground: #04140a;
+  --secondary: #0c1c15;
+  --secondary-foreground: #7bf2a3;
+  --muted: #0c1c15;
+  --muted-foreground: #4fae74;
+  --accent-foreground: #04140a;
+  --border: #16432c;
+  --input: #16432c;
+  --ring: #29ff8c;
 }
 
 @layer base {
@@ -212,4 +236,108 @@ code {
   html {
     @apply font-sans;
   }
+}
+
+/* ============================================================
+   TERMINAL MODE EFFECTS  (only active under .dark)
+   ============================================================ */
+
+/* Monospace everything except the hero's variable-font showpiece. */
+.dark body {
+  font-family: var(--font-mono);
+  letter-spacing: 0.01em;
+}
+.dark .subtitle,
+.dark .subtitle2,
+.dark .custom-link,
+.dark .custom-brand,
+.dark .experience-title,
+.dark .company-name,
+.dark .degree,
+.dark .institute {
+  font-family: var(--font-mono);
+}
+
+/* Replace the washed-out triangle pattern with a faint phosphor grid. */
+.dark .container-fluid-pattern,
+.dark .container-fluid-pattern22,
+.dark .container-fluid-pattern33,
+.dark .container-fluid-pattern44,
+.dark .container-fluid-pattern55,
+.dark .about-section,
+.dark .container-fluid-pattern77 {
+  background-color: var(--page-bg) !important;
+  background-image:
+    linear-gradient(rgba(41, 255, 140, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(41, 255, 140, 0.05) 1px, transparent 1px) !important;
+  background-size: 34px 34px !important;
+  background-position: center top !important;
+  background-repeat: repeat !important;
+}
+
+/* CRT scanline overlay across the whole screen. */
+.dark body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.14) 3px
+  );
+}
+
+/* Phosphor glow on the big display headings + a terminal prompt. */
+.dark .titleMain,
+.dark .title {
+  color: var(--accent);
+  text-shadow: 0 0 10px rgba(41, 255, 140, 0.45);
+}
+.dark .titleMain::before {
+  content: "> ";
+  color: var(--accent);
+  opacity: 0.75;
+}
+.dark .variable-proximity-demo {
+  text-shadow: 0 0 12px rgba(41, 255, 140, 0.35);
+}
+
+/* Blinking cursor after the hero tagline. */
+.dark .hero-timer-note::after {
+  content: " █";
+  color: var(--accent);
+  animation: terminal-blink 1.1s steps(1) infinite;
+}
+@keyframes terminal-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+/* Glow on the hero buttons + crisp terminal borders. */
+.dark .hero-buttons .btn-outline-secondary {
+  box-shadow: 0 0 14px rgba(41, 255, 140, 0.12);
+  text-shadow: 0 0 8px rgba(41, 255, 140, 0.3);
+}
+.dark .hero-buttons .btn-outline-secondary:hover {
+  background: var(--accent);
+  color: #04140a;
+  box-shadow: 0 0 22px rgba(41, 255, 140, 0.45);
+  text-shadow: none;
+}
+
+/* Tech-stack / skill badges as terminal chips. */
+.dark .tech-badge,
+.dark .tech-square {
+  border: 1px solid var(--hairline);
+  color: var(--text);
+}
+
+/* The theme toggle itself gets the phosphor treatment in terminal mode. */
+.dark .theme-toggle {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 16px rgba(41, 255, 140, 0.25);
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Sun, Moon } from "lucide-react";
+import { SquareTerminal, Sun } from "lucide-react";
 import "./ThemeToggle.css";
 
 function getInitialTheme() {
@@ -22,11 +22,11 @@ export default function ThemeToggle() {
     <button
       type="button"
       className="theme-toggle"
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={isDark ? "Switch to light mode" : "Switch to terminal mode"}
+      title={isDark ? "Exit terminal mode" : "Enter terminal mode"}
       onClick={() => setTheme(isDark ? "light" : "dark")}
     >
-      {isDark ? <Sun size={18} /> : <Moon size={18} />}
+      {isDark ? <Sun size={18} /> : <SquareTerminal size={18} />}
     </button>
   );
 }
