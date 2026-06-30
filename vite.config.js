@@ -14,7 +14,9 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    open: true,
+    // Open directly at the base path so the browser doesn't land on the
+    // "did you mean /portfolio2.0/?" notice.
+    open: "/portfolio2.0/",
   },
   // The project keeps JSX inside .js files (CRA convention), so tell esbuild
   // to treat .js as JSX both for our source and for dependency pre-bundling.
