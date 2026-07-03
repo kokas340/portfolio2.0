@@ -94,6 +94,10 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0 }) {
     }, []);
 
     useFrame((state, delta) => {
+        // Clamp delta so a slow first frame (large asset load on deploy, or a
+        // backgrounded tab regaining focus) can't spike the lerp/physics and
+        // fling the strap down where it settles stretched out.
+        const dt = Math.min(delta, 1 / 60);
         if (dragged) {
             vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
             dir.copy(vec).sub(state.camera.position).normalize();
@@ -109,7 +113,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0 }) {
             [j1, j2].forEach(ref => {
                 if (!ref.current.lerped) ref.current.lerped = new THREE.Vector3().copy(ref.current.translation());
                 const clamped = Math.max(0.1, Math.min(1, ref.current.lerped.distanceTo(ref.current.translation())));
-                ref.current.lerped.lerp(ref.current.translation(), delta * (minSpeed + clamped * (maxSpeed - minSpeed)));
+                ref.current.lerped.lerp(ref.current.translation(), dt * (minSpeed + clamped * (maxSpeed - minSpeed)));
             });
 
             // update strap curve from world positions
