@@ -52,11 +52,246 @@
     font-size: 18px;
     max-width: 62%;
     color: var(--text-muted);
-    margin: 0 auto; 
-    text-align: center; 
-    display: inline-block; 
-    white-space: normal; 
+    margin: 0 auto;
+    text-align: center;
+    display: inline-block;
+    white-space: normal;
   }
   .subtitlebox2{
     max-width: 62%;
   }
+
+/* ============================================================
+   INTERACTIVE SPLIT PANEL
+   Left rail selects a role; right panel shows its detail.
+   Uses the shared palette tokens so it themes cleanly in
+   both light and terminal mode.
+   ============================================================ */
+.work-panel {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(220px, 300px) 1fr;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 1.02rem;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+/* ---- Left rail ---- */
+.work-rail {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem;
+  border-right: 1px solid var(--hairline);
+  background: color-mix(in srgb, var(--surface-muted) 55%, var(--surface));
+}
+.work-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.work-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  background: transparent;
+  color: var(--text-muted);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.work-tab:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+.work-tab.is-active {
+  background: var(--surface);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--hairline));
+  color: var(--text-strong);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.work-tab-icon {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+}
+
+.work-tab-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.work-tab-company {
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: inherit;
+}
+.work-tab-role {
+  font-size: 0.75rem;
+  color: var(--text-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.work-tab-current {
+  margin-left: auto;
+  flex: none;
+  padding: 2px 8px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--hairline));
+  border-radius: 999px;
+}
+
+/* ---- Quick facts + stack (fills the rail below the tabs) ---- */
+.work-rail-facts {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--hairline);
+}
+.work-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0;
+}
+.work-fact {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.work-fact svg {
+  flex: none;
+  color: var(--accent);
+}
+.work-rail-label {
+  margin: 1.1rem 0 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+.work-rail-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.work-chip {
+  padding: 3px 9px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--surface-muted);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+}
+.dark .work-chip {
+  font-family: var(--font-mono);
+}
+
+/* ---- Right detail panel ---- */
+.work-detail {
+  padding: 2.25rem;
+  min-height: 340px;
+}
+
+.work-detail .experience-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-strong);
+}
+.work-detail .company-name {
+  display: inline-block;
+  margin-top: 0.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-strong);
+}
+.work-detail .work-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.85rem;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+.work-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.work-detail .work-icon {
+  color: var(--accent);
+}
+.work-badge {
+  padding: 0.15rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--hairline));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.work-detail .experience-description {
+  margin-top: 1.25rem;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  border-left: 3px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  padding-left: 1rem;
+}
+
+/* ---- Responsive: rail becomes a horizontal tab strip on top ---- */
+@media (max-width: 768px) {
+  .work-panel {
+    grid-template-columns: 1fr;
+  }
+  .work-rail {
+    border-right: none;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .work-tabs {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+  .work-tab {
+    flex: 1 0 auto;
+  }
+  .work-tab.is-active {
+    box-shadow: inset 0 -3px 0 var(--accent);
+  }
+  .work-tab-role {
+    display: none;
+  }
+  .work-detail {
+    padding: 1.5rem;
+    min-height: 0;
+  }
+}

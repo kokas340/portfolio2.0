@@ -6,7 +6,7 @@ function Intro() {
     <div className="text-center">
       <p className="title">HEY, I'M JACK SPINOLA 👋</p>
       <p className="subtitle">
-        A Full-Stack Developer studying software since 2018.
+        A full-stack developer & product owner, building software since 2018.
       </p>
     </div>
   );

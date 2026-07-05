@@ -1,112 +1,135 @@
 import React from "react";
+import {
+  MonitorSmartphone,
+  Server,
+  Database,
+  Cloud,
+  Brain,
+  Wrench,
+} from "lucide-react";
 import "./About.css";
 
-function About() {
-  const techStacks = {
-    Frontend: [
+const stack = [
+  {
+    name: "Frontend",
+    Icon: MonitorSmartphone,
+    items: [
       "React",
-      "ReactNative",
-      "JavaScript",
+      "React Native",
       "TypeScript",
+      "JavaScript",
       "HTML",
       "CSS",
-      "Bootstrap",
       "Tailwind",
+      "Bootstrap",
       "Redux",
       "Framer Motion",
       "Material UI",
     ],
-    Backend: [
+  },
+  {
+    name: "Backend",
+    Icon: Server,
+    items: [
       "Java",
+      "Spring Boot",
       "C#",
       ".NET",
-      "SpringBoot",
-      "PHP",
-      "CodeIgniter",
       "Node.js",
       "Express.js",
-      "MongoDB",
+      "PHP",
+      "CodeIgniter",
       "GraphQL",
-      "Firebase",
-      "Redis",
     ],
-    DevOps: [
-      "Docker",
-      "Kubernetes",
-      "Azure",
-      "GitHub Actions",
-      "Nginx",
-      "Jenkins",
-    ],
-    Tools: [
-      "Git",
-      "Github",
-      "YOLOv9",
+  },
+  {
+    name: "Databases",
+    Icon: Database,
+    items: ["PostgreSQL", "MongoDB", "Redis", "Firebase"],
+  },
+  {
+    name: "DevOps & Cloud",
+    Icon: Cloud,
+    items: ["Docker", "Kubernetes", "Azure", "GitHub Actions", "Nginx", "Jenkins"],
+  },
+  {
+    name: "ML & Data",
+    Icon: Brain,
+    items: [
       "PyTorch",
+      "YOLOv9",
       "OpenCV",
       "SuperGradients",
       "NumPy",
       "Pandas",
       "Matplotlib",
       "Seaborn",
-      "TQDM",
-      "LabelImg",
-      "PyQt5",
-      "PostgreSQL",
     ],
-  };
+  },
+  {
+    name: "Tools",
+    Icon: Wrench,
+    items: ["Git", "GitHub", "Jupyter", "PyQt5", "LabelImg", "TQDM"],
+  },
+];
+
+function About() {
+  const age =
+    new Date().getFullYear() - 2002 - (new Date().getMonth() > 8 ? 0 : 1);
 
   return (
     <section id="about" className="about-section container-fluid-pattern55">
       <div className="mx-auto w-full max-w-[1140px] px-3 py-12">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
           {/* Text Section */}
           <div>
             <h2 className="about-title">About Me 👨🏻‍💻</h2>
             <p className="about-text mt-4">
-              I'm a{" "}
-              <strong>
-                {new Date().getFullYear() -
-                  2002 -
-                  (new Date().getMonth() > 8 ? 0 : 1)}
-                -year-old software engineer
-              </strong>{" "}
-              currently based in <strong>Aarhus, Denmark</strong>. My journey into tech began in high school with a focus on Informatics & Programming, and I’ve recently completed my Bachelor's degree in{" "}
-              <strong>Software Engineering</strong> at VIA University College.
+              I'm a <strong>{age}-year-old software engineer</strong> based in{" "}
+              <strong>Aarhus, Denmark</strong>. My journey into tech began in
+              high school with a focus on Informatics &amp; Programming, and I
+              hold a Bachelor's degree in <strong>Software Engineering</strong>{" "}
+              from VIA University College.
             </p>
             <p className="about-text mt-4">
-              I’ve taken on a variety of roles in team projects including{" "}
+              Today I work as a{" "}
+              <strong>Product Owner and full-stack developer</strong> at
+              WasteHero, shaping the product roadmap while still building the
+              features behind it. Along the way I've led teams as a{" "}
               <strong>Team Leader</strong> and <strong>Scrum Master</strong>,
-              contributing to full-stack apps and systems ranging from smart pet
-              feeders to collaborative task management tools. These experiences
-              have helped me grow not just technically, but also as a
-              communicator and team player.
+              shipping everything from machine-learning systems to full-stack
+              web and mobile apps — work that's grown me as much as a
+              communicator as it has as an engineer.
             </p>
             <p className="about-text mt-4">
-              I value <strong>collaboration</strong> and believe that sharing
-              knowledge and working toward a common goal is one of the most
-              rewarding parts of software development. Outside of coding, I’m
-              passionate about <strong>music, sports, and traveling</strong> —
-              anything that sparks creativity or gets me moving.
+              I care most about <strong>collaboration</strong> — sharing
+              knowledge and pulling toward a shared goal is the part of software
+              I enjoy most. Outside of coding, I'm into{" "}
+              <strong>music, sports, and traveling</strong>: anything that
+              sparks creativity or gets me moving.
             </p>
           </div>
 
-
-          {/* Skills Section */}
-          <div>
+          {/* Tech Stack Section */}
+          <div className="tech-stack">
             <h4 className="skills-title">Tech Stack 💻</h4>
-            {Object.entries(techStacks).map(([category, skills], idx) => (
-              <div className="skill-group mb-4" key={idx}>
-                <h6 className="skill-category">{category}</h6>
-                <div className="skill-badges">
-                  {skills.map((tech, i) => (
-                    <span className="tech-badge" key={i}>
-                      {tech}
-                    </span>
-                  ))}
+            <div className="tech-groups">
+              {stack.map(({ name, Icon, items }) => (
+                <div className="tech-group" key={name}>
+                  <div className="tech-group-head">
+                    <Icon size={17} className="tech-group-icon" />
+                    <span className="tech-group-title">{name}</span>
+                  </div>
+                  <div className="tech-group-chips">
+                    {items.map((t) => (
+                      <span className="tech-chip" key={t}>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

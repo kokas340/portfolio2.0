@@ -6,42 +6,42 @@
       {
         "date": "2024-12-10",
         "milestone": "Problem Framing and Data Collection",
-        "description": "Framed the Blackjack AI problem as a supervised learning task. Collected and analyzed data using a Blackjack simulator. Defined the objective of building an AI model that maximizes cumulative rewards over games."
+        "description": "Framed Blackjack as a supervised learning problem and generated training data with a game simulator, targeting a model that maximizes long-term winnings."
       },
       {
         "date": "2024-12-12",
         "milestone": "Data Analysis and Feature Selection",
-        "description": "Performed data analysis to identify correlations, outliers, and missing values. Decided on the relevant features for training the model: dealer's visible card, initial hand, final hand, and actions taken."
+        "description": "Explored the data for correlations and outliers, then selected the key features: the dealer's visible card, the starting and final hands, and the actions taken."
       },
       {
         "date": "2024-12-14",
         "milestone": "Data Cleaning and Preparation",
-        "description": "Removed unnecessary columns and rows with irrelevant actions. Enhanced the data by breaking down games into individual actions and encoding categorical variables using one-hot and ordinal encoding."
+        "description": "Cleaned the dataset and broke each game into individual decisions, encoding categorical variables with one-hot and ordinal encoding."
       },
       {
         "date": "2024-12-16",
         "milestone": "Model Architecture Design",
-        "description": "Designed multiple model architectures for training: XGBoost, Feedforward Neural Networks, and Recurrent Neural Networks. Split the dataset into training, validation, and test sets."
+        "description": "Designed three candidate architectures — XGBoost, a feedforward network, and a recurrent network — and split the data into training, validation, and test sets."
       },
       {
         "date": "2024-12-18",
         "milestone": "Model Training",
-        "description": "Started training multiple models (XGBoost, Feedforward Neural Networks, and Recurrent Neural Networks). Applied data preprocessing, including feature scaling, encoding, and splitting into training and test sets. Focused on training the models to predict optimal Blackjack actions based on game states."
+        "description": "Trained all three models to predict the optimal action for a given game state, applying feature scaling and encoding across the pipeline."
       },
       {
         "date": "2024-12-20",
         "milestone": "Model Evaluation",
-        "description": "Evaluated the performance of XGBoost, Feedforward Neural Networks, and Recurrent Neural Networks. Assessed accuracy, confusion matrices, and feature importance to compare model strengths and weaknesses."
+        "description": "Compared the models on accuracy, confusion matrices, and feature importance to understand each one's strengths and weaknesses."
       },
       {
         "date": "2024-12-22",
         "milestone": "Model Refinement",
-        "description": "Refined the models based on evaluation results. Adjusted hyperparameters and fine-tuned the neural network architectures to improve prediction accuracy and action classification."
+        "description": "Tuned hyperparameters and refined the network architectures to push prediction accuracy higher on the toughest game states."
       },
       {
         "date": "2024-12-24",
         "milestone": "Final Model Selection",
-        "description": "Selected the best-performing model based on evaluation metrics. Finalized the model for deployment and further testing."
+        "description": "Selected the best-performing model on the evaluation metrics and finalized it for testing."
       }
     ],
     "link": "https://github.com/FuLLeNN/MLA1-A7/blob/master/blackjackModel.ipynb",
@@ -54,47 +54,47 @@
       {
         "date": "2023-10-30",
         "milestone": "Project Kickoff and Team Organization",
-        "description": "Led the cloud team during the initial planning phase, introducing the vision for the Smart Pet Feeder. Coordinated the project following Scrum methodology, organizing tasks and ensuring alignment with business goals."
+        "description": "Kicked off the Smart Pet Feeder as cloud team lead, setting the vision and organizing the work around Scrum with the wider team."
       },
       {
         "date": "2023-11-01",
         "milestone": "Requirement Gathering and Cloud Architecture Design",
-        "description": "Collected requirements from stakeholders and designed the cloud infrastructure. Defined the architecture for scalability, data processing, and real-time pet feeding data synchronization."
+        "description": "Gathered requirements from stakeholders and designed the cloud architecture for scalability, data processing, and real-time feeding-data sync."
       },
       {
         "date": "2023-11-03",
         "milestone": "Cloud Infrastructure Setup",
-        "description": "Set up the cloud infrastructure, focusing on high availability and security. Implemented cloud solutions for user data, activity logs, and feeding schedule synchronization."
+        "description": "Set up the cloud infrastructure with a focus on availability and security, handling user data, activity logs, and feeding schedules."
       },
       {
         "date": "2023-11-05",
         "milestone": "Backend API Development",
-        "description": "Led backend API development, focusing on connecting the smart pet feeders with the cloud. Integrated user authentication and developed endpoints for feeding schedules and health insights."
+        "description": "Built the backend API connecting the feeders to the cloud, including user authentication and endpoints for feeding schedules and health insights."
       },
       {
         "date": "2023-11-07",
         "milestone": "Feeder Hardware Integration",
-        "description": "Integrating Arduino with the cloud API. Ensured remote feeding functionality and addressed integration challenges between hardware and cloud services."
+        "description": "Integrated the Arduino hardware with the cloud API to enable remote feeding, working through the hardware-to-cloud challenges with the IoT team."
       },
       {
         "date": "2023-11-09",
         "milestone": "Cloud API Integration with Hardware",
-        "description": "Focused on cloud API integration for real-time communication with the pet feeder devices. Implemented seamless data exchange and synchronization for accurate feeding schedules."
+        "description": "Finished the real-time integration between the cloud API and the devices, ensuring reliable two-way data sync for accurate feeding schedules."
       },
       {
         "date": "2023-11-11",
         "milestone": "Testing and Bug Fixes",
-        "description": "Focus on testing. Worked with the both Frontend and IoT teams to resolve issues, optimize API endpoints, and ensure smooth interaction between the feeder and cloud systems."
+        "description": "Worked with the frontend and IoT teams to test end to end, fixing issues and tightening the API so feeder and cloud stayed in sync."
       },
       {
         "date": "2023-11-13",
         "milestone": "Deployment and Scalability Testing",
-        "description": "Deployed the system to production and tested its scalability. Optimized the cloud infrastructure to handle a growing number of users and devices in real-time."
+        "description": "Deployed to production and tested scalability, tuning the infrastructure to handle a growing number of users and devices in real time."
       },
       {
         "date": "2023-12-10",
         "milestone": "Documentation",
-        "description": "Developed user guides and API documentation on system setup, feeding schedule configuration, and troubleshooting. Created detailed documentation for pet owners and stakeholders."
+        "description": "Wrote the user guides and API documentation covering setup, feeding-schedule configuration, and troubleshooting for owners and stakeholders."
       }
     ],
     "link": "https://github.com/Pet-Feeder-SEP4/PetFeeder",
@@ -107,27 +107,27 @@
       {
         "date": "2024-02",
         "milestone": "Design Phase",
-        "description": "Started with the design phase, focusing on user experience for both the app and manager platform. Developed wireframes, user flows, and UI mockups to ensure intuitive interfaces. The design phase also included architecture planning for scalable microservices."
+        "description": "Designed the experience for both the app and the manager platform — wireframes, user flows, and UI mockups — and planned a scalable microservice architecture."
       },
       {
         "date": "2024-02",
         "milestone": "Backend Architecture Development",
-        "description": "Developed the backend architecture, creating the base for both the app and manager platforms. Set up databases, APIs, and microservices to enable flexible communication between the two systems. The backend supports user data management and administrative functionality."
+        "description": "Built the backend foundation for both platforms: databases, APIs, and microservices with flexible communication and central user-data management."
       },
       {
         "date": "2024-03",
         "milestone": "Manager Platform Development",
-        "description": "Built the manager platform, an admin interface for overseeing user activity, generating reports, and managing system data. The platform provides tools for admins to monitor and interact with user activity, with integrated alerting and notifications."
+        "description": "Built the manager platform — an admin interface for overseeing user activity, generating reports, and managing system data, with built-in alerting and notifications."
       },
       {
         "date": "2024-04",
         "milestone": "App Development",
-        "description": "Started coding the app platform, focusing on user interaction features such as registration, login, and venues display. Integrated APIs for seamless data synchronization between the app and backend."
+        "description": "Started the app itself, implementing registration, login, and venue discovery, and wiring up the APIs that sync data with the backend."
       },
       {
         "date": "2024-06",
         "milestone": "Frontend Integration",
-        "description": "Integrated the frontend UI with backend APIs, ensuring smooth user experience across platforms. Focused on real-time data updates and syncing data between the user app and manager platform."
+        "description": "Connected the frontend to the backend APIs for a smooth cross-platform experience, with real-time updates shared between the app and manager platform."
       }
     ],
     "alert": "This project is still in development. Progress has been temporarily paused.",
@@ -140,39 +140,39 @@
       {
         "date": "2025-01",
         "milestone": "Initial Research & Understanding",
-        "description": "Kicked off the project by gathering domain-specific knowledge and exploring available datasets. This phase was crucial for understanding both the problem space and the constraints defined by our partners."
+        "description": "Kicked off by building domain knowledge and exploring the available datasets — essential for understanding both the problem and our partners' constraints."
       },
       {
         "date": "2025-01",
         "milestone": "Model Selection",
-        "description": "Evaluated multiple computer vision models and frameworks. Chose a YOLOv9-based architecture due to its balance between speed and accuracy, and its compatibility with real-time inference."
+        "description": "Evaluated several computer vision frameworks and chose a YOLOv9-based architecture for its balance of speed, accuracy, and real-time inference."
       },
       {
         "date": "2025-02",
         "milestone": "Data Preparation & Augmentation",
-        "description": "Conducted extensive preprocessing of raw image data including normalization, labeling, and data augmentation techniques. Emphasis was placed on improving class balance and increasing model generalization."
+        "description": "Preprocessed the raw image data — normalization, labeling, and augmentation — with a focus on class balance and stronger generalization."
       },
       {
         "date": "2025-03",
         "milestone": "Active Learning Integration",
-        "description": "To support model performance in edge-case scenarios, an active learning loop was implemented. This allowed the model to request human input on uncertain predictions, resulting in more efficient training cycles."
+        "description": "Added an active-learning loop so the model could flag uncertain predictions for human review, making each training cycle more efficient on edge cases."
       },
       {
         "date": "2025-04",
         "milestone": "Hyperparameter Tuning & Testing",
-        "description": "Currently in the testing phase, focused on evaluating model performance using standard CV metrics (mAP, IoU, precision/recall). Hyperparameter tuning is ongoing to optimize inference speed and accuracy under real-world constraints."
+        "description": "Evaluated the model on standard CV metrics (mAP, IoU, precision/recall) and tuned hyperparameters to balance inference speed and accuracy under real-world constraints."
       },
       {
         "date": "2025-05",
         "milestone": "Deployment & Documentation",
-        "description": "The project is currently in its final stages, focusing on deployment and preparing technical documentation. Efforts include model integration into the target environment, API wrapping, and writing developer and user-facing documentation for future maintenance."
+        "description": "Moved into the final stage: integrating the model into the target environment, wrapping it in an API, and writing developer and user documentation for handover."
       }
     ],
     "alert": "This project is under NDA. Limited details are shared out of respect for confidentiality agreements.",
     "note": "This project is now complete on my side and will be continued by Beumer.",
     "report":"ProjectReport"
   },
-  
+
   {
     "id": "rigacup",
     "title": "Riga Cup ⚽",
@@ -180,32 +180,32 @@
       {
         "date": "2024-06-01",
         "milestone": "Project Offer and Architecture Design",
-        "description": "Received a freelance offer to develop the Riga Cup system. Designed the overall system architecture, focusing on scalability and performance. The goal was to build a robust platform for tournament and team management."
+        "description": "Took on the Riga Cup as a freelance project and designed the overall architecture, aiming for a scalable platform for tournament and team management."
       },
       {
         "date": "2024-06-05",
         "milestone": "Backend Development",
-        "description": "Started developing the backend for the Riga Cup system, including the database schema, API endpoints, and authentication logic. Managed the backend infrastructure and led a team to implement the system."
+        "description": "Built the backend — database schema, API endpoints, and authentication — and led a small team through the implementation."
       },
       {
         "date": "2024-06-10",
         "milestone": "Frontend Integration",
-        "description": "Collaborated with the frontend team to integrate the backend API with the user interface. Ensured smooth data exchange between the frontend and backend systems."
+        "description": "Worked with the frontend team to integrate the API with the UI, ensuring clean data exchange between the two."
       },
       {
         "date": "2024-06-15",
         "milestone": "System Testing and Debugging",
-        "description": "Conducted extensive testing of the system, identifying and fixing bugs in the tournament and team management features. Focused on user experience and system performance."
+        "description": "Tested the system thoroughly, fixing bugs in the tournament and team-management features with a focus on UX and performance."
       },
       {
         "date": "2024-06-20",
         "milestone": "Final Adjustments and Optimization",
-        "description": "Optimized system performance by refining code, improving database queries, and reducing server load. Enhanced scalability and efficiency for large tournaments."
+        "description": "Optimized performance by refining code and database queries, improving scalability and efficiency for large tournaments."
       },
       {
         "date": "2024-06-25",
         "milestone": "System Deployment",
-        "description": "Deployed the backend system to production. Monitored initial user activity and system performance to ensure stability."
+        "description": "Deployed the backend to production and monitored early usage and performance to confirm stability."
       }
     ],
     "alert": "Source code not available due to privacy concerns. 😔",
