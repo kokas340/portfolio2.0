@@ -26,6 +26,16 @@ export default defineConfig({
     exclude: [],
   },
   optimizeDeps: {
+    // Rapier loads its physics engine as a WASM module. @react-three/rapier
+    // statically imports bindings (EventQueue, World, …) from
+    // @dimforge/rapier3d-compat AND separately does a dynamic import + init()
+    // of the same package. Vite's dep pre-bundler splits those into two module
+    // instances, so init() populates the WASM on one copy while the world/queue
+    // constructors read from an uninitialized copy — crashing with
+    // "Cannot read properties of undefined (reading 'raweventqueue_new')".
+    // Excluding both from pre-bundling makes every import resolve to one shared
+    // ESM instance, so init() and the constructors see the same WASM.
+    exclude: ["@react-three/rapier", "@dimforge/rapier3d-compat"],
     esbuildOptions: {
       loader: { ".js": "jsx" },
     },

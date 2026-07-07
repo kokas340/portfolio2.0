@@ -180,6 +180,11 @@ code {
   --hairline: #e4e4e7;
   /* RGB triplet for the gradient overlay that sits over the triangle bg */
   --pattern-rgb: 245, 245, 245;
+  /* Shared fade divider between sections. Every section top/bottom fade uses
+     these so each seam looks identical and gently dissolves the triangle
+     pattern into the page background instead of jumping between sections. */
+  --section-fade-h: 200px;
+  --section-fade-o: 0.92;
   --card-shadow: 0 6px 16px rgba(0, 0, 0, 0.04), 0 12px 32px rgba(0, 0, 0, 0.06);
   --card-shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.1), 0 24px 48px rgba(0, 0, 0, 0.12);
 }

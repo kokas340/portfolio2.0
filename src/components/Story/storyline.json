@@ -21,7 +21,7 @@
       {
         "date": "2024-12-16",
         "milestone": "Model Architecture Design",
-        "description": "Designed three candidate architectures — XGBoost, a feedforward network, and a recurrent network — and split the data into training, validation, and test sets."
+        "description": "Designed three candidate architectures (XGBoost, a feedforward network, and a recurrent network) and split the data into training, validation, and test sets."
       },
       {
         "date": "2024-12-18",
@@ -107,7 +107,7 @@
       {
         "date": "2024-02",
         "milestone": "Design Phase",
-        "description": "Designed the experience for both the app and the manager platform — wireframes, user flows, and UI mockups — and planned a scalable microservice architecture."
+        "description": "Designed the experience for both the app and the manager platform (wireframes, user flows, and UI mockups) and planned a scalable microservice architecture."
       },
       {
         "date": "2024-02",
@@ -117,7 +117,7 @@
       {
         "date": "2024-03",
         "milestone": "Manager Platform Development",
-        "description": "Built the manager platform — an admin interface for overseeing user activity, generating reports, and managing system data, with built-in alerting and notifications."
+        "description": "Built the manager platform, an admin interface for overseeing user activity, generating reports, and managing system data, with built-in alerting and notifications."
       },
       {
         "date": "2024-04",
@@ -140,7 +140,7 @@
       {
         "date": "2025-01",
         "milestone": "Initial Research & Understanding",
-        "description": "Kicked off by building domain knowledge and exploring the available datasets — essential for understanding both the problem and our partners' constraints."
+        "description": "Kicked off by building domain knowledge and exploring the available datasets, essential for understanding both the problem and our partners' constraints."
       },
       {
         "date": "2025-01",
@@ -150,7 +150,7 @@
       {
         "date": "2025-02",
         "milestone": "Data Preparation & Augmentation",
-        "description": "Preprocessed the raw image data — normalization, labeling, and augmentation — with a focus on class balance and stronger generalization."
+        "description": "Preprocessed the raw image data (normalization, labeling, and augmentation) with a focus on class balance and stronger generalization."
       },
       {
         "date": "2025-03",
@@ -185,7 +185,7 @@
       {
         "date": "2024-06-05",
         "milestone": "Backend Development",
-        "description": "Built the backend — database schema, API endpoints, and authentication — and led a small team through the implementation."
+        "description": "Built the backend (database schema, API endpoints, and authentication) and led a small team through the implementation."
       },
       {
         "date": "2024-06-10",

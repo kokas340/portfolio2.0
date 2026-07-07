@@ -6,6 +6,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
   overflow: hidden;
 }
 
@@ -16,11 +17,11 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 150px; /* adjust to make fade stronger or softer */
+  height: var(--section-fade-h);
   background: linear-gradient(
     to bottom,
     rgba(var(--pattern-rgb), 0) 0%,
-      rgba(var(--pattern-rgb),0.84) 100%
+    rgba(var(--pattern-rgb), var(--section-fade-o)) 100%
   );
   pointer-events: none;
 }
@@ -31,11 +32,11 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 550px; /* fade height */
+  height: var(--section-fade-h);
   background: linear-gradient(
     to top,
     rgba(var(--pattern-rgb), 0) 0%,
-     rgba(var(--pattern-rgb),0.73) 100%
+    rgba(var(--pattern-rgb), var(--section-fade-o)) 100%
   );
   pointer-events: none;
   z-index: 0; /* make sure it’s behind the content */

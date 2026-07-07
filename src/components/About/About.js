@@ -98,11 +98,11 @@ function About() {
               features behind it. Along the way I've led teams as a{" "}
               <strong>Team Leader</strong> and <strong>Scrum Master</strong>,
               shipping everything from machine-learning systems to full-stack
-              web and mobile apps — work that's grown me as much as a
+              web and mobile apps, work that's grown me as much as a
               communicator as it has as an engineer.
             </p>
             <p className="about-text mt-4">
-              I care most about <strong>collaboration</strong> — sharing
+              I care most about <strong>collaboration</strong>: sharing
               knowledge and pulling toward a shared goal is the part of software
               I enjoy most. Outside of coding, I'm into{" "}
               <strong>music, sports, and traveling</strong>: anything that
