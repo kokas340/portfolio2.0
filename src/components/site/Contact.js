@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Check, Copy, Github, Linkedin, MessageCircle } from "lucide-react";
+import { Check, Copy, Github, Linkedin } from "lucide-react";
 import Reveal from "./Reveal";
 import { person } from "../../data/profile";
 
@@ -55,10 +55,6 @@ export default function Contact() {
             <a className="btn btn-on-brand" href={person.links.github} target="_blank" rel="noreferrer">
               <Github size={16} aria-hidden="true" />
               GitHub
-            </a>
-            <a className="btn btn-on-brand" href={person.links.whatsapp} target="_blank" rel="noreferrer">
-              <MessageCircle size={16} aria-hidden="true" />
-              {person.phone}
             </a>
           </div>
         </Reveal>

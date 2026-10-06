@@ -35,11 +35,9 @@ export const person = {
   role: "Software Engineer",
   location: "Aarhus, Denmark",
   email: "jackspinola198@hotmail.com",
-  phone: "+45 91 45 07 03",
   links: {
     linkedin: "https://www.linkedin.com/in/jack-spinola-0a835927b/",
     github: "https://github.com/kokas340",
-    whatsapp: "https://api.whatsapp.com/send/?phone=4591450703&text&type=phone_number&app_absent=0",
     source: "https://github.com/kokas340/portfolio2.0",
   },
 };
