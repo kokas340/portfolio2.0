@@ -1,21 +1,21 @@
 /* The 3D ID badge hangs from under the header on the right of the hero. The
-   canvas is two screens tall so the strap and a dragged card never clip. It
-   ignores pointer events itself; the Lanyard listens on #root instead, so the
-   card can be grabbed while everything else on the page stays clickable. */
+   canvas only covers the badge's playing field (sized in HeroBadge.js) and
+   ignores pointer events; the Lanyard listens on #root instead, so the card can
+   be grabbed while everything else on the page stays clickable. The layer fades
+   in once the scene has rendered its first frames. */
 .lanyard-layer {
   position: absolute;
   inset: 0;
   z-index: 1;
-  height: 200vh;
   overflow: visible;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
 }
+.lanyard-layer.is-ready { opacity: 1; }
 .lanyard-box {
   position: absolute;
   top: calc(-1 * var(--header-h));
-  right: 0;
-  width: max(100vw, 1400px);
-  height: 200vh;
   overflow: visible;
 }
 .lanyard-box canvas {
@@ -25,13 +25,12 @@
   pointer-events: none;
 }
 
-/* Caption under the card's resting spot. The card hangs 2.6 world units right
-   of the canvas centre, 18.9vh per unit (fov 20 at distance 30 on a 200vh
-   canvas), and rests with its bottom edge at 76vh of the page. */
+/* Caption under the card's resting spot (its bottom edge rests at 76vh of the
+   page); `left` is the anchor x, set inline. No backdrop blur: the strap moves
+   behind it every frame. */
 .badge-hint {
   position: absolute;
   z-index: 2;
-  left: calc(100vw - max(100vw, 1400px) / 2 + 49.15vh);
   top: calc(76vh - var(--header-h) + 22px);
   display: inline-flex;
   align-items: center;
@@ -40,18 +39,16 @@
   padding: 7px 12px;
   border: 1px solid var(--c-line);
   border-radius: 999px;
-  background: rgb(var(--c-bg-rgb) / 0.85);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
+  background: rgb(var(--c-bg-rgb) / 0.92);
   color: var(--c-muted);
   font: 500 12.5px var(--f-mono);
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
   transform: translate(-50%, 6px);
-  animation: badge-hint-in 0.6s var(--ease) 2.6s forwards;
+  animation: badge-hint-in 0.6s var(--ease) 1.4s forwards;
 }
-.badge-hint svg { color: var(--c-sky); transform-origin: 65% 85%; animation: badge-hint-wave 2.8s ease-in-out 3.4s infinite; }
+.badge-hint svg { color: var(--c-sky); transform-origin: 65% 85%; animation: badge-hint-wave 2.8s ease-in-out 2.2s infinite; }
 .badge-hint.is-gone { animation: badge-hint-out 0.35s var(--ease) forwards; }
 
 @keyframes badge-hint-in { to { opacity: 1; transform: translate(-50%, 0); } }

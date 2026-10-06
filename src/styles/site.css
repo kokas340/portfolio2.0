@@ -245,21 +245,23 @@ a { color: inherit; }
 
 /* ---------- Header ---------- */
 
-/* Always frosted, so the badge strap reads as hanging from under the bar. */
+/* Near-opaque over the hero, so the badge strap reads as hanging from under the
+   bar. Frosted glass only once the badge has scrolled away: a backdrop blur over
+   the moving 3D canvas would be re-computed every single frame. */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 60;
   height: var(--header-h);
   border-bottom: 1px solid transparent;
-  background: rgb(var(--c-bg-rgb) / 0.72);
-  -webkit-backdrop-filter: saturate(1.4) blur(14px);
-  backdrop-filter: saturate(1.4) blur(14px);
+  background: rgb(var(--c-bg-rgb) / 0.96);
   transition: background-color 0.25s var(--ease), border-color 0.25s var(--ease);
 }
-.site-header.is-scrolled {
-  background: rgb(var(--c-bg-rgb) / 0.84);
-  border-bottom-color: var(--c-line);
+.site-header.is-scrolled { border-bottom-color: var(--c-line); }
+.site-header.is-frosted {
+  background: rgb(var(--c-bg-rgb) / 0.8);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  backdrop-filter: saturate(1.4) blur(14px);
 }
 .header-inner {
   display: flex;
@@ -346,26 +348,53 @@ a { color: inherit; }
 }
 .hero-title-lead { display: block; color: rgb(var(--c-ink-rgb) / 0.38); }
 .hero-title-punch { display: block; color: var(--c-ink); }
-.hero-title .hw { display: inline-block; will-change: transform, opacity, filter; }
+.hero-title .hw { display: inline-block; animation: word-in 0.75s var(--ease) both; }
+@keyframes word-in { from { opacity: 0; transform: translateY(0.4em); filter: blur(12px); } }
+.hero-in { animation: rise-in 0.7s var(--ease) both; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(16px); } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-title .hw, .hero-in { animation: none; }
+}
 .accent-dot { color: var(--c-sky); }
 
-/* Cursor spotlight: the same triangles in CV navy and sky (spotlight-bg.svg,
-   derived from common-bg.svg) plus a soft glow, masked to a circle around the pointer. Sits under the hero's wash, so it reads strongest
-   on the open right side and stays quiet behind the text. */
+/* Cursor spotlight: the same triangles in CV navy and sky seen through a soft
+   circular window that follows the pointer. Only transforms change as the mouse
+   moves (see HeroSpotlight.js), so it never repaints. The pattern is a bitmap tile
+   (spotlight-tile.png = one 540x450 repeat of spotlight-bg.svg rendered at 2x,
+   itself a recolour of common-bg.svg) so newly exposed areas never need SVG
+   rasterising. Sits under the hero's wash, so it reads strongest on the open right
+   side and stays quiet behind the text. */
 .hero-spotlight {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   z-index: -2;
+  width: 500px;
+  height: 500px;
+  overflow: hidden;
   pointer-events: none;
-  background:
-    radial-gradient(220px circle at var(--mx, -999px) var(--my, -999px), rgb(61 154 214 / 0.16), transparent 70%),
-    url("../assets/spotlight-bg.svg") center / cover no-repeat;
-  -webkit-mask-image: radial-gradient(320px circle at var(--mx, -999px) var(--my, -999px), #000 0%, rgb(0 0 0 / 0.45) 45%, transparent 75%);
-  mask-image: radial-gradient(320px circle at var(--mx, -999px) var(--my, -999px), #000 0%, rgb(0 0 0 / 0.45) 45%, transparent 75%);
+  -webkit-mask-image: radial-gradient(closest-side, #000 0%, rgb(0 0 0 / 0.45) 58%, transparent 95%);
+  mask-image: radial-gradient(closest-side, #000 0%, rgb(0 0 0 / 0.45) 58%, transparent 95%);
   opacity: 0;
+  transform: translate3d(-9999px, 0, 0);
   transition: opacity 0.6s var(--ease);
+  will-change: transform, opacity;
+}
+.hero-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(closest-side, rgb(61 154 214 / 0.16), transparent 62%);
+}
+.hero-spotlight-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url("../assets/spotlight-tile.png") 0 0 / 540px 450px repeat;
+  will-change: transform;
 }
 .hero-spotlight.is-on { opacity: 0.75; }
+.badge-dragging .hero-spotlight { opacity: 0; visibility: hidden; transition: none; }
 
 /* "Scroll" with a line that keeps dripping downward. */
 .scroll-cue {
@@ -392,13 +421,14 @@ a { color: inherit; }
   content: "";
   position: absolute;
   left: 0;
-  top: -45%;
+  top: 0;
   width: 1px;
   height: 45%;
   background: var(--c-ink);
+  transform: translateY(-100%);
   animation: drip 1.9s var(--ease) infinite;
 }
-@keyframes drip { to { top: 100%; } }
+@keyframes drip { to { transform: translateY(225%); } }
 @keyframes fade-in { to { opacity: 1; } }
 @media (min-width: 992px) and (min-height: 760px) {
   .scroll-cue { display: flex; }
@@ -1012,12 +1042,12 @@ a { color: inherit; }
 .dark .h1, .dark .h2, .dark .h3, .dark .project-title { letter-spacing: -0.02em; }
 .dark .h1 { font-size: clamp(2.1rem, 1.3rem + 2.9vw, 3.4rem); }
 .dark .hero-title { font-size: clamp(1.9rem, 1.1rem + 2.9vw, 3.6rem); }
-.dark .hero-spotlight {
+.dark .hero-spotlight-pattern {
   background:
-    radial-gradient(240px circle at var(--mx, -999px) var(--my, -999px), rgb(41 255 140 / 0.1), transparent 70%),
     linear-gradient(rgb(41 255 140 / 0.14) 1px, transparent 1px) 0 0 / 34px 34px,
     linear-gradient(90deg, rgb(41 255 140 / 0.14) 1px, transparent 1px) 0 0 / 34px 34px;
 }
+.dark .hero-spotlight::after { background: radial-gradient(closest-side, rgb(41 255 140 / 0.12), transparent 62%); }
 .dark .h2 { font-size: clamp(1.6rem, 1.25rem + 1.4vw, 2.3rem); }
 .dark .project-title { font-size: clamp(1.4rem, 1.15rem + 0.9vw, 1.8rem); }
 .dark .fact dt { font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.3rem); }

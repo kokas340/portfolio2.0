@@ -7,10 +7,15 @@ export default function Header() {
   const { pathname } = useLocation();
   const onHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
+  const [frosted, setFrosted] = useState(false);
   const [active, setActive] = useState(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      // glass blur only once the hero's 3D badge is no longer behind the bar
+      setFrosted(window.scrollY > window.innerHeight * 0.95);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -37,7 +42,7 @@ export default function Header() {
   const target = (id) => (onHome ? { href: `#${id}` } : { to: `/#${id}` });
 
   return (
-    <header className={`site-header${scrolled || !onHome ? " is-scrolled" : ""}`}>
+    <header className={`site-header${scrolled || !onHome ? " is-scrolled" : ""}${frosted || !onHome ? " is-frosted" : ""}`}>
       <div className="container header-inner">
         <Link
           to="/"

@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unknown-property */
 'use client';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, useTexture, Environment, Lightformer } from '@react-three/drei';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useGLTF, useTexture, Environment, Lightformer, PerformanceMonitor } from '@react-three/drei';
 import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier';
 
 import cardGLB from '../../assets/lanyard/card.glb';
@@ -52,14 +52,27 @@ export default function Lanyard({
     offsetX = 0,
     offsetY = 0,
     active = true,
+    running = true,
+    onReady,
     onGrab,
 }) {
+    // Nothing is drawn until every shader has compiled (see Warmup), so the first
+    // visible frames never stall on a driver compile.
+    const [compiled, setCompiled] = useState(false);
+    // Draw only while something moves: once the rig is asleep the loop switches to
+    // on-demand rendering (zero GPU use at rest) until the card is touched again.
+    const [awake, setAwake] = useState(true);
+    const onSleep = useCallback(() => setAwake(false), []);
+    const onWake = useCallback(() => setAwake(true), []);
+    // Sharp on scaled screens, but drop to 1x if the GPU can't hold ~56+ fps.
+    const [dpr, setDpr] = useState(() => Math.min(window.devicePixelRatio || 1, 1.25));
     return (
         <div className="lanyard-wrapper">
             <Canvas
                 camera={{ position, fov }}
                 gl={{ alpha: transparent }}
-                frameloop={active ? 'always' : 'never'}
+                dpr={dpr}
+                frameloop={!active || !compiled ? 'never' : awake ? 'always' : 'demand'}
                 // The canvas spans the page and must not swallow clicks, so it
                 // listens on #root instead and only reacts when the card is hit.
                 eventSource={document.getElementById('root')}
@@ -78,11 +91,17 @@ export default function Lanyard({
                     });
                 }}
             >
+                {/* measure only while drawing continuously, so idle gaps never read as slow frames */}
+                {active && compiled && awake && (
+                    <PerformanceMonitor bounds={() => [56, 120]} flipflops={2} onDecline={() => setDpr(1)} onFallback={() => setDpr(1)} />
+                )}
                 <ambientLight intensity={Math.PI} />
                 {/* updatePriority -1: step physics before Band's useFrame (priority 0),
                     so the strap is built from this frame's card pose, not the last one. */}
-                <Physics gravity={gravity} timeStep={1 / 60} paused={!active} updatePriority={-1}>
-                    <Band offsetX={offsetX} offsetY={offsetY} onGrab={onGrab} />
+                {/* Physics waits (paused) while the hidden scene warms up, so the
+                    badge's drop starts only once it is actually on screen. */}
+                <Physics gravity={gravity} timeStep={1 / 60} paused={!running} updatePriority={-1}>
+                    <Band offsetX={offsetX} offsetY={offsetY} onGrab={onGrab} onSleep={onSleep} onWake={onWake} />
                 </Physics>
 
                 {/* subtle environment light bars */}
@@ -92,12 +111,52 @@ export default function Lanyard({
                     <Lightformer intensity={3} color="white" position={[1, 1, 1]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
                     <Lightformer intensity={10} color="white" position={[-10, 0, 14]} rotation={[0, Math.PI / 2, Math.PI / 3]} scale={[100, 10, 1]} />
                 </Environment>
+
+                {/* after Environment, so its lighting is in place when shaders compile */}
+                <Warmup onCompiled={() => setCompiled(true)} onReady={onReady} />
             </Canvas>
         </div>
     );
 }
 
-function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab }) {
+/**
+ * Compiles every shader in the scene in parallel, off the main thread
+ * (KHR_parallel_shader_compile via renderer.compileAsync), while the badge is
+ * still invisible and the render loop is held. Then it lets two frames draw and
+ * reports ready, so the page can fade the badge in and start the physics.
+ * Without this the drop stalls for ~250ms while the GPU driver compiles the
+ * glossy card material on its first draw.
+ */
+function Warmup({ onCompiled, onReady }) {
+    const gl = useThree((state) => state.gl);
+    const scene = useThree((state) => state.scene);
+    const camera = useThree((state) => state.camera);
+    useLayoutEffect(() => {
+        let cancelled = false;
+        const nextFrame = () => new Promise((resolve) => requestAnimationFrame(resolve));
+        (async () => {
+            try {
+                await gl.compileAsync(scene, camera);
+            } catch {
+                /* falls back to compiling on first draw */
+            }
+            if (cancelled) return;
+            onCompiled();
+            await nextFrame();
+            await nextFrame();
+            await nextFrame();
+            if (!cancelled) onReady?.();
+        })();
+        return () => {
+            cancelled = true;
+        };
+        // run once per canvas
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [gl, scene, camera]);
+    return null;
+}
+
+function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab, onSleep, onWake }) {
     const fixed = useRef(),
         j1 = useRef(),
         j2 = useRef(),
@@ -141,6 +200,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab })
             spin: new THREE.Quaternion(),
             anchor: new THREE.Vector3(),
             angvel: new THREE.Vector3(),
+            points: Array.from({ length: STRAP_SEGMENTS + 1 }, () => new THREE.Vector3()),
             facing: new THREE.Vector3(),
             camFacing: new THREE.Vector3(),
             tangent: new THREE.Vector3(),
@@ -150,6 +210,23 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab })
         }),
         []
     );
+
+    // Extent of card + clip in the card body's own space (the visual group is
+    // scaled 2.25 and shifted down 1.2), used to keep a dragged card in view.
+    const cardExtent = useMemo(() => {
+        const box = new THREE.Box3();
+        [nodes.card, nodes.clip, nodes.clamp].forEach((node) => {
+            node.geometry.computeBoundingBox();
+            box.union(node.geometry.boundingBox);
+        });
+        return { minX: box.min.x * 2.25, maxX: box.max.x * 2.25, minY: box.min.y * 2.25 - 1.2, maxY: box.max.y * 2.25 - 1.2 };
+    }, [nodes]);
+
+    const stillFrames = useRef(0);
+    const wake = () => {
+        stillFrames.current = 0;
+        onWake?.();
+    };
 
     // Rope chain joints
     useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
@@ -163,11 +240,16 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab })
         return () => void (document.body.style.cursor = 'auto');
     }, [hovered, dragged]);
 
-    // Dragging across the page must not select text along the way.
+    // Dragging across the page must not select text along the way, and the cursor
+    // spotlight pauses (body.badge-dragging) so the GPU has room for the badge alone.
     useEffect(() => {
         if (!dragged) return;
         document.body.style.userSelect = 'none';
-        return () => void (document.body.style.userSelect = '');
+        document.body.classList.add('badge-dragging');
+        return () => {
+            document.body.style.userSelect = '';
+            document.body.classList.remove('badge-dragging');
+        };
     }, [dragged]);
 
     // Dev-only hooks so the flip can be reproduced and measured in automated checks:
@@ -175,7 +257,10 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab })
     // strap's end and the card's width as drawn (0 = the strap turns with the card).
     useEffect(() => {
         if (!import.meta.env.DEV) return undefined;
-        window.__spinBadge = (speed = 9) => card.current?.setAngvel({ x: 0, y: speed, z: 0 }, true);
+        window.__spinBadge = (speed = 9) => {
+            wake();
+            card.current?.setAngvel({ x: 0, y: speed, z: 0 }, true);
+        };
         window.__strapLag = () => {
             const body = cardVisual.current && cardVisual.current.parent;
             if (!body) return null;
@@ -244,14 +329,18 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab })
         // backgrounded tab regaining focus) can't spike the lerp/physics and
         // fling the strap down where it settles stretched out.
         const dt = Math.min(delta, 1 / 60);
+        if (import.meta.env.DEV) window.__badgeFrames = (window.__badgeFrames || 0) + 1;
         if (dragged) {
             vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
             dir.copy(vec).sub(state.camera.position).normalize();
             vec.add(dir.multiplyScalar(state.camera.position.length()));
             [card, j1, j2, j3, fixed].forEach(ref => ref.current?.wakeUp());
+            // Keep the whole card inside the canvas, so it is never cut off at an edge.
+            const halfH = Math.tan((state.camera.fov * Math.PI) / 360) * state.camera.position.z;
+            const halfW = halfH * (state.size.width / state.size.height);
             card.current?.setNextKinematicTranslation({
-                x: vec.x - dragged.x,
-                y: vec.y - dragged.y,
+                x: THREE.MathUtils.clamp(vec.x - dragged.x, -halfW - cardExtent.minX, halfW - cardExtent.maxX),
+                y: THREE.MathUtils.clamp(vec.y - dragged.y, -halfH - cardExtent.minY, halfH - cardExtent.maxY),
                 z: vec.z - dragged.z,
             });
         }
@@ -278,12 +367,20 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab })
             curve.points[1].copy(j2.current.lerped);
             curve.points[2].copy(j1.current.lerped);
             curve.points[3].copy(fixed.current.translation());
-            updateStrap(curve.getPoints(STRAP_SEGMENTS), strap.angvel.copy(card.current.angvel()));
+            // sample the curve into reused vectors (getPoints would allocate 33 per frame)
+            for (let i = 0; i <= STRAP_SEGMENTS; i++) curve.getPoint(i / STRAP_SEGMENTS, strap.points[i]);
+            updateStrap(strap.points, strap.angvel.copy(card.current.angvel()));
 
             // gentle rotational damping
             ang.copy(card.current.angvel());
             rot.copy(card.current.rotation());
-            card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z });
+            // no wake-up: lets the rig fall asleep once it has settled
+            card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z }, false);
+
+            // Asleep for ~0.75s (strap smoothing settled too): stop drawing until touched.
+            const resting = !dragged && [card, j1, j2, j3].every((ref) => ref.current.isSleeping());
+            stillFrames.current = resting ? stillFrames.current + 1 : 0;
+            if (stillFrames.current === 45) onSleep?.();
         }
     });
 
@@ -318,10 +415,11 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab })
                     ref={cardVisual}
                     scale={2.25}
                     position={[0, -1.2, -0.05]}
-                    onPointerOver={() => hover(true)}
+                    onPointerOver={() => (hover(true), wake())}
                     onPointerOut={() => hover(false)}
                     onPointerUp={(e) => (e.target.releasePointerCapture(e.pointerId), drag(false))}
                     onPointerDown={(e) => (
+                        wake(),
                         e.target.setPointerCapture(e.pointerId),
                         drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation()))),
                         onGrab?.()
@@ -330,7 +428,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab })
                     <mesh geometry={nodes.card.geometry}>
                         <meshPhysicalMaterial
                             map={materials.base.map}
-                            map-anisotropy={16}
+                            map-anisotropy={4}
                             clearcoat={1}
                             clearcoatRoughness={0.15}
                             roughness={0.9}
