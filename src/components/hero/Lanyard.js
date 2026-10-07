@@ -7,9 +7,22 @@ import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphe
 
 import cardGLB from '../../assets/lanyard/card.glb';
 import lanyard from '../../assets/lanyard/lanyard.png';
+// 2048px redraw of the card's face and back (the GLB's own texture is 500px).
+// Same layout as the GLB texture, so its UVs still line up.
+import cardFace from '../../assets/lanyard/card-texture.webp';
 
 import * as THREE from 'three';
 import './Lanyard.css';
+
+// The card's face is drawn about 3x smaller than its 2048px texture, so trilinear
+// filtering leans on the 256px mip and the text goes soft. Sample one mip level
+// sharper (LOD bias -1) for this material only.
+function sharperMap(shader) {
+    shader.fragmentShader = shader.fragmentShader.replace(
+        '#include <map_fragment>',
+        THREE.ShaderChunk.map_fragment.replace('texture2D( map, vMapUv )', 'texture2D( map, vMapUv, -1.0 )')
+    );
+}
 
 // The strap is a real 3D ribbon (not a camera-facing line) so it can twist:
 // at the anchor it faces the camera, at the clip it turns with the card.
@@ -64,8 +77,9 @@ export default function Lanyard({
     const [awake, setAwake] = useState(true);
     const onSleep = useCallback(() => setAwake(false), []);
     const onWake = useCallback(() => setAwake(true), []);
-    // Sharp on scaled screens, but drop to 1x if the GPU can't hold ~56+ fps.
-    const [dpr, setDpr] = useState(() => Math.min(window.devicePixelRatio || 1, 1.25));
+    // As sharp as the page on high-DPI screens (up to 2x), but drop to 1x if the
+    // GPU can't hold ~56+ fps.
+    const [dpr, setDpr] = useState(() => Math.min(window.devicePixelRatio || 1, 2));
     return (
         <div className="lanyard-wrapper">
             <Canvas
@@ -190,7 +204,13 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab, o
 
     const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
     const { nodes, materials } = useGLTF(cardGLB);
-    const texture = useTexture(lanyard);
+    const [texture, cardMap] = useTexture([lanyard, cardFace]);
+    useMemo(() => {
+        cardMap.flipY = false; // glTF UVs (TextureLoader flips by default)
+        cardMap.colorSpace = THREE.SRGBColorSpace;
+        cardMap.anisotropy = 16; // clamped to what the GPU supports; keeps text sharp when tilted
+        cardMap.needsUpdate = true;
+    }, [cardMap]);
 
     const [curve] = useState(
         () => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()])
@@ -446,8 +466,8 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab, o
                 >
                     <mesh geometry={nodes.card.geometry}>
                         <meshPhysicalMaterial
-                            map={materials.base.map}
-                            map-anisotropy={4}
+                            map={cardMap}
+                            onBeforeCompile={sharperMap}
                             clearcoat={1}
                             clearcoatRoughness={0.15}
                             roughness={0.9}
