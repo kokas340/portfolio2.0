@@ -11,7 +11,7 @@ export default function Home() {
   const { hash } = useLocation();
 
   useEffect(() => {
-    document.title = `${person.name} · Product Owner & Developer`;
+    document.title = `${person.name} · Full-Stack Developer`;
   }, []);
 
   // Arriving from a case study with /#section: scroll to it once rendered.

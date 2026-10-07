@@ -347,13 +347,21 @@ a { color: inherit; }
   letter-spacing: -0.046em;
 }
 .hero-title-lead { display: block; color: rgb(var(--c-ink-rgb) / 0.38); }
-.hero-title-punch { display: block; color: var(--c-ink); }
+.hero-title-punch { display: block; color: var(--c-ink); white-space: nowrap; }
 .hero-title .hw { display: inline-block; animation: word-in 0.75s var(--ease) both; }
 @keyframes word-in { from { opacity: 0; transform: translateY(0.4em); filter: blur(12px); } }
+/* The developer line's last words cycle (HeroHeadline.js): the old step drifts up
+   and dissolves, the next rises into focus letter by letter. The line never
+   wraps (its longest step fits a 320px phone), so nothing below it moves. */
+.hero-step-word { display: inline-block; }
+.hero-title .hc { display: inline-block; animation: letter-in 0.55s var(--ease) both; }
+.hero-title .is-leaving .hc { animation: letter-out 0.3s cubic-bezier(0.4, 0, 1, 1) both; }
+@keyframes letter-in { from { opacity: 0; transform: translateY(0.35em); filter: blur(10px); } }
+@keyframes letter-out { to { opacity: 0; transform: translateY(-0.2em); filter: blur(6px); } }
 .hero-in { animation: rise-in 0.7s var(--ease) both; }
 @keyframes rise-in { from { opacity: 0; transform: translateY(16px); } }
 @media (prefers-reduced-motion: reduce) {
-  .hero-title .hw, .hero-in { animation: none; }
+  .hero-title .hw, .hero-title .hc, .hero-in { animation: none; }
 }
 .accent-dot { color: var(--c-sky); }
 
@@ -472,6 +480,7 @@ a { color: inherit; }
   color: var(--c-muted);
   font-size: 14px;
   line-height: 1.45;
+  text-wrap: balance;
 }
 @media (min-width: 768px) {
   .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }

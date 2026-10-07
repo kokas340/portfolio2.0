@@ -42,19 +42,25 @@ export const person = {
   },
 };
 
-// Two beats: the product owner half, then the developer half.
+// A developer first. Two beats, the design and then the build; the second line's
+// last words walk through the whole job (HeroHeadline cycles them): build, test,
+// ship and run, as in the WasteHero points below.
 export const hero = {
-  eyebrow: `Product owner & developer · ${person.location}`,
-  title: ["I decide what to build.", "Then I build it."],
+  eyebrow: `Full-stack developer · ${person.location}`,
+  title: "I design the system.",
+  then: "Then I",
+  steps: ["build it.", "test it.", "ship it.", "run it."],
   lede:
-    "Hi, I'm Jack, product owner and full-stack developer at WasteHero. I talk to customers, turn what they need into a plan, then build and ship it with my team, on call included.",
+    "Hi, I'm Jack, a full-stack developer at WasteHero. I work across Python backends and React frontends, build the tools my team uses, and ship to production, on call included.",
 };
 
+// About Jack, not the employer. The first line of code is 24 Jan 2018 (the old
+// site's timer); the languages and countries come from the CV.
 export const facts = [
-  { value: `${yearsSince("2023-07-01")}+ years`, label: "shipping production software at WasteHero" },
-  { value: "2.5 years", label: "from QA intern to product owner" },
-  { value: "4 countries", label: "of customers I work with directly" },
-  { value: "5 engineers", label: "in my squad, where I run the 1:1s" },
+  { value: `${yearsSince("2018-01-24")}+ years`, label: "since my first line of code" },
+  { value: "6 months", label: "from QA intern to developer" },
+  { value: "3 languages", label: "Python, TypeScript and Java" },
+  { value: "2 countries", label: "studied and worked in Portugal and Denmark" },
 ];
 
 export const nav = [
@@ -182,9 +188,9 @@ export const experience = [
       { when: "Jan 2026", what: "Product owner, billing & pricing" },
     ],
     points: [
-      "Product owner for billing and pricing, the backbone of the platform: I own the backlog, run planning, refinement and reviews, and work directly with customers in Denmark, Norway, Finland and Qatar.",
       "Redesigned the products and pricing module end to end: a simpler product model, client-facing catalogue tables, and typed REST APIs with FastAPI and generated TypeScript clients.",
       "Ship and run what I build: production deploys, PostgreSQL migrations and indexing, invoicing on Celery, Sentry and Mezmo alerts, and a shared on-call rotation.",
+      "Product owner for billing and pricing, the backbone of the platform: I own the backlog, run planning, refinement and reviews, and work directly with customers in Denmark, Norway, Finland and Qatar.",
       "Drove Insights as product owner: plain-language questions become dashboards over a customer's own data. The model only plans; the backend validates and runs every query.",
       "Onboard and mentor developers and interns, with regular one-to-ones across a squad of five.",
     ],
@@ -225,7 +231,7 @@ export const toolbox = [
 
 export const about = {
   paragraphs: [
-    "I'm Jack, a software engineer living in Denmark since 2022. I joined WasteHero as a QA intern, learned the product inside out, and grew into the product owner of the system I used to test. So I care about both halves: building the right thing, and building it right.",
+    "I'm Jack, a software engineer living in Denmark since 2022. I joined WasteHero as a QA intern, became a developer six months later, and now build and run the billing and pricing systems I used to test, as their product owner too. So I care about both halves: building it right, and building the right thing.",
     "I'm happiest on software that touches the physical world: IoT pet feeders, warehouse cameras, garbage trucks moving on a live map. Off the clock it's football, music and travel.",
   ],
   facts: [
