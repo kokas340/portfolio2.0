@@ -904,6 +904,9 @@ a { color: inherit; }
   transition: border-color 0.2s var(--ease);
 }
 .contact-email:hover { border-color: #fff; }
+/* the email is short on phones; grow the tap target, not the text */
+.contact-email { position: relative; }
+.contact-email::after { content: ""; position: absolute; inset: -9px -6px; }
 .btn-on-brand {
   background: rgb(255 255 255 / 0.08);
   border-color: rgb(255 255 255 / 0.18);
