@@ -55,16 +55,6 @@ export const hero = {
     "Hi, I'm Jack, a full-stack developer at WasteHero, currently also the product owner for billing and pricing. I take features end to end, build the tools my team uses, and ship to production, on\u00a0call included.",
 };
 
-// About Jack, not the employer. The first line of code is 24 Jan 2018 (the old
-// site's timer); the lead roles are the ones on the projects below (PetFeeder and
-// Pnta per the CV, Riga Cup per the old site); the countries come from the CV.
-export const facts = [
-  { value: `${yearsSince("2018-01-24")}+ years`, label: "since my first line of code" },
-  { value: "6 months", label: "from QA intern to developer" },
-  { value: "3 lead roles", label: "on PetFeeder, Pnta and Riga Cup" },
-  { value: "2 countries", label: "studied and worked in Portugal and Denmark" },
-];
-
 export const nav = [
   { id: "work", label: "Work" },
   { id: "experience", label: "Experience" },
@@ -181,6 +171,17 @@ export const moreProjects = [
       { label: "Live site", href: "https://www.rigacup.lv/" },
     ],
   },
+];
+
+// About Jack, not the employer, and honest about level (mid, not senior). The
+// first line of code is 24 Jan 2018 (the old site's timer); professional work
+// starts at WasteHero in July 2023; the projects are the ones on this page; the
+// countries come from the CV.
+export const facts = [
+  { value: `${yearsSince("2018-01-24")}+ years`, label: "since my first line of code" },
+  { value: `${yearsSince("2023-07-01")}+ years`, label: "shipping production software" },
+  { value: `${featured.length + moreProjects.length} projects`, label: "from IoT feeders to computer vision" },
+  { value: "2 countries", label: "studied and worked in Portugal and Denmark" },
 ];
 
 export const experience = [
