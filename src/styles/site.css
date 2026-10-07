@@ -599,7 +599,8 @@ a { color: inherit; }
   object-position: top center;
 }
 
-/* Dev Hub illustration (pure CSS, no screenshot of an internal tool) */
+/* Dev Hub: a drawn client (no screenshot of an internal tool) that doubles as an
+   easter egg: clickable sessions, typeable terminals, README.md docs. */
 .devhub { border-color: #1b2632; background: #0b1118; color: #c3cfdb; font-family: var(--f-mono); }
 .devhub .frame-bar { background: #0f1720; border-color: #1b2632; }
 .devhub .frame-bar span { background: #2a3644; }
@@ -610,11 +611,32 @@ a { color: inherit; }
   aspect-ratio: 16 / 9.6;
   font-size: 12.5px;
 }
-.dh-side { display: grid; align-content: start; gap: 3px; padding: 14px 10px; border-right: 1px solid #1b2632; }
+.dh-side { display: grid; align-content: start; padding: 14px 10px; border-right: 1px solid #1b2632; }
 .dh-label { margin: 0; padding: 0 8px 8px; color: #5c6c7d; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; }
-.dh-session { display: flex; align-items: center; gap: 9px; min-width: 0; padding: 8px; border-radius: 8px; color: #93a4b6; }
+.dh-tabs { display: grid; gap: 3px; }
+.dh-session {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  min-width: 0;
+  padding: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #93a4b6;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+.dh-session:hover { background: #101924; color: #c3cfdb; }
+.dh-session:focus-visible { outline: 2px solid #58a6ff; outline-offset: -2px; }
 .dh-name { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .dh-session.is-active { background: #131e2a; color: #e6edf3; }
+.dh-session i.doc { border-radius: 2px; background: #58a6ff; opacity: 0.7; }
+.dh-panel { display: grid; min-height: 0; }
+.dh-panel[hidden] { display: none; }
 .dh-session i { flex: none; width: 7px; height: 7px; border-radius: 50%; background: #3a4757; }
 .dh-session i.run { background: #3fb950; box-shadow: 0 0 0 3px rgb(63 185 80 / 0.16); }
 .dh-session i.wait { background: #d29922; }
@@ -671,9 +693,58 @@ a { color: inherit; }
   }
 }
 @keyframes blink { 50% { opacity: 0; } }
+/* README.md, the way it reads in an editor */
+.dh-docs { min-height: 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #2a3644 transparent; }
+.dh-docs-tab {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 22px;
+  border-bottom: 1px solid #1b2632;
+  background: #0b1118;
+  color: #93a4b6;
+  font-size: 11.5px;
+}
+.md-badge { padding: 0 4px; border: 1px solid #2f4256; border-radius: 3px; color: #58a6ff; font-size: 9.5px; line-height: 14px; }
+.dh-docs-body { display: grid; gap: 7px; padding: 14px 22px 20px; line-height: 1.5; }
+.dh-docs-body p { margin: 0; }
+.dh-docs-body section { display: grid; gap: 6px; }
+/* list items wrap under their text, not under the "- " */
+.md-item { padding-left: 2ch; text-indent: -2ch; }
+.md-item .md-code { text-indent: 0; }
+.md-mark { color: #4b5a6a; }
+.md-h1 { color: #79c0ff; font-weight: 600; }
+.md-h2 { margin-top: 8px; color: #79c0ff; }
+.md-text { color: #93a4b6; }
+.md-text b { color: #e6edf3; font-weight: 600; }
+.md-code {
+  padding: 1px 6px;
+  border: 0;
+  border-radius: 5px;
+  background: #132031;
+  color: #e6edf3;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.15s var(--ease);
+}
+.md-code:hover { background: #1b2e46; }
+.md-code:focus-visible { outline: 2px solid #58a6ff; outline-offset: 1px; }
+.md-tick { color: #4b5a6a; }
+.md-quote { margin-top: 8px; padding-left: 10px; border-left: 2px solid #2a3644; color: #5c6c7d; }
+
+/* Phones: the sessions become a two-by-two grid above the panel, so all four
+   (docs included) stay in sight; one row would not fit "map-filters". */
 @media (max-width: 575.98px) {
-  .dh-body { grid-template-columns: minmax(0, 1fr); }
-  .dh-side { display: none; }
+  .dh-body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); aspect-ratio: auto; height: 392px; }
+  .dh-side { padding: 8px 10px; border-right: 0; border-bottom: 1px solid #1b2632; }
+  .dh-label, .dh-side .dh-total, .dh-session b { display: none; }
+  .dh-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; }
+  .dh-session { padding: 6px 10px; }
+  .dh-docs-tab { padding: 9px 16px; }
+  .dh-docs-body, .dh-term { padding-inline: 16px; }
 }
 
 /* More projects */

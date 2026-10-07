@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toggleTheme } from "../../lib/theme";
-import { BOOT_LINES, PROMPT, complete, runCommand } from "./terminalCommands";
+import { PROMPT, complete, runCommand } from "./terminalCommands";
 
 const MAX_LINES = 200;
 
@@ -17,60 +17,73 @@ function Segment({ s }) {
   return s.c ? <span className={s.c}>{s.t}</span> : s.t;
 }
 
-// The Dev Hub window's terminal pane, typeable: an easter egg with a handful of
-// commands about me (see terminalCommands.js). Up/Down walk the history, Tab
-// completes, Ctrl+L clears, Escape leaves the input.
-export default function DevHubTerminal() {
+// One Dev Hub session's terminal: typeable, with the commands in
+// terminalCommands.js. Up/Down walk the history, Tab completes, Ctrl+L clears,
+// Escape leaves the input. The parent can run a command through the ref (the
+// docs session does this when a command is clicked).
+const DevHubTerminal = forwardRef(function DevHubTerminal({ session, boot, active, onOpenSession }, ref) {
   const navigate = useNavigate();
-  const [lines, setLines] = useState(BOOT_LINES);
+  const [lines, setLines] = useState(boot);
   const [value, setValue] = useState("");
-  const [history, setHistory] = useState([]);
   const [browse, setBrowse] = useState(-1); // position while walking the history
+  const history = useRef([]);
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
 
-  useEffect(() => {
+  const scrollToEnd = () => {
     const el = scrollRef.current;
     if (el) el.scrollTop = el.scrollHeight;
-  }, [lines]);
+  };
+  useEffect(scrollToEnd, [lines]);
+  useEffect(() => {
+    if (active) scrollToEnd();
+  }, [active]);
 
   const append = (more) => setLines((current) => [...current, ...more].slice(-MAX_LINES));
 
-  const submit = () => {
-    const input = value.trim();
-    const echo = [PROMPT, { t: " " + value }];
-    setValue("");
-    setBrowse(-1);
+  const execute = (raw) => {
+    const input = raw.trim();
+    const echo = [PROMPT, { t: " " + raw }];
     if (!input) {
       append([echo]);
       return;
     }
-    const nextHistory = [...history, input].slice(-50);
-    setHistory(nextHistory);
-    const result = runCommand(input, { history: nextHistory, navigate, toggleTheme });
+    history.current = [...history.current, input].slice(-50);
+    const result = runCommand(input, { history: history.current, navigate, toggleTheme, openSession: onOpenSession });
     if (result.clear) setLines([]);
     else append([echo, ...result.lines]);
     if (result.after) result.after();
   };
+  const latestExecute = useRef(execute);
+  latestExecute.current = execute;
+
+  useImperativeHandle(ref, () => ({
+    run: (command) => latestExecute.current(command),
+    focus: () => inputRef.current?.focus({ preventScroll: true }),
+  }));
 
   const onKeyDown = (e) => {
+    const past = history.current;
     if (e.key === "Enter") {
       e.preventDefault();
-      submit();
-    } else if (e.key === "ArrowUp" && history.length) {
+      const raw = value;
+      setValue("");
+      setBrowse(-1);
+      execute(raw);
+    } else if (e.key === "ArrowUp" && past.length) {
       e.preventDefault();
-      const i = browse === -1 ? history.length - 1 : Math.max(0, browse - 1);
+      const i = browse === -1 ? past.length - 1 : Math.max(0, browse - 1);
       setBrowse(i);
-      setValue(history[i]);
+      setValue(past[i]);
     } else if (e.key === "ArrowDown" && browse !== -1) {
       e.preventDefault();
       const i = browse + 1;
-      if (i >= history.length) {
+      if (i >= past.length) {
         setBrowse(-1);
         setValue("");
       } else {
         setBrowse(i);
-        setValue(history[i]);
+        setValue(past[i]);
       }
     } else if (e.key === "Tab") {
       const completed = complete(value);
@@ -94,7 +107,7 @@ export default function DevHubTerminal() {
 
   return (
     <div className="dh-term" ref={scrollRef} onClick={focusPrompt}>
-      <div role="log" aria-live="polite" aria-label="Terminal output">
+      <div role="log" aria-live="polite" aria-label={`${session} session output`}>
         {lines.map((segments, i) => (
           <p key={i}>
             {segments.map((s, j) => (
@@ -116,7 +129,7 @@ export default function DevHubTerminal() {
           }}
           onKeyDown={onKeyDown}
           placeholder='try "help"'
-          aria-label='Dev Hub terminal. Type a command, for example "help", and press Enter.'
+          aria-label={`${session} session. Type a command, for example "help" or "docs", and press Enter.`}
           autoComplete="off"
           autoCorrect="off"
           autoCapitalize="off"
@@ -126,4 +139,6 @@ export default function DevHubTerminal() {
       </div>
     </div>
   );
-}
+});
+
+export default DevHubTerminal;
