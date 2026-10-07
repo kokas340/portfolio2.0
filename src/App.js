@@ -6,11 +6,13 @@ import Story from "./components/Story/Story";
 import Header from "./components/site/Header";
 import Footer from "./components/site/Footer";
 
-// New pages start at the top unless the URL points at a section.
+// New pages start at the top unless the URL points at a section. "instant", or
+// the page-wide smooth scrolling would visibly roll the new page up from where
+// the old one was.
 function ScrollManager() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
-    if (!hash) window.scrollTo(0, 0);
+    if (!hash) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [pathname, hash]);
   return null;
 }

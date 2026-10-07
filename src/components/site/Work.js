@@ -1,12 +1,37 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Section from "./Section";
 import Reveal from "./Reveal";
 import ProjectLink from "./ProjectLink";
 import DevHubVisual from "./DevHubVisual";
 import { featured, moreProjects, person } from "../../data/profile";
 
+// The case study a project's images open: its link marked `story`, if any.
+const storyOf = (project) => project.links.find((l) => l.story)?.story;
+
+// Pictures open the case study too. Keyboard users already have the "Case study"
+// link next to them, so these stay out of the tab order.
+function StoryLink({ project, className, children }) {
+  const story = storyOf(project);
+  if (!story) return <div className={className}>{children}</div>;
+  return (
+    <Link className={className} to={`/story/${story}`} tabIndex={-1} aria-label={`${project.title} case study`}>
+      {children}
+    </Link>
+  );
+}
+
 function Visual({ project }) {
+  // the Dev Hub client is interactive (tabs, typeable terminals), so it is not a link
   if (project.visual.kind === "devhub") return <DevHubVisual />;
+  return (
+    <StoryLink project={project} className="frame-link">
+      <Frame project={project} />
+    </StoryLink>
+  );
+}
+
+function Frame({ project }) {
   return (
     <figure className="frame" style={{ margin: 0 }}>
       <div className="frame-bar" aria-hidden="true">
@@ -99,7 +124,9 @@ export default function Work() {
                   <ProjectLink key={l.label} link={l} />
                 ))}
               </div>
-              <img className="more-thumb" src={p.image} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+              <StoryLink project={p} className="more-thumb">
+                <img src={p.image} alt="" loading="lazy" decoding="async" />
+              </StoryLink>
             </li>
           ))}
         </ul>
