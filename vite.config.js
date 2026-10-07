@@ -3,6 +3,11 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 
+// Libraries every page needs up front (Vite module ids use forward slashes).
+// Anything else (the whole three.js / rapier stack behind the lazy hero badge)
+// is left to Rollup, which keeps it in the async chunk.
+const EAGER_VENDOR = /\/node_modules\/(react|react-dom|scheduler|react-router|react-router-dom|@remix-run|framer-motion|motion-dom|motion-utils|lucide-react|tslib)\//;
+
 // https://vite.dev/config/
 export default defineConfig({
   base: "/portfolio2.0/",
@@ -46,11 +51,12 @@ export default defineConfig({
     chunkSizeWarningLimit: 3500,
     rollupOptions: {
       output: {
-        // Split all third-party code into one long-cached vendor chunk so app
-        // edits don't bust the (large, 3D-heavy) dependency cache. A single
-        // chunk avoids the circular-chunk hazard of splitting vendor further.
+        // The libraries every page needs go in one long-cached vendor chunk so
+        // app edits don't bust it. It is an allow-list on purpose: Rollup pulls
+        // a manual chunk's unassigned dependencies into it, so a catch-all
+        // "vendor" rule would drag three.js in with the first 3D helper package.
         manualChunks(id) {
-          if (id.includes("node_modules")) return "vendor";
+          return EAGER_VENDOR.test(id) ? "vendor" : undefined;
         },
       },
     },

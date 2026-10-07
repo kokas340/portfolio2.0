@@ -1,71 +1,33 @@
-import React, { useState, useEffect } from "react";
-import Hero from "../components/hero/Hero";
-import Navbar from "../components/Navbar/Navbar";
-import Projects from "../components/Projects/Projects";
-import Sidebar from "../components/Sidebar/Sidebar";
-import Educations from "../components/Education/Educations";
-import Footer from "../components/Footer/Footer";
-import FindMe from "../components/FindMe/FindMe";
-import About from "../components/About/About";
-import WorkList from "../components/Work/WorkList"
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import Hero from "../components/site/Hero";
+import Work from "../components/site/Work";
+import Experience from "../components/site/Experience";
+import About from "../components/site/About";
+import Contact from "../components/site/Contact";
+import { person } from "../data/profile";
 
+export default function Home() {
+  const { hash } = useLocation();
 
-function Home() {
-  const [showSidebar, setShowSidebar] = useState(true);
-  const [footInfo, setFootInfo] = useState(false);
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setShowSidebar(false);
-        setFootInfo(true);
-      } else {
-        setShowSidebar(true);
-        setFootInfo(false);
-      }
-    };
-
-    handleResize(); // Check initial width
-    window.addEventListener("resize", handleResize); // Add resize event listener
-
-    return () => {
-      window.removeEventListener("resize", handleResize); // Remove resize event listener on component unmount
-    };
+    document.title = `${person.name} · Full-Stack Developer`;
   }, []);
+
+  // Arriving from a case study with /#section: scroll to it once rendered.
+  useEffect(() => {
+    if (!hash) return;
+    const el = document.getElementById(hash.slice(1));
+    if (el) requestAnimationFrame(() => el.scrollIntoView());
+  }, [hash]);
 
   return (
     <>
-      <Navbar />
-      {//<Cursor />
-      }
-      <section id="hero">
-        <Hero />
-      </section>
-      {showSidebar && <Sidebar />}
-      <section id="projects">
-        <Projects />
-      </section>
-      {
-        /**
-      <section id="educations">
-        <Educations />
-      </section>
-         */
-      }
-
-      <section id="work">
-        <WorkList />
-      </section>
-      <section id="about">
-        <About />
-      </section>
-      {footInfo && (
-        <div className="w-full px-3">
-          <FindMe />
-        </div>
-      )}
-      <Footer />
+      <Hero />
+      <Work />
+      <Experience />
+      <About />
+      <Contact />
     </>
   );
 }
-
-export default Home;

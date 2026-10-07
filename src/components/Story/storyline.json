@@ -1,5 +1,42 @@
 [
   {
+    "id": "devhub",
+    "title": "Dev Hub",
+    "events": [
+      {
+        "date": "2026-07",
+        "milestone": "The bottleneck",
+        "description": "My laptop couldn't run more than two Claude Code sessions at once, and closing the lid meant losing a running agent."
+      },
+      {
+        "date": "2026-07",
+        "milestone": "A server from the office storeroom",
+        "description": "Found an unused workstation in the office, set up the full development environment on it and turned it into an always-on machine for agent sessions."
+      },
+      {
+        "date": "2026-07",
+        "milestone": "A client of my own",
+        "description": "Wrote a desktop client in Electron, React and xterm.js that attaches to persistent sessions on the server over WebSocket, with scrollback replay so you pick up exactly where an agent left off."
+      },
+      {
+        "date": "2026-07",
+        "milestone": "Opening it to the team",
+        "description": "Teammates started using it because sessions never die. I added Slack sign-in, per-user session isolation and per-user Claude logins so everyone has their own space."
+      },
+      {
+        "date": "2026-08",
+        "milestone": "One-click environments",
+        "description": "A preset reserves free ports, creates a git worktree, clones the database from a golden dump and starts backend and frontend, with links on the session card."
+      },
+      {
+        "date": "2026-08",
+        "milestone": "Running it like a product",
+        "description": "Added live token and cost tracking, attention notifications and phone access, made it a Windows service with crash-safe shutdown and self-healing restarts, and wrote onboarding and deploy docs for the team."
+      }
+    ],
+    "note": "Dev Hub is an internal WasteHero tool, so there's no public code or live demo."
+  },
+  {
     "id": "blackjack",
     "title": "Blackjack AI ♠️",
     "events": [
@@ -107,12 +144,12 @@
       {
         "date": "2024-02",
         "milestone": "Design Phase",
-        "description": "Designed the experience for both the app and the manager platform (wireframes, user flows, and UI mockups) and planned a scalable microservice architecture."
+        "description": "Designed the experience for both the app and the manager platform (wireframes, user flows, and UI mockups) and planned a backend that could grow with the app."
       },
       {
         "date": "2024-02",
         "milestone": "Backend Architecture Development",
-        "description": "Built the backend foundation for both platforms: databases, APIs, and microservices with flexible communication and central user-data management."
+        "description": "Built the backend foundation for both platforms: the database, the APIs and central user-data management."
       },
       {
         "date": "2024-03",
@@ -145,7 +182,7 @@
       {
         "date": "2025-01",
         "milestone": "Model Selection",
-        "description": "Evaluated several computer vision frameworks and chose a YOLOv9-based architecture for its balance of speed, accuracy, and real-time inference."
+        "description": "Evaluated several computer vision frameworks and chose YOLOv8 for its balance of speed, accuracy and real-time inference."
       },
       {
         "date": "2025-02",
@@ -170,9 +207,8 @@
     ],
     "alert": "This project is under NDA. Limited details are shared out of respect for confidentiality agreements.",
     "note": "This project is now complete on my side and will be continued by Beumer.",
-    "report":"ProjectReport"
+    "report": "ProjectReport"
   },
-
   {
     "id": "rigacup",
     "title": "Riga Cup ⚽",
@@ -208,7 +244,7 @@
         "description": "Deployed the backend to production and monitored early usage and performance to confirm stability."
       }
     ],
-    "alert": "Source code not available due to privacy concerns. 😔",
+    "alert": "Source code isn't public for privacy reasons.",
     "link": "https://www.rigacup.lv/"
   }
 ]
