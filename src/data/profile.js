@@ -113,6 +113,26 @@ export const featured = [
     ],
   },
   {
+    id: "blackjack",
+    year: "2024",
+    context: "Semester project · machine learning",
+    title: "Blackjack AI",
+    summary:
+      "A Blackjack game where four models suggest the next move as you play, trained on simulated games to maximize long-term winnings.",
+    points: [
+      "Generated the training data with a game simulator and broke every game into individual decisions",
+      "Trained XGBoost, random forest, feedforward and recurrent models, compared on accuracy, confusion matrices and feature importance",
+      "Tuned hyperparameters and refined the networks to raise accuracy on the hardest game states",
+    ],
+    role: "Data preparation and model training · group project",
+    stack: ["Python", "TensorFlow", "scikit-learn", "XGBoost", "Jupyter"],
+    visual: { kind: "image", src: blackjack, alt: "The Blackjack game, with four models each suggesting the next move and how sure they are" },
+    links: [
+      { label: "Case study", story: "blackjack" },
+      { label: "Notebook", href: "https://github.com/FuLLeNN/MLA1-A7/blob/master/blackjackModel.ipynb" },
+    ],
+  },
+  {
     id: "petfeeder",
     year: "2023",
     context: "VIA University College · team project",
@@ -159,19 +179,6 @@ export const moreProjects = [
     links: [
       { label: "Case study", story: "rigacup" },
       { label: "Live site", href: "https://www.rigacup.lv/" },
-    ],
-  },
-  {
-    id: "blackjack",
-    year: "2024",
-    title: "Blackjack AI",
-    summary: "Trained and compared XGBoost and neural networks to learn the best move for any hand.",
-    role: "Machine learning semester project",
-    stack: ["Python", "TensorFlow", "scikit-learn", "XGBoost", "Jupyter"],
-    image: blackjack,
-    links: [
-      { label: "Case study", story: "blackjack" },
-      { label: "Notebook", href: "https://github.com/FuLLeNN/MLA1-A7/blob/master/blackjackModel.ipynb" },
     ],
   },
 ];

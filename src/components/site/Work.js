@@ -61,7 +61,8 @@ export default function Work() {
       title="Things I've built and shipped."
       intro={
         <>
-          A tool my team uses every day, an industry collaboration and a team I led. The rest lives on{" "}
+          A tool my team uses every day, an industry collaboration, a machine learning project and a team I led. The rest
+          lives on{" "}
           <a href={person.links.github} target="_blank" rel="noreferrer">
             GitHub
           </a>
