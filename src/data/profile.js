@@ -42,16 +42,17 @@ export const person = {
   },
 };
 
-// A developer first. Two beats, the design and then the build; the second line's
-// last words walk through the whole job (HeroHeadline cycles them): build, test,
-// ship and run, as in the WasteHero points below.
+// A developer who is also, for now, a product owner. Two beats: owning the
+// feature, then the developer's whole job on it; the second line's last words
+// walk through it (HeroHeadline cycles them): build, test, ship and run, as in the
+// WasteHero points below.
 export const hero = {
   eyebrow: `Full-stack developer · ${person.location}`,
-  title: "I design the system.",
+  title: "I own the feature.",
   then: "Then I",
   steps: ["build it.", "test it.", "ship it.", "run it."],
   lede:
-    "Hi, I'm Jack, a full-stack developer at WasteHero. I work across Python backends and React frontends, build the tools my team uses, and ship to production, on call included.",
+    "Hi, I'm Jack, a full-stack developer at WasteHero, currently also the product owner for billing and pricing. I take features end to end, build the tools my team uses, and ship to production, on\u00a0call included.",
 };
 
 // About Jack, not the employer. The first line of code is 24 Jan 2018 (the old
