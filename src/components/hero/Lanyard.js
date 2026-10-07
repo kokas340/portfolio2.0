@@ -121,12 +121,31 @@ export default function Lanyard({
 
 /**
  * Compiles every shader in the scene in parallel, off the main thread
- * (KHR_parallel_shader_compile via renderer.compileAsync), while the badge is
+ * (KHR_parallel_shader_compile, see compileUntil), while the badge is
  * still invisible and the render loop is held. Then it lets two frames draw and
  * reports ready, so the page can fade the badge in and start the physics.
  * Without this the drop stalls for ~250ms while the GPU driver compiles the
  * glossy card material on its first draw.
  */
+// renderer.compileAsync, except it stops polling once the canvas is gone. three's
+// own loop keeps checking every 10ms after an unmount (leaving the page during the
+// warmup, or a resize rebuild) and then throws on the disposed programs.
+function compileUntil(gl, scene, camera, isCancelled) {
+    const pending = gl.compile(scene, camera);
+    return new Promise((resolve) => {
+        const check = () => {
+            if (isCancelled()) return resolve();
+            pending.forEach((material) => {
+                const program = gl.properties.get(material).currentProgram;
+                if (!program || program.isReady()) pending.delete(material);
+            });
+            if (pending.size === 0) return resolve();
+            setTimeout(check, 10);
+        };
+        check();
+    });
+}
+
 function Warmup({ onCompiled, onReady }) {
     const gl = useThree((state) => state.gl);
     const scene = useThree((state) => state.scene);
@@ -136,7 +155,7 @@ function Warmup({ onCompiled, onReady }) {
         const nextFrame = () => new Promise((resolve) => requestAnimationFrame(resolve));
         (async () => {
             try {
-                await gl.compileAsync(scene, camera);
+                await compileUntil(gl, scene, camera, () => cancelled);
             } catch {
                 /* falls back to compiling on first draw */
             }
