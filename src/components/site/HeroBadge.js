@@ -57,9 +57,9 @@ export default function HeroBadge() {
   const [active, setActive] = useState(true);
   const ready = !!box && readyKey === box.key;
 
-  // The canvas covers only the badge's playing field: one viewport tall, from
-  // 0.75 (scaled) viewport-heights left of the anchor (room for swings) to the
-  // window edge. About a third of the pixels a full-width canvas would draw.
+  // The canvas spans the window's width and one viewport's height, so the card
+  // can be dragged (and the strap stretched) anywhere in the hero without being
+  // cut off at an edge.
   const measure = useCallback(() => {
     const hero = layerRef.current && layerRef.current.closest(".hero");
     const container = hero && hero.querySelector(".container");
@@ -71,8 +71,8 @@ export default function HeroBadge() {
     const scale = Math.min(1, Math.max(MIN_SCALE, (right - textEdge(copy) - GAP) / (CARD_W * UNIT_VH * vh)));
     const unit = scale * UNIT_VH * vh; // px per world unit
     const anchorX = right - (CARD_W / 2) * unit; // card flush with the content's right edge
-    const left = Math.max(0, Math.round(anchorX - 0.75 * scale * vh));
-    const width = vw - left;
+    const left = 0;
+    const width = vw;
     const key = `${left}:${width}:${vh}:${Math.round(scale * 1000)}`;
     setBox((prev) => (prev && prev.key === key ? prev : { key, left, width, height: vh, scale, offsetX: (anchorX - (left + width / 2)) / unit }));
   }, []);

@@ -1,12 +1,14 @@
 /* The 3D ID badge hangs from under the header on the right of the hero. The
-   canvas only covers the badge's playing field (sized in HeroBadge.js) and
-   ignores pointer events; the Lanyard listens on #root instead, so the card can
-   be grabbed while everything else on the page stays clickable. The layer fades
-   in once the scene has rendered its first frames. */
+   canvas spans the hero's width (sized in HeroBadge.js) and ignores pointer
+   events; the Lanyard listens on #root instead, so the card can be grabbed while
+   everything else on the page stays clickable. It sits above the hero text, so a
+   card dragged over the headline is held in front of it, like a real badge. At
+   rest it never overlaps the text. The layer fades in once the scene has rendered
+   its first frames. */
 .lanyard-layer {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 3;
   overflow: visible;
   pointer-events: none;
   opacity: 0;

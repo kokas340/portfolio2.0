@@ -26,6 +26,14 @@ function sharperMap(shader) {
 
 // The strap is a real 3D ribbon (not a camera-facing line) so it can twist:
 // at the anchor it faces the camera, at the clip it turns with the card.
+// The strap's reach: three rope segments of 1 between the anchor and the card's
+// clip. A card let go beyond it (plus a little slack) would snap back like an
+// over-stretched bungee and fly off the screen, so it is reeled in first.
+const REACH = 3;
+const REEL_FROM = REACH + 0.2;
+// Safety net for anything else that would fling the rig: ordinary swings and
+// flings never get near this.
+const MAX_SPEED = 24; // world units per second
 const STRAP_SEGMENTS = 32;
 const STRAP_WIDTH = 0.135;
 const STRAP_REPEAT = 4;
@@ -216,6 +224,10 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab, o
         () => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()])
     );
     const [dragged, drag] = useState(false);
+    // A card let go out of the strap's reach is reeled back (kinematic, eased)
+    // until the strap could hold it, then released to swing freely.
+    const [reeling, setReeling] = useState(false);
+    const reel = useRef(null);
     const [hovered, hover] = useState(false);
 
     const strapGeometry = useMemo(createStrapGeometry, []);
@@ -250,16 +262,43 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab, o
         []
     );
 
-    // Extent of card + clip in the card body's own space (the visual group is
+    // Corners of card + clip in the card body's own space (the visual group is
     // scaled 2.25 and shifted down 1.2), used to keep a dragged card in view.
-    const cardExtent = useMemo(() => {
+    const cardCorners = useMemo(() => {
         const box = new THREE.Box3();
         [nodes.card, nodes.clip, nodes.clamp].forEach((node) => {
             node.geometry.computeBoundingBox();
             box.union(node.geometry.boundingBox);
         });
-        return { minX: box.min.x * 2.25, maxX: box.max.x * 2.25, minY: box.min.y * 2.25 - 1.2, maxY: box.max.y * 2.25 - 1.2 };
+        const corners = [];
+        for (const x of [box.min.x, box.max.x])
+            for (const y of [box.min.y, box.max.y])
+                for (const z of [box.min.z, box.max.z]) corners.push(new THREE.Vector3(x * 2.25, y * 2.25 - 1.2, z * 2.25));
+        return corners;
     }, [nodes]);
+    const corner = useMemo(() => new THREE.Vector3(), []);
+    const turn = useMemo(() => new THREE.Quaternion(), []);
+
+    const release = () => {
+        drag(false);
+        const anchor = fixed.current?.translation();
+        const at = card.current?.translation();
+        if (!anchor || !at) return;
+        const r = card.current.rotation();
+        // where the strap meets the card (the clip), relative to the anchor
+        const clip = new THREE.Vector3(0, 1.5, 0).applyQuaternion(turn.set(r.x, r.y, r.z, r.w));
+        const reach = clip.add(new THREE.Vector3(at.x - anchor.x, at.y - anchor.y, at.z - anchor.z));
+        const dist = reach.length();
+        if (dist <= REEL_FROM) return;
+        const from = new THREE.Vector3(at.x, at.y, at.z);
+        reel.current = {
+            from,
+            to: from.clone().addScaledVector(reach, (REACH - 0.1 - dist) / dist),
+            t: 0,
+            duration: Math.min(0.45, 0.1 + (dist - REACH) * 0.05),
+        };
+        setReeling(true);
+    };
 
     const stillFrames = useRef(0);
     const wake = () => {
@@ -374,14 +413,59 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab, o
             dir.copy(vec).sub(state.camera.position).normalize();
             vec.add(dir.multiplyScalar(state.camera.position.length()));
             [card, j1, j2, j3, fixed].forEach(ref => ref.current?.wakeUp());
-            // Keep the whole card inside the canvas, so it is never cut off at an edge.
+            // Keep the whole card inside the canvas as it is turned right now (a held
+            // card keeps its angle), so no corner is ever cut off at an edge.
             const halfH = Math.tan((state.camera.fov * Math.PI) / 360) * state.camera.position.z;
             const halfW = halfH * (state.size.width / state.size.height);
-            card.current?.setNextKinematicTranslation({
-                x: THREE.MathUtils.clamp(vec.x - dragged.x, -halfW - cardExtent.minX, halfW - cardExtent.maxX),
-                y: THREE.MathUtils.clamp(vec.y - dragged.y, -halfH - cardExtent.minY, halfH - cardExtent.maxY),
+            const r = card.current.rotation();
+            turn.set(r.x, r.y, r.z, r.w);
+            let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+            for (const c of cardCorners) {
+                corner.copy(c).applyQuaternion(turn);
+                minX = Math.min(minX, corner.x);
+                maxX = Math.max(maxX, corner.x);
+                minY = Math.min(minY, corner.y);
+                maxY = Math.max(maxY, corner.y);
+            }
+            card.current.setNextKinematicTranslation({
+                x: THREE.MathUtils.clamp(vec.x - dragged.x, -halfW - minX, halfW - maxX),
+                y: THREE.MathUtils.clamp(vec.y - dragged.y, -halfH - minY, halfH - maxY),
                 z: vec.z - dragged.z,
             });
+        } else if (reel.current) {
+            const rl = reel.current;
+            rl.t = Math.min(1, rl.t + dt / rl.duration);
+            const eased = 1 - Math.pow(1 - rl.t, 3);
+            card.current?.setNextKinematicTranslation(vec.copy(rl.from).lerp(rl.to, eased));
+            [card, j1, j2, j3, fixed].forEach((ref) => ref.current?.wakeUp());
+            if (rl.t >= 1) {
+                reel.current = null;
+                setReeling(false);
+            }
+        } else {
+            for (const ref of [card, j1, j2, j3]) {
+                const v = ref.current?.linvel();
+                if (!v) continue;
+                const speed = Math.hypot(v.x, v.y, v.z);
+                if (speed > MAX_SPEED) ref.current.setLinvel({ x: (v.x / speed) * MAX_SPEED, y: (v.y / speed) * MAX_SPEED, z: (v.z / speed) * MAX_SPEED }, false);
+            }
+        }
+        if (import.meta.env.DEV && card.current) {
+            // Dev-only hooks for automated checks: __badgeOutFrames counts frames where
+            // part of the card is outside the canvas, __badgeHeldOver is the largest
+            // overflow (world units) while it is held (should stay 0).
+            const halfH = Math.tan((state.camera.fov * Math.PI) / 360) * state.camera.position.z;
+            const halfW = halfH * (state.size.width / state.size.height);
+            const r = card.current.rotation();
+            const t = card.current.translation();
+            turn.set(r.x, r.y, r.z, r.w);
+            let over = 0;
+            for (const c of cardCorners) {
+                corner.copy(c).applyQuaternion(turn);
+                over = Math.max(over, Math.abs(corner.x + t.x) - halfW, Math.abs(corner.y + t.y) - halfH);
+            }
+            if (over > 0.01) window.__badgeOutFrames = (window.__badgeOutFrames || 0) + 1;
+            if (dragged) window.__badgeHeldOver = Math.max(window.__badgeHeldOver || 0, over);
         }
         if (fixed.current) {
             [j1, j2].forEach(ref => {
@@ -447,7 +531,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab, o
                 position={[x + 2, yBase + 0, 0]}
                 ref={card}
                 {...segmentProps}
-                type={dragged ? 'kinematicPosition' : 'dynamic'}
+                type={dragged || reeling ? 'kinematicPosition' : 'dynamic'}
             >
                 <CuboidCollider args={[0.8, 1.125, 0.01]} />
                 <group
@@ -456,7 +540,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, offsetX = 0, offsetY = 0, onGrab, o
                     position={[0, -1.2, -0.05]}
                     onPointerOver={() => (hover(true), wake())}
                     onPointerOut={() => hover(false)}
-                    onPointerUp={(e) => (e.target.releasePointerCapture(e.pointerId), drag(false))}
+                    onPointerUp={(e) => (e.target.releasePointerCapture(e.pointerId), release())}
                     onPointerDown={(e) => (
                         wake(),
                         e.target.setPointerCapture(e.pointerId),
