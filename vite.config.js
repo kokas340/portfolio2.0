@@ -8,10 +8,24 @@ import path from "node:path";
 // is left to Rollup, which keeps it in the async chunk.
 const EAGER_VENDOR = /\/node_modules\/(react|react-dom|scheduler|react-router|react-router-dom|@remix-run|framer-motion|motion-dom|motion-utils|lucide-react|tslib)\//;
 
+// GitHub Pages has no SPA routing: opening /portfolio2.0/story/<id> directly (a
+// shared link, a refresh) finds no file and gets GitHub's 404 page. Publishing the
+// app itself as 404.html makes Pages serve it there, and the router then renders
+// the right page from the URL.
+const githubPagesFallback = {
+  name: "github-pages-404-fallback",
+  apply: "build",
+  enforce: "post",
+  generateBundle(_, bundle) {
+    const index = bundle["index.html"];
+    if (index && index.type === "asset") this.emitFile({ type: "asset", fileName: "404.html", source: index.source });
+  },
+};
+
 // https://vite.dev/config/
 export default defineConfig({
   base: "/portfolio2.0/",
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), githubPagesFallback],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
