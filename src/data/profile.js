@@ -56,11 +56,12 @@ export const hero = {
 };
 
 // About Jack, not the employer. The first line of code is 24 Jan 2018 (the old
-// site's timer); the languages and countries come from the CV.
+// site's timer); the lead roles are the ones on the projects below (PetFeeder and
+// Pnta per the CV, Riga Cup per the old site); the countries come from the CV.
 export const facts = [
   { value: `${yearsSince("2018-01-24")}+ years`, label: "since my first line of code" },
   { value: "6 months", label: "from QA intern to developer" },
-  { value: "3 languages", label: "Python, TypeScript and Java" },
+  { value: "3 lead roles", label: "on PetFeeder, Pnta and Riga Cup" },
   { value: "2 countries", label: "studied and worked in Portugal and Denmark" },
 ];
 
