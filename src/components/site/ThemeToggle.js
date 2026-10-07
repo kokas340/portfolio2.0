@@ -1,27 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { SquareTerminal, Sun } from "lucide-react";
+import { isDark as readIsDark, toggleTheme } from "../../lib/theme";
 
-function getInitialTheme() {
-  try {
-    return localStorage.getItem("theme") === "dark" ? "dark" : "light";
-  } catch {
-    return "light";
-  }
-}
-
-// Light is the default; terminal mode is an opt-in easter egg.
+// Light is the default; terminal mode is an opt-in easter egg. The theme can also
+// change from the Dev Hub terminal (`theme`), so this listens for `themechange`.
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState(getInitialTheme);
-  const isDark = theme === "dark";
+  const [isDark, setIsDark] = useState(readIsDark);
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    try {
-      localStorage.setItem("theme", theme);
-    } catch {
-      /* private mode: the toggle still works for this visit */
-    }
-  }, [theme, isDark]);
+    const sync = (e) => setIsDark(e.detail === "dark");
+    window.addEventListener("themechange", sync);
+    return () => window.removeEventListener("themechange", sync);
+  }, []);
 
   return (
     <button
@@ -30,7 +20,7 @@ export default function ThemeToggle() {
       aria-label={isDark ? "Leave terminal mode" : "Enter terminal mode"}
       title={isDark ? "Leave terminal mode" : "Terminal mode"}
       aria-pressed={isDark}
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      onClick={toggleTheme}
     >
       {isDark ? <Sun size={18} /> : <SquareTerminal size={18} />}
     </button>

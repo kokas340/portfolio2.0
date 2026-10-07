@@ -621,20 +621,54 @@ a { color: inherit; }
 .dh-session b { margin-left: auto; color: #5c6c7d; font-weight: 400; }
 .dh-side .dh-total { margin: 10px 8px 0; padding-top: 10px; border-top: 1px solid #1b2632; color: #5c6c7d; display: flex; justify-content: space-between; }
 .dh-side .dh-total b { color: #c3cfdb; font-weight: 400; }
-.dh-term { display: grid; align-content: start; gap: 9px; padding: 18px 22px; line-height: 1.45; overflow: hidden; }
-.dh-term p { margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dh-term {
+  min-height: 0;
+  padding: 18px 22px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  line-height: 1.45;
+  cursor: text;
+  scrollbar-width: thin;
+  scrollbar-color: #2a3644 transparent;
+}
+.dh-term [role="log"] { display: grid; gap: 9px; }
+.dh-term p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
 .dh-term .prompt { color: #58a6ff; }
 .dh-term .ok { color: #3fb950; }
 .dh-term .dim { color: #5c6c7d; }
 .dh-term .hl { color: #e6edf3; }
-.dh-cursor {
-  display: inline-block;
-  width: 8px;
-  height: 15px;
-  margin-left: 2px;
-  vertical-align: -3px;
-  background: #c3cfdb;
-  animation: blink 1.1s steps(1) infinite;
+.dh-term .err { color: #ff7b72; }
+.dh-term a {
+  color: #79c0ff;
+  text-decoration: underline;
+  text-decoration-color: rgb(121 192 255 / 0.4);
+  text-underline-offset: 2px;
+}
+.dh-term a:hover { text-decoration-color: #79c0ff; }
+.dh-input-line { display: flex; align-items: center; gap: 8px; margin-top: 9px; }
+.dh-input-line input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #e6edf3;
+  font: inherit;
+  caret-color: #e6edf3;
+}
+.dh-input-line input::placeholder { color: #4b5a6a; }
+.devhub:focus-within { border-color: #2f4256; box-shadow: var(--shadow-lg), 0 0 0 3px rgb(88 166 255 / 0.18); }
+/* iOS zooms into inputs under 16px, so touch devices get a real 16px input,
+   scaled back visually to the terminal's 12.5px. */
+@media (pointer: coarse) {
+  .dh-input-line input {
+    flex: 0 0 auto;
+    width: calc((100% - 16px) * 1.28);
+    font-size: 16px;
+    transform: scale(0.78125);
+    transform-origin: left center;
+  }
 }
 @keyframes blink { 50% { opacity: 0; } }
 @media (max-width: 575.98px) {
