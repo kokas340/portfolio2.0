@@ -24,37 +24,3 @@
   height: 100% !important;
   pointer-events: none;
 }
-
-/* Caption under the card's resting spot (its bottom edge rests at 76vh of the
-   page); `left` is the anchor x, set inline. No backdrop blur: the strap moves
-   behind it every frame. */
-.badge-hint {
-  position: absolute;
-  z-index: 2;
-  top: calc(76vh - var(--header-h) + 22px);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0;
-  padding: 7px 12px;
-  border: 1px solid var(--c-line);
-  border-radius: 999px;
-  background: rgb(var(--c-bg-rgb) / 0.92);
-  color: var(--c-muted);
-  font: 500 12.5px var(--f-mono);
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  transform: translate(-50%, 6px);
-  animation: badge-hint-in 0.6s var(--ease) 1.4s forwards;
-}
-.badge-hint svg { color: var(--c-sky); transform-origin: 65% 85%; animation: badge-hint-wave 2.8s ease-in-out 2.2s infinite; }
-.badge-hint.is-gone { animation: badge-hint-out 0.35s var(--ease) forwards; }
-
-@keyframes badge-hint-in { to { opacity: 1; transform: translate(-50%, 0); } }
-@keyframes badge-hint-out { from { opacity: 1; transform: translate(-50%, 0); } to { opacity: 0; transform: translate(-50%, 6px); } }
-@keyframes badge-hint-wave {
-  0%, 55%, 100% { transform: rotate(0deg); }
-  10%, 30% { transform: rotate(-14deg); }
-  20%, 40% { transform: rotate(10deg); }
-}
